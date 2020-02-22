@@ -2,19 +2,23 @@ package app.models;
 
 import java.time.LocalDate;
 
-public class Aluno {
+public class Aluno extends Autenticavel {
 
     private String nome;
-    private long matricula;
-    private LocalDate anoResidencia;
-
-    public Aluno(String nome, long matricula, LocalDate anoResidencia) {
-        this.nome = nome;
-        this.matricula = matricula;
-        this.anoResidencia = anoResidencia;
-    }
+    private int anoResidencia;
+    private LocalDate dataNascimento;
+    private Professor professor;
 
     public Aluno() {
+        super(null, null);
+    }
+
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor) {
+        super(matricula, senha);
+        this.nome = nome;
+        this.anoResidencia = anoResidencia;
+        this.dataNascimento = dataNascimento;
+        this.professor = professor;
     }
 
     public String getNome() {
@@ -25,44 +29,27 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public long getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(long matricula) {
-        this.matricula = matricula;
-    }
-
-    public LocalDate getAnoResidencia() {
+    public int getAnoResidencia() {
         return anoResidencia;
     }
 
-    public void setAnoResidencia(LocalDate anoResidencia) {
+    public void setAnoResidencia(int anoResidencia) {
         this.anoResidencia = anoResidencia;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
-        return hash;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Aluno other = (Aluno) obj;
-        if (this.matricula != other.matricula) {
-            return false;
-        }
-        return true;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 }

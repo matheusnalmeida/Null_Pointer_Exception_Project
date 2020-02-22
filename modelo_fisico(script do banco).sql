@@ -5,15 +5,16 @@ default collate utf8_general_ci;
 create table medicos(
     nome varchar(50) not null,
     crm varchar(20) not null,
+    matricula varchar(12) not null,
     senha varchar(50) not null,
     primary key (crm)
 );
 
 create table alunos(
     nome varchar(50) not null,
-    codigo int not null,
+    matricula varchar(12) not null,
     senha varchar(50) not null,
-    anoResidencia date not null,
+    anoResidencia int,
     dataNascimento date not null,
     crmProfessor varchar(20),
     foreign key(crmProfessor)
@@ -22,6 +23,7 @@ create table alunos(
 
 create table professores(
     nome varchar(50) not null,
+    matricula varchar(12) not null,
     crm varchar(20) not null,
     senha varchar(50) not null,
     titulacao varchar(50) not null,
