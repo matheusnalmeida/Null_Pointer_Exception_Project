@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="10.0" prefWidth="295.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="654.0" minWidth="10.0" prefWidth="635.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Nome:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label text="CRM:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Label text="Titulação:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Label text="Senha:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <TextField fx:id="txtNomeProfessor" maxWidth="-Infinity" prefHeight="35.0" prefWidth="425.0" promptText="Digite seu nome..." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <TextField fx:id="txtCRMProfessor" maxWidth="-Infinity" prefHeight="31.0" prefWidth="425.0" promptText="Dgite seu CRM..." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <TextField fx:id="txtTitulacaoProfessor" maxWidth="-Infinity" prefHeight="31.0" prefWidth="425.0" promptText="Digite sua titulação:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <PasswordField fx:id="txt" maxWidth="-Infinity" prefHeight="31.0" prefWidth="425.0" promptText="Digite sua senha..." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Button fx:id="txtCadastrarProfessor" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Cancelar" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <Button fx:id="txtCadastrarProfessor1" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>
