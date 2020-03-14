@@ -12,19 +12,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 /**
  *
  * @author serbi
  */
 public class Principal extends Application {
+
     private static Stage stage;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-    }   
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
@@ -32,6 +34,7 @@ public class Principal extends Application {
         stage.setTitle("Principal");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
         setStage(stage);
     }
 
@@ -42,6 +45,4 @@ public class Principal extends Application {
     public static void setStage(Stage stage) {
         Principal.stage = stage;
     }
-
-    
 }

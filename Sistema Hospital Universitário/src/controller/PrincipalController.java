@@ -18,14 +18,13 @@ import javafx.scene.control.Button;
  */
 public class PrincipalController implements Initializable {
 
-    @FXML  private Button txtCadastrarAluno;
-    @FXML private Button txtCadastrarProfessor;
-    @FXML private Button txtCadastrarPaciente;
-    @FXML private Button txtRelatorios;
+    @FXML private Button cadastrarAluno;
+    @FXML private Button cadastrarProfessor;
+    @FXML private Button cadastrarPaciente;
+    @FXML private Button relatorios;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
 }

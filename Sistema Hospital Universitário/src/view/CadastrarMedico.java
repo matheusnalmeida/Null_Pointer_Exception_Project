@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author Usuario
  */
 public class CadastrarMedico extends Application {
-    
+
     private static Stage stage;
 
     public static Stage getStage() {
@@ -29,7 +29,7 @@ public class CadastrarMedico extends Application {
 
     public CadastrarMedico() {
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }

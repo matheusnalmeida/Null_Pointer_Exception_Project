@@ -16,13 +16,16 @@ import javafx.stage.Stage;
  * @author serbi
  */
 public class Hospital extends Application {
+
     private static Stage stage;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-    }   
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Relatorio.fxml"));
@@ -31,6 +34,7 @@ public class Hospital extends Application {
         stage.setScene(scene);
         stage.show();
         setStage(stage);
+        stage.setResizable(false);
     }
 
     public static Stage getStage() {
@@ -41,6 +45,3 @@ public class Hospital extends Application {
         Hospital.stage = stage;
     }
 }
-    
-    
-  

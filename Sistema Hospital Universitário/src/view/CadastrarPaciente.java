@@ -12,15 +12,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class CadastrarPaciente extends Application {
+
     private static Stage stage;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-    }   
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("CadastrarPaciente.fxml"));
@@ -28,6 +30,7 @@ public class CadastrarPaciente extends Application {
         stage.setTitle("Cadastrar Paciente");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
         setStage(stage);
     }
 
