@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package View;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,19 +16,16 @@ import javafx.stage.Stage;
  * @author serbi
  */
 public class Hospital extends Application {
-
     private static Stage stage;
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-    }
-
+    }   
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Relatorio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("..//Model//Relatorio.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Hospital");
         stage.setScene(scene);
@@ -44,3 +41,6 @@ public class Hospital extends Application {
         Hospital.stage = stage;
     }
 }
+    
+    
+  
