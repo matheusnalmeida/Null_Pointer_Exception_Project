@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="600.0" minHeight="500.0" minWidth="600.0" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFrameController">
+   <children>
+      <AnchorPane layoutX="115.0" layoutY="120.0">
+         <children>
+            <AnchorPane layoutX="26.0" layoutY="100.0">
+               <children>
+                  <Label fx:id="matriculaLabel" layoutY="4.0" text="Matrícula">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="senhaLabel" layoutY="47.0" text="Senha">
+                     <font>
+                        <Font name="Consolas" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="campoMatricula" alignment="CENTER" layoutX="73.0" prefHeight="25.0" prefWidth="213.0" promptText="Digite a sua matrícula...">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="campoSenha" alignment="CENTER" layoutX="73.0" layoutY="43.0" prefHeight="25.0" prefWidth="213.0" promptText="Digite a sua senha...">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font></PasswordField>
+               </children>
+            </AnchorPane>
+            <Button fx:id="botaoLogin" layoutX="142.0" layoutY="236.0" mnemonicParsing="false" onAction="#acaoBotaoLogin" prefHeight="25.0" prefWidth="86.0" text="Entrar" textAlignment="CENTER">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="titulo" alignment="CENTER" text="Sistema de Homologação do Hospital Universitário" textAlignment="CENTER">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu fx:id="menu" mnemonicParsing="false" text="Cadastro">
+            <items>
+              <MenuItem fx:id="cadastroProfessor" mnemonicParsing="false" onAction="#cadastroProfessor" text="Professor" />
+                  <MenuItem fx:id="cadastroAluno" mnemonicParsing="false" onAction="#cadastrarAluno" text="Aluno" />
+                  <MenuItem fx:id="cadastroMedico" mnemonicParsing="false" onAction="#cadastrarMedico" text="Médico" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
