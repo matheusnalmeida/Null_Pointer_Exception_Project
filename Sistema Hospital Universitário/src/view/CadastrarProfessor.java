@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -22,7 +22,7 @@ public class CadastrarProfessor extends Application {
     }   
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("..//Model//CadastrarProfessor.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CadastrarProfessor.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Cadastrar Professor");
         stage.setScene(scene);
