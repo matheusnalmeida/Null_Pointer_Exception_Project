@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -41,7 +42,11 @@ public class CadastrarMedico extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Cadastrar Médico");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
         stage.setResizable(false);
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            MainFrame.getStage().show();
+        });
     }
 }

@@ -11,7 +11,17 @@ import javafx.stage.Stage;
  * @author Matheus Nunes
  */
 public class MainFrame extends Application {
+    
+    private static Stage stage;
 
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        MainFrame.stage = stage;
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -23,6 +33,8 @@ public class MainFrame extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("Inicio");
+        stage.centerOnScreen();
         stage.show();
+        MainFrame.setStage(stage);
     }
 }

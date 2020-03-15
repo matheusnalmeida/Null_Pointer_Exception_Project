@@ -7,12 +7,17 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.dao.MedicoDAO;
+import model.domain.Medico;
+import view.CadastrarMedico;
+import view.MainFrame;
 
 /**
  * FXML Controller class
@@ -48,5 +53,22 @@ public class CadastrarMedicoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    @FXML
+    public void cadastrarAction(ActionEvent event) {
+        String nome = nomeField.getText().trim().toUpperCase();
+        String matricula = matriculaField.getText().trim().concat("M");
+        String crm = crmField.getText().trim();
+        String senha = senhaField.getText();
+        Medico medico = new Medico(nome, crm, matricula, senha);
+        MedicoDAO medicoDAO = new MedicoDAO();
+        medicoDAO.create(medico);
+    }
+
+    @FXML
+    public void cancelarAction(ActionEvent event) {
+        CadastrarMedico.getStage().close();
+        MainFrame.getStage().show();
     }
 }

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class CadastrarAluno extends Application {
 
@@ -29,9 +30,14 @@ public class CadastrarAluno extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Cadastrar Aluno");
         stage.setScene(scene);
-        stage.show();
+        stage.centerOnScreen();
         stage.setResizable(false);
+        stage.show();
         setStage(stage);
+
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            MainFrame.getStage().show();
+        });
     }
 
     public static Stage getStage() {

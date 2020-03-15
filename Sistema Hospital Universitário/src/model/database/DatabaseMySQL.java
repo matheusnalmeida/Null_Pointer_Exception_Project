@@ -9,10 +9,10 @@ public class DatabaseMySQL {
     public static Connection conectar() {
         Connection conexao = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://ip/nomeBanco", "usuario", "senha");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital?serverTimezone=UTC", "root", "");
         } catch (ClassNotFoundException | SQLException exception) {
-
+            System.out.println(exception.getMessage());
         }
         return conexao;
     }
@@ -23,7 +23,6 @@ public class DatabaseMySQL {
                 conexao.close();
             }
         } catch (SQLException exception) {
-
         }
     }
 }

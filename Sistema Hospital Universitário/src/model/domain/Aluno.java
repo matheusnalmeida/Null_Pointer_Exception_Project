@@ -21,6 +21,13 @@ public class Aluno extends Autenticavel {
         this.professor = professor;
     }
 
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento) {
+        super(matricula, senha);
+        this.nome = nome;
+        this.anoResidencia = anoResidencia;
+        this.dataNascimento = dataNascimento;
+    }
+    
     public String getNome() {
         return nome;
     }

@@ -33,6 +33,7 @@ public class Principal extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Principal");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
         stage.setResizable(false);
         setStage(stage);

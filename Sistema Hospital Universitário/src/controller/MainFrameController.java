@@ -5,7 +5,6 @@
  */
 package controller;
 
-import view.Principal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,6 +21,7 @@ import javafx.stage.Stage;
 import view.CadastrarAluno;
 import view.CadastrarMedico;
 import view.CadastrarProfessor;
+import view.MainFrame;
 
 /**
  * FXML Controller class
@@ -75,6 +75,7 @@ public class MainFrameController implements Initializable {
         try {
             CadastrarProfessor cadastrarProfessor = new CadastrarProfessor();
             cadastrarProfessor.start(new Stage());
+            MainFrame.getStage().close();
         } catch (Exception exception) {
 
         }
@@ -85,6 +86,7 @@ public class MainFrameController implements Initializable {
         try {
             CadastrarAluno cadastrarAluno = new CadastrarAluno();
             cadastrarAluno.start(new Stage());
+            MainFrame.getStage().close();
         } catch (Exception exception) {
 
         }
@@ -95,6 +97,7 @@ public class MainFrameController implements Initializable {
         try {
             CadastrarMedico cadastrarMedico = new CadastrarMedico();
             cadastrarMedico.start(new Stage());
+            MainFrame.getStage().close();
         } catch (Exception exception) {
 
         }

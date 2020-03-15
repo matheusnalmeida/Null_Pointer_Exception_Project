@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CadastrarProfessor">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarProfessorController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="10.0" prefWidth="295.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="654.0" minWidth="10.0" prefWidth="635.0" />
@@ -51,11 +51,11 @@
          <font>
             <Font name="Consolas" size="12.0" />
          </font></TextField>
-      <Button fx:id="cancelar" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Cancelar" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+      <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="31.0" prefWidth="105.0" text="Cancelar" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <font>
             <Font name="Consolas" size="12.0" />
          </font></Button>
-      <Button fx:id="cadastrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" text="Cadastrar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+      <Button fx:id="cadastrar" mnemonicParsing="false" onAction="#cadastrarAction" prefHeight="31.0" prefWidth="105.0" text="Cadastrar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <font>
             <Font name="Consolas" size="12.0" />
          </font></Button>

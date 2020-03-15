@@ -6,13 +6,19 @@
 package controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.dao.ProfessorDAO;
+import model.domain.Professor;
+import view.CadastrarProfessor;
+import view.MainFrame;
 
 /**
  * FXML Controller class
@@ -20,7 +26,7 @@ import javafx.scene.control.TextField;
  * @author serbi
  */
 public class CadastrarProfessorController implements Initializable {
-
+    
     @FXML
     private Label nomeLabel;
     @FXML
@@ -45,9 +51,27 @@ public class CadastrarProfessorController implements Initializable {
     private Button cancelar;
     @FXML
     private Button cadastrar;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    @FXML
+    public void cadastrarAction(ActionEvent event) {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        String nome = nomeField.getText().trim().toUpperCase();
+        String matricula = matriculaField.getText().trim().concat("P");
+        String senha = senhaField.getText();
+        String titulacao = titulacaoField.getText().trim();
+        String crm = crmField.getText().trim();
+        Professor professor = new Professor(nome, titulacao, crm, matricula, senha);
+        professorDAO.create(professor);
+    }
+    
+    @FXML
+    public void cancelarAction(ActionEvent event) {
+        CadastrarProfessor.getStage().close();
+        MainFrame.getStage().show();
     }
 }
