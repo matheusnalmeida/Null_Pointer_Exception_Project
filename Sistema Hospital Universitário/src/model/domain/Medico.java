@@ -1,26 +1,16 @@
 package model.domain;
 
-public class Medico extends Autenticavel {
+public class Medico extends Usuario {
 
-    private String nome;
     private String crm;
 
-    public Medico(String nome, String crm, String matricula, String senha) {
-        super(matricula, senha);
-        this.nome = nome;
+    public Medico(String nome, String matricula, String senha, String crm) {
+        super(nome, matricula, senha);
         this.crm = crm;
     }
 
     public Medico() {
-        super(null, null);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        super(null, null, null);
     }
 
     public String getCrm() {

@@ -1,19 +1,21 @@
 package model.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-//pacientes_alunos_relatorios
-public class Consulta {
+public class PacienteAlunoRelatorio {
 
     private int codigo;
-    private LocalDate dataConsulta;
+    private LocalDateTime dataAtendimento;
     private Paciente paciente;
     private Aluno aluno;
     private Relatorio relatorio;
 
-    public Consulta(int codigo, LocalDate dataConsulta, Paciente paciente, Aluno aluno) {
+    public PacienteAlunoRelatorio() {
+    }
+    
+    public PacienteAlunoRelatorio(int codigo, LocalDateTime dataConsulta, Paciente paciente, Aluno aluno) {
         this.codigo = codigo;
-        this.dataConsulta = dataConsulta;
+        this.dataAtendimento = dataConsulta;
         this.paciente = paciente;
         this.aluno = aluno;
     }
@@ -26,12 +28,12 @@ public class Consulta {
         this.codigo = codigo;
     }
 
-    public LocalDate getDataConsulta() {
-        return dataConsulta;
+    public LocalDateTime getDataAtendimento() {
+        return dataAtendimento;
     }
 
-    public void setDataConsulta(LocalDate dataConsulta) {
-        this.dataConsulta = dataConsulta;
+    public void setDataConsulta(LocalDateTime dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
     }
 
     public Paciente getPaciente() {
@@ -76,7 +78,7 @@ public class Consulta {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Consulta other = (Consulta) obj;
+        final PacienteAlunoRelatorio other = (PacienteAlunoRelatorio) obj;
         if (this.codigo != other.codigo) {
             return false;
         }

@@ -6,11 +6,11 @@
 package controller;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -26,7 +26,7 @@ import view.MainFrame;
  * @author serbi
  */
 public class CadastrarProfessorController implements Initializable {
-    
+
     @FXML
     private Label nomeLabel;
     @FXML
@@ -51,12 +51,12 @@ public class CadastrarProfessorController implements Initializable {
     private Button cancelar;
     @FXML
     private Button cadastrar;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     public void cadastrarAction(ActionEvent event) {
         ProfessorDAO professorDAO = new ProfessorDAO();
@@ -65,10 +65,25 @@ public class CadastrarProfessorController implements Initializable {
         String senha = senhaField.getText();
         String titulacao = titulacaoField.getText().trim();
         String crm = crmField.getText().trim();
-        Professor professor = new Professor(nome, titulacao, crm, matricula, senha);
-        professorDAO.create(professor);
+        Professor professor = new Professor(nome, matricula, senha, crm, titulacao);
+        boolean result = professorDAO.create(professor);
+        Alert alert;
+        if (!result) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Information Dialog");
+            alert.setContentText("Cadastro realizado com sucesso!");
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Information Dialog");
+            alert.setContentText("Erro ao realizar cadastro.");
+        }
+        alert.showAndWait();
+        CadastrarProfessor.getStage().close();
+        MainFrame.getStage().show();
     }
-    
+
     @FXML
     public void cancelarAction(ActionEvent event) {
         CadastrarProfessor.getStage().close();

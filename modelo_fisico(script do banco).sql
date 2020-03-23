@@ -2,88 +2,89 @@ create database hospital
 default character set utf8
 default collate utf8_general_ci;
 
-create table medicos(
+create table usuarios(
     nome varchar(50) not null,
-    crm varchar(20) not null,
     matricula varchar(12) not null,
-    senha varchar(50) not null,
-    primary key (crm)
+    senha varchar(70) not null,
+    primary key(matricula)
 );
 
-create table alunos(
-    nome varchar(50) not null,
+create table medicos(
     matricula varchar(12) not null,
-    senha varchar(50) not null,
-    anoResidencia int,
-    dataNascimento date not null,
-    crmProfessor varchar(20),
-    foreign key(crmProfessor)
-    references professores(crm)
+    crm varchar(20) not null unique,
+    primary key(matricula),
+    foreign key(matricula)
+    references usuarios(matricula)
 );
 
 create table professores(
-    nome varchar(50) not null,
     matricula varchar(12) not null,
-    crm varchar(20) not null,
-    senha varchar(50) not null,
-    titulacao varchar(50) not null,
-    primary key (crm)
+    titulacao varchar(20),
+    primary key(matricula),
+    foreign key(matricula)
+    references medicos(matricula)
+);
+
+create table alunos(
+    matricula varchar(12) not null,
+    anoResidencia integer,
+    dataNascimento varchar(10),
+    matriculaProfessor varchar(12) not null,
+    primary key(matricula),
+    foreign key(matriculaProfessor)
+    references professores(matricula)
 );
 
 create table pacientes(
     nome varchar(50) not null,
-    cor varchar(10) not null,
-    dataNascimento date not null,
-    cpf varchar(14) not null primary key,
-    sexo varchar(10)
+    cpf varchar(14) not null,
+    cor varchar(10),
+    dataNascimento varchar(10),
+    sexo char(1)
 );
 
 create table pacientes_alunos_relatorios(
-    cpfPaciente varchar(14) not null,
-    codigoAluno int not null,
-    dataAtendimento datetime not null,
+    cpfPaciente varchar(14),
+    matriculaAluno varchar(12),
+    dataAtendimento varchar(20),
     codigoAtendimento int auto_increment primary key,
     codigoRelatorio int not null,
     foreign key(cpfPaciente)
-    references paciente(cpf),
-    foreign key(codigoAluno)
-    references aluno(codigo),
+    references pacientes(cpf),
+    foreign key(matriculaAluno)
+    references alunos(matricula),
     foreign key(codigoRelatorio)
-    references relatorio(codigo)
+    references relatorios(codigo)
 );
 
 create table relatorios(
     codigo int auto_increment primary key,
-    dataRelatorio datetime default now(),
+    dataRelatorio varchar(20),
     descricao text not null,
-    crmMedicoAutorizacao varchar(20) not null,
-    dataAutorizacao datetime not null,
+    matriculaMedicoAutorizacao varchar(12),
+    dataAutorizacao varchar(20) not null,
     arquivo blob,
-    foreign key(crmMedicoAutorizacao)
-    references medicos(crm)
+    foreign key(matriculaMedicoAutorizacao)
+    references medicos(matricula)
 );
 
-create table pedidosExame(
+create table pedidos_exame(
     codigo int auto_increment primary key,
     recomendacoes text not null,
-    dataExame datetime not null,
+    dataExame varchar(20) not null,
     hipoteseDiagnostica text,
-    tipoExame text not null,
-    cpfPaciente varchar(14) not null,
-    foreign key(cpfPaciente)
-    references pacientes(cpf)
+    tipoExame text not null
 );
 
-create table emissoesPedidosExame(
-    dataEmissao datetime default now(),
-    crmMedico varchar(20) not null,
+create table emissoes_pedidos_exame(
+    dataEmissao varchar(20),
+    matriculaMedico varchar(12) not null,
     cpfPaciente varchar(14) not null,
     codigoPedidoExame int not null primary key,
-    foreign key(crmMedico)
-    references medicos(crm),
+    foreign key(matriculaMedico)
+    references medicos(matricula),
     foreign key(cpfPaciente)
     references pacientes(cpf),
     foreign key(codigoPedidoExame)
-    references pedidosExame(codigo)
+    references pedidos_exame(codigo)
 );
-

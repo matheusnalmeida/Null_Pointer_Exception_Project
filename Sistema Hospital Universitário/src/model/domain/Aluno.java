@@ -2,38 +2,27 @@ package model.domain;
 
 import java.time.LocalDate;
 
-public class Aluno extends Autenticavel {
+public class Aluno extends Usuario {
 
-    private String nome;
     private int anoResidencia;
     private LocalDate dataNascimento;
     private Professor professor;
 
     public Aluno() {
-        super(null, null);
+        super(null, null, null);
     }
 
     public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor) {
-        super(matricula, senha);
-        this.nome = nome;
+        super(nome, matricula, senha);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
         this.professor = professor;
     }
 
     public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento) {
-        super(matricula, senha);
-        this.nome = nome;
+        super(nome, matricula, senha);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getAnoResidencia() {

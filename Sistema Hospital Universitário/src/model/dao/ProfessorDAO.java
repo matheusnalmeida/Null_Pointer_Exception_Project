@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.domain.Medico;
 
 public class ProfessorDAO {
 
@@ -16,60 +17,89 @@ public class ProfessorDAO {
     }
 
     public boolean create(Professor professor) {
-        if (professor != null) {
-            String query = "insert into professores(nome, matricula, crm, senha, titulacao) values (?, ?, ?, MD5(?), ?)";
+        boolean result = true;
+        MedicoDAO medicoDAO = new MedicoDAO();
+        result = medicoDAO.create(professor);
+        if (!result) {
+            String query = "insert into professores(matricula, titulacao) values (?, ?)";
             try {
                 PreparedStatement stmt = this.connection.prepareStatement(query);
-                stmt.setString(1, professor.getNome());
-                stmt.setString(2, professor.getMatricula());
-                stmt.setString(3, professor.getCrm());
-                stmt.setString(4, professor.getSenha());
-                stmt.setString(5, professor.getTitulacao());
-                return stmt.execute();
+                stmt.setString(1, professor.getMatricula());
+                stmt.setString(2, professor.getTitulacao());
+                result = stmt.execute();
             } catch (SQLException exception) {
+                result = true;
+                medicoDAO.delete(professor);
             }
         }
-        return false;
+        DatabaseMySQL.desconectar(this.connection);
+        return result;
     }
 
     public Professor read(Professor professor) {
         Professor professor2 = null;
         if (professor != null) {
-            String query = "select professores.nome, professores.matricula, professores.senha, professores.titulacao, professores.crm from professores where matricula = ? and senha = MD5(?)";
-            try {
-                PreparedStatement stmt = this.connection.prepareStatement(query);
-                stmt.setString(1, professor.getMatricula());
-                stmt.setString(2, professor.getSenha());
-                stmt.execute();
-                ResultSet resultSet = stmt.getResultSet();
-                while (resultSet.next()) {
-                    String nome = resultSet.getString("nome");
-                    String matricula = resultSet.getString("matricula");
-                    String senha = resultSet.getString("senha");
-                    String crm = resultSet.getString("crm");
-                    String titulacao = resultSet.getString("titulacao");
-                    professor2 = new Professor(nome, titulacao, crm, matricula, senha);
+            MedicoDAO medicoDAO = new MedicoDAO();
+            Medico medico = medicoDAO.read(professor);
+            if (medico != null) {
+                String query = "select titulacao from professores where matricula = ?";
+                try {
+                    PreparedStatement stmt = this.connection.prepareStatement(query);
+                    stmt.setString(1, professor.getMatricula());
+                    stmt.execute();
+                    ResultSet resultSet = stmt.getResultSet();
+                    while (resultSet.next()) {
+                        String nome = medico.getNome();
+                        String matricula = medico.getMatricula();
+                        String senha = medico.getSenha();
+                        String crm = medico.getCrm();
+                        String titulacao = resultSet.getString("titulacao");
+                        professor2 = new Professor(nome, matricula, senha, crm, titulacao);
+                    }
+                } catch (SQLException exception) {
                 }
-            } catch (SQLException exception) {
             }
         }
+        DatabaseMySQL.desconectar(this.connection);
         return professor2;
     }
 
     public boolean update(Professor professor) {
+        boolean result = true;
         if (professor != null) {
-            String query = "update professores set nome = ?, senha = MD5(?), titulacao = ?, crm = ? where matricula = ?";
-            try {
-                PreparedStatement stmt = this.connection.prepareStatement(query);
-                stmt.setString(1, professor.getNome());
-                stmt.setString(2, professor.getSenha());
-                stmt.setString(3, professor.getTitulacao());
-                stmt.setString(4, professor.getCrm());
-                stmt.setString(5, professor.getMatricula());
-                return stmt.execute();
-            } catch (SQLException exception) {
+            MedicoDAO medicoDAO = new MedicoDAO();
+            result = medicoDAO.update(professor);
+            if (!result) {
+                String query = "update professores set titulacao = ? where matricula = ?";
+                try {
+                    PreparedStatement stmt = this.connection.prepareStatement(query);
+                    stmt.setString(1, professor.getTitulacao());
+                    stmt.setString(2, professor.getMatricula());
+                    result = stmt.execute();
+                } catch (SQLException exception) {
+                    result = true;
+                }
             }
         }
-        return false;
+        DatabaseMySQL.desconectar(this.connection);
+        return result;
+    }
+
+    public boolean delete(Professor professor) {
+        boolean result = true;
+        if (professor != null) {
+            String query = "delete from professores where matricula = ?";
+            try {
+                PreparedStatement stmt = this.connection.prepareStatement(query);
+                stmt.setString(1, professor.getMatricula());
+                result = stmt.execute();
+                MedicoDAO medicoDAO = new MedicoDAO();
+                result = medicoDAO.delete(professor) && result;
+            } catch (SQLException exception) {
+                result = true;
+            }
+        }
+        DatabaseMySQL.desconectar(this.connection);
+        return result;
     }
 }

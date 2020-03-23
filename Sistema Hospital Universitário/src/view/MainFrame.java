@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  * @author Matheus Nunes
  */
 public class MainFrame extends Application {
-    
+
     private static Stage stage;
 
     public static Stage getStage() {
@@ -21,7 +21,7 @@ public class MainFrame extends Application {
     public static void setStage(Stage stage) {
         MainFrame.stage = stage;
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }

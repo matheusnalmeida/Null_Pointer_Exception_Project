@@ -2,12 +2,14 @@ package model.domain;
 
 import java.util.Objects;
 
-public abstract class Autenticavel {
+public abstract class Usuario {
 
+    private String nome;
     private String matricula;
     private String senha;
 
-    public Autenticavel(String matricula, String senha) {
+    public Usuario(String nome, String matricula, String senha) {
+        this.nome = nome;
         this.matricula = matricula;
         this.senha = senha;
     }
@@ -28,6 +30,14 @@ public abstract class Autenticavel {
         this.senha = senha;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -46,7 +56,7 @@ public abstract class Autenticavel {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Autenticavel other = (Autenticavel) obj;
+        final Usuario other = (Usuario) obj;
         if (!Objects.equals(this.matricula, other.matricula)) {
             return false;
         }

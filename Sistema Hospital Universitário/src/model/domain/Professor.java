@@ -2,30 +2,18 @@ package model.domain;
 
 import java.util.HashMap;
 
-public class Professor extends Autenticavel {
+public class Professor extends Medico {
 
-    private String nome;
     private String titulacao;
-    private String crm;
     private HashMap<String, Aluno> alunos;
 
     public Professor() {
-        super(null, null);
+        super(null, null, null, null);
     }
 
-    public Professor(String nome, String titulacao, String crm, String matricula, String senha) {
-        super(matricula, senha);
-        this.nome = nome;
+    public Professor(String nome, String matricula, String senha, String crm, String titulacao) {
+        super(nome, matricula, senha, crm);
         this.titulacao = titulacao;
-        this.crm = crm;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getTitulacao() {
@@ -34,14 +22,6 @@ public class Professor extends Autenticavel {
 
     public void setTitulacao(String titulacao) {
         this.titulacao = titulacao;
-    }
-
-    public String getCrm() {
-        return crm;
-    }
-
-    public void setCrm(String crm) {
-        this.crm = crm;
     }
 
     public HashMap<String, Aluno> getAlunos() {

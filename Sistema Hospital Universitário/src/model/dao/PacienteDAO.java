@@ -3,7 +3,6 @@ package model.dao;
 import model.database.DatabaseMySQL;
 import model.domain.Paciente;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +17,7 @@ public class PacienteDAO {
     }
 
     public boolean create(Paciente paciente) {
+        boolean result = true;
         if (paciente != null) {
             String query = "insert into pacientes(nome, cor, dataNascimento, cpf, sexo) values(?, ?, ?, ?, ?)";
             try {
@@ -26,23 +26,24 @@ public class PacienteDAO {
                 String cor = paciente.getCor();
                 String cpf = paciente.getCpf();
                 String sexo = paciente.getSexo();
-                Date dataNascimento = new Date(paciente.getDataNascimento().getYear(), paciente.getDataNascimento().getMonthValue(), paciente.getDataNascimento().getDayOfMonth());
+                LocalDate dataNascimento = paciente.getDataNascimento();
                 stmt.setString(1, nome);
                 stmt.setString(2, cor);
-                stmt.setDate(3, dataNascimento);
+                stmt.setString(3, dataNascimento.toString());
                 stmt.setString(4, cpf);
                 stmt.setString(5, sexo);
-                return stmt.execute();
+                result = stmt.execute();
             } catch (SQLException exception) {
             }
         }
-        return false;
+        DatabaseMySQL.desconectar(this.connection);
+        return result;
     }
 
     public Paciente read(Paciente paciente) {
         Paciente paciente2 = null;
         if (paciente != null) {
-            String query = "select pacientes.nome, pacientes.cor, pacientes.dataNascimento, pacientes.cpf, pacientes.sexo from pacientes where cpf = ?";
+            String query = "select nome, cor, dataNascimento, cpf, sexo from pacientes where cpf = ?";
             try {
                 PreparedStatement stmt = this.connection.prepareStatement(query);
                 stmt.setString(1, paciente.getCpf());
@@ -51,34 +52,36 @@ public class PacienteDAO {
                 while (resultSet.next()) {
                     String nome = resultSet.getString("nome");
                     String cor = resultSet.getString("cor");
-                    Date dataNascimento = resultSet.getDate("dataNascimento");
+                    String dataNascimento[] = resultSet.getString("dataNascimento").split("-");
                     String cpf = resultSet.getString("cpf");
                     String sexo = resultSet.getString("sexo");
-                    LocalDate data = LocalDate.of(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDay());
+                    LocalDate data = LocalDate.of(Integer.parseInt(dataNascimento[0]), Integer.parseInt(dataNascimento[1]), Integer.parseInt(dataNascimento[2]));
                     paciente2 = new Paciente(nome, sexo, cor, cpf, data);
                 }
             } catch (SQLException exception) {
-
             }
         }
+        DatabaseMySQL.desconectar(this.connection);
         return paciente2;
     }
 
     public boolean update(Paciente paciente) {
+        boolean result = true;
         if (paciente != null) {
             String query = "update pacientes set nome = ?, cor = ?, dataNascimento = ?, sexo = ? where cpf = ?";
             try {
                 PreparedStatement stmt = this.connection.prepareStatement(query);
-                Date dataNascimento = new Date(paciente.getDataNascimento().getYear(), paciente.getDataNascimento().getMonthValue(), paciente.getDataNascimento().getDayOfMonth());
+                LocalDate dataNascimento = paciente.getDataNascimento();
                 stmt.setString(1, paciente.getNome());
                 stmt.setString(2, paciente.getCor());
-                stmt.setDate(3, dataNascimento);
+                stmt.setString(3, dataNascimento.toString());
                 stmt.setString(4, paciente.getSexo());
                 stmt.setString(5, paciente.getCpf());
-                return stmt.execute();
+                result = stmt.execute();
             } catch (SQLException exception) {
             }
         }
-        return false;
+        DatabaseMySQL.desconectar(this.connection);
+        return result;
     }
 }

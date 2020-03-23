@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -61,9 +62,24 @@ public class CadastrarMedicoController implements Initializable {
         String matricula = matriculaField.getText().trim().concat("M");
         String crm = crmField.getText().trim();
         String senha = senhaField.getText();
-        Medico medico = new Medico(nome, crm, matricula, senha);
+        Medico medico = new Medico(nome, matricula, senha, crm);
         MedicoDAO medicoDAO = new MedicoDAO();
-        medicoDAO.create(medico);
+        boolean result = medicoDAO.create(medico);
+        Alert alert;
+        if (!result) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Information Dialog");
+            alert.setContentText("Cadastro realizado com sucesso!");
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Information Dialog");
+            alert.setContentText("Erro ao realizar cadastro.");
+        }
+        alert.showAndWait();
+        CadastrarMedico.getStage().close();
+        MainFrame.getStage().show();
     }
 
     @FXML
