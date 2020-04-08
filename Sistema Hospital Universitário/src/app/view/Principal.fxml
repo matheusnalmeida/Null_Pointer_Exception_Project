@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PrincipalController">
+   <children>
+      <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/iconHospital.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Nome1" layoutX="335.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nome2" layoutX="425.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="29.0" layoutY="163.0" prefHeight="405.0" prefWidth="843.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+         <children>
+            <Label fx:id="tituloLabel" layoutX="369.0" layoutY="26.0" text="Painel" textFill="#0262ac">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="cadastrarAluno" layoutX="35.0" layoutY="307.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar Aluno" textFill="WHITE" />
+            <ImageView fx:id="Icon1" fitHeight="181.0" fitWidth="193.0" layoutX="24.0" layoutY="99.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/iconAlunoColorido.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="cadastrarProfessor" layoutX="239.0" layoutY="307.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar Professor" textFill="WHITE" />
+            <ImageView fx:id="Icon11" fitHeight="181.0" fitWidth="193.0" layoutX="228.0" layoutY="99.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/iconProfessorColorido.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="cadastrarPaciente" layoutX="454.0" layoutY="307.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar Paciente" textFill="WHITE" />
+            <ImageView fx:id="Icon111" fitHeight="190.0" fitWidth="159.0" layoutX="457.0" layoutY="99.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/iconPacienteColorido.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="Relatorios" layoutX="659.0" layoutY="307.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Relatórios" textFill="WHITE" />
+            <ImageView fx:id="Icon1111" fitHeight="181.0" fitWidth="193.0" layoutX="648.0" layoutY="103.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/iconRelatorioColorido.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
