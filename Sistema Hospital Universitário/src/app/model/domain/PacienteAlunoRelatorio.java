@@ -1,13 +1,29 @@
 package app.model.domain;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class PacienteAlunoRelatorio {
+@Entity
+@Table(name = "pacientes_alunos_relatorios")
+public class PacienteAlunoRelatorio implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false)
     private LocalDateTime dataAtendimento;
+    @ManyToOne
     private Paciente paciente;
+    @ManyToOne
     private Aluno aluno;
+    @ManyToOne
     private Relatorio relatorio;
 
     public PacienteAlunoRelatorio() {
@@ -60,6 +76,10 @@ public class PacienteAlunoRelatorio {
         this.relatorio = relatorio;
     }
 
+    public void setDataAtendimento(LocalDateTime dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

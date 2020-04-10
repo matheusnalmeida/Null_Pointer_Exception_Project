@@ -1,116 +1,82 @@
 package app.model.dao;
 
-import app.model.database.DatabaseMySQL;
 import app.model.domain.Medico;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import app.model.domain.Usuario;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class MedicoDAO {
 
-    private Connection connection;
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     public MedicoDAO() {
+        this.emf = Persistence.createEntityManagerFactory("hosp");
+        this.em = this.emf.createEntityManager();
     }
 
-    public boolean create(Medico medico) {
-        boolean result = true;
-        if (medico != null) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            result = usuarioDAO.create(medico);
-            if (!result) {
-                String query1 = "insert into medicos(matricula, crm) values(?, ?)";
-                String query2 = "select * from medicos where crm = ?";
-                this.connection = DatabaseMySQL.conectar();
-                try {
-                    PreparedStatement stmt = this.connection.prepareStatement(query2);
-                    stmt.setString(1, medico.getCrm());
-                    stmt.execute();
-                    ResultSet resultSet = stmt.getResultSet();
-                    if (!resultSet.next()) {
-                        stmt = this.connection.prepareStatement(query1);
-                        stmt.setString(1, medico.getMatricula());
-                        stmt.setString(2, medico.getCrm());
-                        result = stmt.execute();
-                    } else {
-                        result = true;
-                        usuarioDAO.delete(medico);
-                    }
-                } catch (SQLException exception) {
-                    result = true;
-                }
-            }
+    public void create(Medico medico) {
+        try {
+            this.em.getTransaction().begin();
+            this.em.persist(medico);
+            this.em.getTransaction().commit();
+        } catch (Exception exception) {
+            this.em.getTransaction().rollback();
+        } finally {
+            this.emf.close();
         }
-        DatabaseMySQL.desconectar(this.connection);
-        return result;
     }
 
     public Medico read(Medico medico) {
-        Medico medico2 = null;
-        if (medico != null) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuario = usuarioDAO.read(medico);
-            if (usuario != null) {
-                this.connection = DatabaseMySQL.conectar();
-                String query = "select * from medicos where matricula = ?";
-                try {
-                    PreparedStatement stmt = this.connection.prepareStatement(query);
-                    stmt.setString(1, medico.getCrm());
-                    stmt.execute();
-                    ResultSet resultSet = stmt.getResultSet();
-                    while (resultSet.next()) {
-                        String nome = resultSet.getString("nome");
-                        String crm = resultSet.getString("crm");
-                        String matricula = resultSet.getString("matricula");
-                        String senha = resultSet.getString("senha");
-                        medico2 = new Medico(nome, matricula, senha, crm);
-                    }
-                } catch (SQLException exception) {
-                }
-            }
+        Medico retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            retorno = this.em.find(Medico.class, medico.getMatricula());
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
         }
-        DatabaseMySQL.desconectar(this.connection);
-        return medico2;
+        return retorno;
     }
 
-    public boolean update(Medico medico) {
-        boolean result = true;
-        if (medico != null) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            result = usuarioDAO.update(medico);
-            if (!result) {
-                this.connection = DatabaseMySQL.conectar();
-                String query = "update medicos set crm = ? where matricula = ?";
-                try {
-                    PreparedStatement stmt = this.connection.prepareStatement(query);
-                    stmt.setString(1, medico.getCrm());
-                    stmt.setString(2, medico.getMatricula());
-                    result = stmt.execute();
-                } catch (SQLException exception) {
-                }
-            }
+    public void update(Medico medico) {
+        try {
+            this.delete(medico);
+            this.em.getTransaction().begin();
+            this.em.merge(medico);
+            this.em.getTransaction().commit();
+        } catch (Exception exception) {
+            this.em.getTransaction().rollback();
+        } finally {
+            this.emf.close();
         }
-        DatabaseMySQL.desconectar(this.connection);
-        return result;
     }
 
-    public boolean delete(Medico medico) {
-        boolean result = true;
-        if (medico != null) {
-            this.connection = DatabaseMySQL.conectar();
-            String query = "delete from medicos where matricula = ?";
-            try {
-                PreparedStatement stmt = this.connection.prepareStatement(query);
-                stmt.setString(1, medico.getMatricula());
-                result = stmt.execute();
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
-                result = usuarioDAO.delete(medico) && result;
-            } catch (SQLException exception) {
-            }
+    public void delete(Medico medico) {
+        try {
+            this.em.getTransaction().begin();
+            medico = this.em.find(Medico.class, medico.getMatricula());
+            this.em.remove(medico);
+            this.em.getTransaction().commit();
+        } catch (Exception ex) {
+            this.em.getTransaction().rollback();
+        } finally {
+            this.emf.close();
         }
-        DatabaseMySQL.desconectar(this.connection);
-        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Medico> selectAll() {
+        List<Medico> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            retorno = this.em.createQuery("from "
+                    + Medico.class.getName()).getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
+        }
+        return retorno;
     }
 }

@@ -1,26 +1,39 @@
 package app.model.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class PedidoExame {
+@Entity
+@Table(name = "pedidos_exames")
+public class PedidoExame implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false)
     private String recomendacoes;
+    @Column(nullable = false)
     private LocalDate dataExame;
+    @Column(nullable = false)
     private String hipoteseDiagnostica;
+    @Column(nullable = false)
     private String tipoExame;
-    private Paciente paciente;
 
     public PedidoExame() {
     }
 
-    public PedidoExame(int codigo, String recomendacoes, LocalDate dataExame, String hipoteseDiagnostica, String tipoExame, Paciente paciente) {
+    public PedidoExame(int codigo, String recomendacoes, LocalDate dataExame, String hipoteseDiagnostica, String tipoExame) {
         this.codigo = codigo;
         this.recomendacoes = recomendacoes;
         this.dataExame = dataExame;
         this.hipoteseDiagnostica = hipoteseDiagnostica;
         this.tipoExame = tipoExame;
-        this.paciente = paciente;
     }
 
     public int getCodigo() {
@@ -61,14 +74,6 @@ public class PedidoExame {
 
     public void setTipoExame(String tipoExame) {
         this.tipoExame = tipoExame;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
     }
 
     @Override

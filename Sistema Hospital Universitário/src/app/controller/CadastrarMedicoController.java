@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import app.model.dao.MedicoDAO;
+import app.model.dao.old.MedicoDAO;
 import app.model.domain.Medico;
 import app.view.CadastrarMedico;
 import app.view.MainFrame;

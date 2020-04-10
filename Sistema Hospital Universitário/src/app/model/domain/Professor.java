@@ -1,11 +1,17 @@
 package app.model.domain;
 
-import java.util.HashMap;
+//import java.util.HashMap;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "professores")
 public class Professor extends Medico {
 
+    @Column(nullable = false)
     private String titulacao;
-    private HashMap<String, Aluno> alunos;
+    //private HashMap<String, Aluno> alunos;
 
     public Professor() {
         super(null, null, null, null);
@@ -24,7 +30,7 @@ public class Professor extends Medico {
         this.titulacao = titulacao;
     }
 
-    public HashMap<String, Aluno> getAlunos() {
+    /*public HashMap<String, Aluno> getAlunos() {
         return alunos;
-    }
+    }*/
 }

@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import app.model.dao.ProfessorDAO;
+import app.model.dao.old.ProfessorDAO;
 import app.model.domain.Professor;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;

@@ -20,7 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import app.view.CadastrarAluno;
 import app.view.MainFrame;
-import app.model.dao.AlunoDAO;
+import app.model.dao.old.AlunoDAO;
 import app.model.domain.Aluno;
 
 /**

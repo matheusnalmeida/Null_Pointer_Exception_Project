@@ -5,17 +5,30 @@
  */
 package app.model.domain;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Usuario
  */
-public class EmissaoPedidoExame {
+@Entity
+@Table(name = "emissao_pedidos_exames")
+public class EmissaoPedidoExame implements Serializable {
     
+    @Column
     private LocalDateTime dataEmissao;
+    @ManyToOne
     private Medico medico;
+    @ManyToOne
     private Paciente paciente;
+    @ManyToOne
+    @Id
     private PedidoExame pedidoExame;
 
     public EmissaoPedidoExame() {

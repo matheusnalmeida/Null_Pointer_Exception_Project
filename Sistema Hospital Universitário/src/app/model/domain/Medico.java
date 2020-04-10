@@ -1,7 +1,17 @@
 package app.model.domain;
 
-public class Medico extends Usuario {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "medicos")
+public class Medico extends Usuario {
+    
+    @Column(unique = true, nullable = false)
     private String crm;
 
     public Medico(String nome, String matricula, String senha, String crm) {

@@ -1,15 +1,32 @@
 package app.model.domain;
 
 import java.io.File;
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class Relatorio {
+@Entity
+@Table(name = "relatorios")
+public class Relatorio implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column
     private LocalDate dataRelatorio;
+    @Column(nullable = false)
     private String descricao;
+    @ManyToOne
     private Medico medicoAutorizacao;
+    @Column
     private LocalDate dataAutorizacao;
+    @Column
     private File relatorio;
 
     public Relatorio() {

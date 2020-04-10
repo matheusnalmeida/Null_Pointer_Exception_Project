@@ -1,14 +1,27 @@
 package app.model.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Paciente {
+@Entity
+@Table(name = "pacientes")
+public class Paciente implements Serializable {
 
+    @Column(nullable = false)
     private String nome;
+    @Column
     private String sexo;
+    @Column(nullable = false)
     private String cor;
+    @Column(nullable = false)
+    @Id
     private String cpf;
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
     public Paciente(String nome, String sexo, String cor, String cpf, LocalDate dataNascimento) {
