@@ -88,3 +88,12 @@ create table emissoes_pedidos_exame(
     foreign key(codigoPedidoExame)
     references pedidos_exame(codigo)
 );
+
+create table sessoes(
+    codigo integer primary key,
+    dataInicioSessao datetime,
+    dataTerminoSessao datetime,
+    matriculaUsuario varchar(20),
+    foreign key(matriculaUsuario)
+    references usuarios(matricula)
+);
