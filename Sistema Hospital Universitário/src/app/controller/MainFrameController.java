@@ -10,18 +10,19 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import app.view.CadastrarAluno;
 import app.view.CadastrarMedico;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -31,11 +32,11 @@ import app.view.MainFrame;
 public class MainFrameController implements Initializable {
 
     @FXML
-    private TextField campoMatricula;
+    private JFXTextField campoMatricula;
     @FXML
-    private PasswordField campoSenha;
+    private JFXPasswordField campoSenha;
     @FXML
-    private Button botaoLogin;
+    private JFXButton botaoLogin;
     @FXML
     private MenuBar menuBar;
     @FXML
@@ -47,11 +48,11 @@ public class MainFrameController implements Initializable {
     @FXML
     private MenuItem cadastroMedico;
     @FXML
-    private Label titulo;
+    private Label tituloLabel1;
     @FXML
-    private Label matriculaLabel;
+    private Label tituloLabel2;
     @FXML
-    private Label senhaLabel;
+    private ImageView imagem;
 
     @FXML
     public void acaoBotaoLogin(ActionEvent event) {
@@ -77,7 +78,6 @@ public class MainFrameController implements Initializable {
             cadastrarProfessor.start(new Stage());
             MainFrame.getStage().close();
         } catch (Exception exception) {
-
         }
     }
 
@@ -88,7 +88,6 @@ public class MainFrameController implements Initializable {
             cadastrarAluno.start(new Stage());
             MainFrame.getStage().close();
         } catch (Exception exception) {
-
         }
     }
 
@@ -99,7 +98,6 @@ public class MainFrameController implements Initializable {
             cadastrarMedico.start(new Stage());
             MainFrame.getStage().close();
         } catch (Exception exception) {
-
         }
     }
 

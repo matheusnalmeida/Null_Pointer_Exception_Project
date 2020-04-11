@@ -16,16 +16,20 @@ public class AlunoDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(Aluno aluno) {
+    public boolean create(Aluno aluno) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(aluno);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public Aluno read(Aluno aluno) {
@@ -40,30 +44,40 @@ public class AlunoDAO {
         return retorno;
     }
 
-    public void update(Aluno aluno) {
+    public boolean update(Aluno aluno) {
+        boolean result = false;
         try {
-            this.delete(aluno);
-            this.em.getTransaction().begin();
-            this.em.persist(aluno);
-            this.em.getTransaction().commit();
+            result = this.delete(aluno) || result;
+            if (result) {
+                this.em.getTransaction().begin();
+                this.em.persist(aluno);
+                this.em.getTransaction().commit();
+                result = true;
+            }
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(Aluno aluno) {
+    public boolean delete(Aluno aluno) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             aluno = this.em.find(Aluno.class, aluno.getMatricula());
             this.em.remove(aluno);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

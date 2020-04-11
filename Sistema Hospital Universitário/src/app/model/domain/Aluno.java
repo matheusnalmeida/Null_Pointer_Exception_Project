@@ -18,18 +18,18 @@ public class Aluno extends Usuario {
     private Professor professor;
 
     public Aluno() {
-        super(null, null, null);
+        super(null, null, null, 0);
     }
 
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor) {
-        super(nome, matricula, senha);
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor, int id) {
+        super(nome, matricula, senha, id);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
         this.professor = professor;
     }
 
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento) {
-        super(nome, matricula, senha);
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, int id) {
+        super(nome, matricula, senha, id);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
     }

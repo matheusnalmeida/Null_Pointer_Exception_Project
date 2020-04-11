@@ -65,7 +65,7 @@ public class MedicoDAO {
                         String crm = resultSet.getString("crm");
                         String matricula = resultSet.getString("matricula");
                         String senha = resultSet.getString("senha");
-                        medico2 = new Medico(nome, matricula, senha, crm);
+                        medico2 = new Medico(nome, matricula, senha, crm, 0);
                     }
                 } catch (SQLException exception) {
                 }

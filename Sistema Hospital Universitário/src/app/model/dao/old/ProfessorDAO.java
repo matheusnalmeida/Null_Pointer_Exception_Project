@@ -54,7 +54,7 @@ public class ProfessorDAO {
                         String senha = medico.getSenha();
                         String crm = medico.getCrm();
                         String titulacao = resultSet.getString("titulacao");
-                        professor2 = new Professor(nome, matricula, senha, crm, titulacao);
+                        professor2 = new Professor(nome, matricula, senha, crm, titulacao, 0);
                     }
                 } catch (SQLException exception) {
                 }

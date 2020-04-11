@@ -34,7 +34,7 @@
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="matriculaField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="137.0" prefHeight="44.0" prefWidth="323.0" promptText="Matrícula" unFocusColor="#a7a9ab">
+            <JFXTextField fx:id="cpfField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="137.0" prefHeight="44.0" prefWidth="323.0" promptText="CPF" unFocusColor="#a7a9ab">
                <font>
                   <Font size="20.0" />
                </font>
@@ -49,11 +49,6 @@
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="crmProfessorField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="356.0" prefHeight="44.0" prefWidth="323.0" promptText="Matrícula do seu professor" unFocusColor="#a7a9ab">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXTextField>
             <Label fx:id="tituloLabel" layoutX="131.0" layoutY="21.0" text="Cadastro de Aluno" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
@@ -64,7 +59,7 @@
                   <Image url="@Images/iconAluno.png" />
                </image>
             </ImageView>
-            <JFXDatePicker defaultColor="#0262ac" editable="false" layoutX="169.0" layoutY="326.0" />
+            <JFXDatePicker fx:id="dataNascimentoField" defaultColor="#0262ac" editable="false" layoutX="169.0" layoutY="326.0" promptText="Data de nascimento" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="cadastrar" layoutX="451.0" layoutY="612.0" onAction="#cadastrarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar" textFill="WHITE" />

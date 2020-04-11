@@ -16,16 +16,20 @@ public class ProfessorDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(Professor professor) {
+    public boolean create(Professor professor) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(professor);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public Professor read(Professor professor) {
@@ -40,30 +44,40 @@ public class ProfessorDAO {
         return retorno;
     }
 
-    public void update(Professor professor) {
+    public boolean update(Professor professor) {
+        boolean result = false;
         try {
-            this.delete(professor);
-            this.em.getTransaction().begin();
-            this.em.merge(professor);
-            this.em.getTransaction().commit();
+            result = this.delete(professor) || result;
+            if (result) {
+                this.em.getTransaction().begin();
+                this.em.merge(professor);
+                this.em.getTransaction().commit();
+                result = true;
+            }
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(Professor professor) {
+    public boolean delete(Professor professor) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             professor = this.em.find(Professor.class, professor.getMatricula());
             this.em.remove(professor);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
             this.em.getTransaction().rollback();
+            result = false;
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

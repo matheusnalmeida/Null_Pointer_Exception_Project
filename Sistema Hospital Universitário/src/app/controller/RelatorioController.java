@@ -5,15 +5,16 @@
  */
 package app.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -23,33 +24,31 @@ import javafx.scene.control.TextField;
 public class RelatorioController implements Initializable {
 
     @FXML
-    private Label codigoLabel;
-    @FXML
-    private Label descricaoLabel;
-    @FXML
-    private Label crmMedicoLabel;
-    @FXML
-    private Label dataRelatorioLabel;
-    @FXML
-    private Label dataAutorizacaoRelatorioLabel;
-    @FXML
     private Label arquivoLabel;
     @FXML
-    private TextField codigoField;
+    private JFXTextField codigoField;
     @FXML
-    private TextField descricaoField;
+    private JFXTextField descricaoField;
     @FXML
-    private TextField crmMedicoField;
+    private JFXTextField crmMedicoField;
     @FXML
-    private DatePicker dataRelatorioField;
+    private JFXDatePicker dataRelatorioField;
     @FXML
-    private DatePicker dataAutorizacaoRelatorioField;
+    private JFXDatePicker dataAutorizacaoRelatorioField;
     @FXML
     private Hyperlink arquivoLink;
     @FXML
-    private Button cancelar;
+    private JFXButton cancelar;
     @FXML
-    private Button cadastrar;
+    private JFXButton cadastrar;
+    @FXML
+    private ImageView imagem;
+    @FXML
+    private Label titulo1;
+    @FXML
+    private Label titulo2;
+    @FXML
+    private Label titulo3;
 
     /**
      * Initializes the controller class.

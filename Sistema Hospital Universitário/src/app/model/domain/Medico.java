@@ -14,13 +14,13 @@ public class Medico extends Usuario {
     @Column(unique = true, nullable = false)
     private String crm;
 
-    public Medico(String nome, String matricula, String senha, String crm) {
-        super(nome, matricula, senha);
+    public Medico(String nome, String matricula, String senha, String crm, int id) {
+        super(nome, matricula, senha, id);
         this.crm = crm;
     }
 
     public Medico() {
-        super(null, null, null);
+        super(null, null, null, 0);
     }
 
     public String getCrm() {

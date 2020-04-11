@@ -55,11 +55,11 @@ public class UsuarioDAO {
                     String matricula = resultSet.getString("matricula");
                     String senha = resultSet.getString("senha");
                     if (matricula.contains("A")) {
-                        retorno = new Aluno(nome, matricula, senha, 0, null, null);
+                        retorno = new Aluno(nome, matricula, senha, 0, null, null, 0);
                     } else if (matricula.contains("M")) {
-                        retorno = new Medico(nome, matricula, senha, null);
+                        retorno = new Medico(nome, matricula, senha, null, 0);
                     } else if (matricula.contains("P")) {
-                        retorno = new Professor(nome, matricula, senha, null, null);
+                        retorno = new Professor(nome, matricula, senha, null, null, 0);
                     }
                 }
             } catch (SQLException exception) {

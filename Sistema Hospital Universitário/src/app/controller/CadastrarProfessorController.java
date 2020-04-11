@@ -11,14 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import app.model.dao.old.ProfessorDAO;
+import app.model.dao.ProfessorDAO;
 import app.model.domain.Professor;
+import app.utilits.CPFInvalidoException;
+import app.utilits.MatriculaGenerator;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -28,29 +30,21 @@ import app.view.MainFrame;
 public class CadastrarProfessorController implements Initializable {
 
     @FXML
-    private Label nomeLabel;
+    private Label tituloLabel;
     @FXML
-    private Label matriculaLabel;
+    private JFXTextField nomeField;
     @FXML
-    private Label senhaLabel;
+    private JFXTextField cpfField;
     @FXML
-    private Label crmLabel;
+    private JFXTextField crmField;
     @FXML
-    private Label titulacaoLabel;
+    private JFXTextField titulacaoField;
     @FXML
-    private TextField nomeField;
+    private JFXPasswordField senhaField;
     @FXML
-    private TextField matriculaField;
+    private JFXButton cancelar;
     @FXML
-    private TextField crmField;
-    @FXML
-    private TextField titulacaoField;
-    @FXML
-    private PasswordField senhaField;
-    @FXML
-    private Button cancelar;
-    @FXML
-    private Button cadastrar;
+    private JFXButton cadastrar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,24 +54,38 @@ public class CadastrarProfessorController implements Initializable {
     @FXML
     public void cadastrarAction(ActionEvent event) {
         ProfessorDAO professorDAO = new ProfessorDAO();
-        String nome = nomeField.getText().trim().toUpperCase();
-        String matricula = matriculaField.getText().trim().concat("P");
-        String senha = senhaField.getText();
-        String titulacao = titulacaoField.getText().trim();
-        String crm = crmField.getText().trim();
-        Professor professor = new Professor(nome, matricula, senha, crm, titulacao);
-        boolean result = professorDAO.create(professor);
+        String nome = this.nomeField.getText().trim().toUpperCase();
+        String cpf = this.cpfField.getText().trim();
+        String senha = this.senhaField.getText();
+        String titulacao = this.titulacaoField.getText().trim();
+        String crm = this.crmField.getText().trim();
         Alert alert;
-        if (!result) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Information Dialog");
-            alert.setContentText("Cadastro realizado com sucesso!");
-        } else {
+        try {
+            MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
+            String matricula = matriculaGenerator.generateToken(cpf, "P");
+            char aux1[] = cpf.toCharArray();
+            char digito1 = aux1[aux1.length - 2];
+            char digito2 = aux1[aux1.length - 1];
+            String aux2 = Character.toString(digito1);
+            String aux3 = Character.toString(digito2);
+            Professor professor = new Professor(nome, matricula, senha, crm, titulacao, Integer.parseInt(aux2 + aux3));
+            boolean result = professorDAO.create(professor);
+            if (result) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula);
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("Erro ao realizar cadastro.");
+            }
+        } catch (CPFInvalidoException exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
-            alert.setContentText("Erro ao realizar cadastro.");
+            alert.setContentText(exception.getMessage());
         }
         alert.showAndWait();
         CadastrarProfessor.getStage().close();

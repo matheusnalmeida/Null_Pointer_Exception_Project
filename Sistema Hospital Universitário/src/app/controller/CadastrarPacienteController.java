@@ -5,14 +5,14 @@
  */
 package app.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -22,29 +22,21 @@ import javafx.scene.control.TextField;
 public class CadastrarPacienteController implements Initializable {
 
     @FXML
-    private Button cancelar;
+    private Label tituloLabel;
     @FXML
-    private Button cadastrar;
+    private JFXTextField nomeField;
     @FXML
-    private Label nomeLabel;
+    private JFXTextField cpfField;
     @FXML
-    private Label cpfLabel;
+    private JFXTextField sexoField;
     @FXML
-    private Label sexoLabel;
+    private JFXTextField corField;
     @FXML
-    private Label corLabel;
+    private JFXDatePicker dataNascimentoField;
     @FXML
-    private Label dataNascimentoLabel;
+    private JFXButton cancelar;
     @FXML
-    private TextField nomeField;
-    @FXML
-    private TextField cpfField;
-    @FXML
-    private TextField sexoField;
-    @FXML
-    private TextField corField;
-    @FXML
-    private DatePicker dataNascimentoField;
+    private JFXButton cadastrar;
 
     /**
      * Initializes the controller class.

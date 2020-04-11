@@ -11,14 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import app.model.dao.old.MedicoDAO;
+import app.model.dao.MedicoDAO;
 import app.model.domain.Medico;
+import app.utilits.CPFInvalidoException;
+import app.utilits.MatriculaGenerator;
 import app.view.CadastrarMedico;
 import app.view.MainFrame;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 /**
  * FXML Controller class
@@ -28,25 +30,19 @@ import app.view.MainFrame;
 public class CadastrarMedicoController implements Initializable {
 
     @FXML
-    private Label nomeLabel;
+    private Label tituloLabel;
     @FXML
-    private Label crmLabel;
+    private JFXTextField nomeField;
     @FXML
-    private Label matriculaLabel;
+    private JFXTextField crmField;
     @FXML
-    private Label senhaLabel;
+    private JFXTextField cpfField;
     @FXML
-    private TextField nomeField;
+    private JFXPasswordField senhaField;
     @FXML
-    private TextField crmField;
+    private JFXButton cancelar;
     @FXML
-    private TextField matriculaField;
-    @FXML
-    private PasswordField senhaField;
-    @FXML
-    private Button cancelar;
-    @FXML
-    private Button cadastrar;
+    private JFXButton cadastrar;
 
     /**
      * Initializes the controller class.
@@ -58,24 +54,38 @@ public class CadastrarMedicoController implements Initializable {
 
     @FXML
     public void cadastrarAction(ActionEvent event) {
-        String nome = nomeField.getText().trim().toUpperCase();
-        String matricula = matriculaField.getText().trim().concat("M");
-        String crm = crmField.getText().trim();
-        String senha = senhaField.getText();
-        Medico medico = new Medico(nome, matricula, senha, crm);
-        MedicoDAO medicoDAO = new MedicoDAO();
-        boolean result = medicoDAO.create(medico);
+        String nome = this.nomeField.getText().trim().toUpperCase();
+        String cpf = this.cpfField.getText().trim();
+        String crm = this.crmField.getText().trim();
+        String senha = this.senhaField.getText();
         Alert alert;
-        if (!result) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Information Dialog");
-            alert.setContentText("Cadastro realizado com sucesso!");
-        } else {
+        try {
+            MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
+            String matricula = matriculaGenerator.generateToken(cpf, "M");
+            char aux1[] = cpf.toCharArray();
+            char digito1 = aux1[aux1.length - 2];
+            char digito2 = aux1[aux1.length - 1];
+            String aux2 = Character.toString(digito1);
+            String aux3 = Character.toString(digito2);
+            Medico medico = new Medico(nome, matricula, senha, crm, Integer.parseInt(aux2 + aux3));
+            MedicoDAO medicoDAO = new MedicoDAO();
+            boolean result = medicoDAO.create(medico);
+            if (result) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula);
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("Erro ao realizar cadastro.");
+            }
+        } catch (CPFInvalidoException exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
-            alert.setContentText("Erro ao realizar cadastro.");
+            alert.setContentText(exception.getMessage());
         }
         alert.showAndWait();
         CadastrarMedico.getStage().close();
