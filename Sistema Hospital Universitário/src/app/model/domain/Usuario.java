@@ -98,13 +98,12 @@ public abstract class Usuario implements Serializable {
 
     public static boolean autenticar(String matricula, String senha) throws CredenciaisInvalidasException {
         senha = EncryptionPassword.encrypt(senha);
-        System.out.println(senha);
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.autenticar(matricula, senha);
         if (usuario == null) {
             return false;
         }
-        Sessao sessao = new Sessao(0, usuario, LocalDateTime.now(), null);
+        Sessao sessao = new Sessao(usuario, LocalDateTime.now(), null);
         Sistema.setSessao(sessao);
         return true;
     }

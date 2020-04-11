@@ -1,26 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.model.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author Usuario
- */
 @Entity
 @Table(name = "emissao_pedidos_exames")
 public class EmissaoPedidoExame implements Serializable {
-    
+
     @Column
     private LocalDateTime dataEmissao;
     @ManyToOne
@@ -71,5 +63,30 @@ public class EmissaoPedidoExame implements Serializable {
 
     public void setPedidoExame(PedidoExame pedidoExame) {
         this.pedidoExame = pedidoExame;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.pedidoExame);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EmissaoPedidoExame other = (EmissaoPedidoExame) obj;
+        if (!Objects.equals(this.pedidoExame, other.pedidoExame)) {
+            return false;
+        }
+        return true;
     }
 }

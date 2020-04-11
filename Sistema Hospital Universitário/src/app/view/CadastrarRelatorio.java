@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.view;
 
 import javafx.application.Application;
@@ -19,18 +14,15 @@ public class CadastrarRelatorio extends Application {
 
     private static Stage stage;
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Relatorio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CadastrarRelatorio.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Hospital");
+        stage.setTitle("Cadastro de Relatorio");
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();

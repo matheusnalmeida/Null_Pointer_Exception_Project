@@ -1,4 +1,3 @@
-
 package app.model.domain.old;
 
 import java.time.LocalDateTime;

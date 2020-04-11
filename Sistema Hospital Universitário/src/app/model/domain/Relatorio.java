@@ -32,9 +32,8 @@ public class Relatorio implements Serializable {
     public Relatorio() {
     }
 
-    public Relatorio(int codigo, LocalDate dataRelatorio, String descricao, Medico medicoAutorizacao,
+    public Relatorio(LocalDate dataRelatorio, String descricao, Medico medicoAutorizacao,
             LocalDate dataAutorizacao, File relatorio) {
-        this.codigo = codigo;
         this.dataRelatorio = dataRelatorio;
         this.descricao = descricao;
         this.medicoAutorizacao = medicoAutorizacao;

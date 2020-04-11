@@ -29,8 +29,7 @@ public class PacienteAlunoRelatorio implements Serializable {
     public PacienteAlunoRelatorio() {
     }
     
-    public PacienteAlunoRelatorio(int codigo, LocalDateTime dataConsulta, Paciente paciente, Aluno aluno) {
-        this.codigo = codigo;
+    public PacienteAlunoRelatorio(LocalDateTime dataConsulta, Paciente paciente, Aluno aluno) {
         this.dataAtendimento = dataConsulta;
         this.paciente = paciente;
         this.aluno = aluno;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.controller;
 
 import app.model.domain.Usuario;
@@ -77,7 +72,7 @@ public class MainFrameController implements Initializable {
                     MainFrame.getStage().close();
                     this.campoMatricula.setText("");
                     this.campoSenha.setText("");
-                } catch (Exception ex) {
+                } catch (Exception exception) {
                 }
             } else {
                 alert.setContentText("Credenciais Inválidas.");

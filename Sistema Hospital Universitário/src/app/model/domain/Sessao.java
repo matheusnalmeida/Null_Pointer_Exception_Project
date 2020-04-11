@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sessoes")
 public class Sessao implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
@@ -27,8 +27,7 @@ public class Sessao implements Serializable {
     public Sessao() {
     }
 
-    public Sessao(int codigo, Usuario usuario, LocalDateTime dataInicioSessao, LocalDateTime dataTerminoSessao) {
-        this.codigo = codigo;
+    public Sessao(Usuario usuario, LocalDateTime dataInicioSessao, LocalDateTime dataTerminoSessao) {
         this.usuario = usuario;
         this.dataInicioSessao = dataInicioSessao;
         this.dataTerminoSessao = dataTerminoSessao;

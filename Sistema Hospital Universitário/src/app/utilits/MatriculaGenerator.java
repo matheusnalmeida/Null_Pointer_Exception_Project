@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class MatriculaGenerator {
 
     /**
-     *
      * @param cp
-     * @param tipo A matricula do usuário é gerada pela combinação: Dia do
+     * @param tipo 
+     * A matricula do usuário é gerada pela combinação: Dia do
      * cadastro + mês do cadastro + ano do cadastro + digitos verificadores do
      * cpf do usuario + o tipo do usuário. O cpf não será armazenado no banco de
      * dados. Apenas utilizado para gerar a matrícula.

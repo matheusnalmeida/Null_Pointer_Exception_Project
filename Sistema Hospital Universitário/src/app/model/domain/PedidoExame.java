@@ -28,8 +28,7 @@ public class PedidoExame implements Serializable {
     public PedidoExame() {
     }
 
-    public PedidoExame(int codigo, String recomendacoes, LocalDate dataExame, String hipoteseDiagnostica, String tipoExame) {
-        this.codigo = codigo;
+    public PedidoExame(String recomendacoes, LocalDate dataExame, String hipoteseDiagnostica, String tipoExame) {
         this.recomendacoes = recomendacoes;
         this.dataExame = dataExame;
         this.hipoteseDiagnostica = hipoteseDiagnostica;
