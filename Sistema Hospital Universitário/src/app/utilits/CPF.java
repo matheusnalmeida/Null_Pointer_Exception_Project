@@ -10,7 +10,7 @@ public class CPF {
 
     public CPF(String cpf) throws CPFInvalidoException {
         if (cpf.length() < 11) {
-            throw new CPFInvalidoException("\nCPF Inválido\n");
+            throw new CPFInvalidoException("CPF Inválido");
         }
         char cpfChars[] = cpf.toCharArray();
         if (cpf.length() == 11) {
@@ -105,7 +105,7 @@ public class CPF {
         vetorAux1.add(decimoPrimeiro);
         if (!Objects.equals(cpf.get(9), vetorAux1.get(9)) || !Objects.equals(
                 cpf.get(10), vetorAux1.get(10))) {
-            throw new CPFInvalidoException("\nCPF Inválido\n");
+            throw new CPFInvalidoException("CPF Inválido");
         }
     }
 

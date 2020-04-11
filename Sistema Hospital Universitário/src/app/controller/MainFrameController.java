@@ -5,6 +5,8 @@
  */
 package app.controller;
 
+import app.model.domain.Usuario;
+import app.utilits.CredenciaisInvalidasException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,9 +21,11 @@ import app.view.CadastrarAluno;
 import app.view.CadastrarMedico;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;
+import app.view.Principal;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 
 /**
@@ -59,16 +63,29 @@ public class MainFrameController implements Initializable {
         /*Cada tipo de entidade do sistema tem uma senha que irá terminar com a primeira letra
         //que identifica o nome da entidade. A partir dessa última letra, redirecionar o usuário
         para uma home adequada.*/
-        /*String matricula = this.campoMatricula.getText();
+        String matricula = this.campoMatricula.getText().trim();
         String senha = this.campoSenha.getText();
-        if (matricula.equals("admin") && senha.equals("admin")) {
-            try {
-                Principal tela_principal = new Principal();
-                tela_principal.start(new Stage());
-            } catch (Exception ex) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Erro login");
+        alert.setContentText("Erro ao realizar cadastro.");
+        try {
+            if (Usuario.autenticar(matricula, senha)) {
+                try {
+                    Principal principal = new Principal();
+                    principal.start(new Stage());
+                    MainFrame.getStage().close();
+                    this.campoMatricula.setText("");
+                    this.campoSenha.setText("");
+                } catch (Exception ex) {
+                }
+            } else {
+                alert.setContentText("Credenciais Inválidas.");
             }
-        } else {
-        }*/
+        } catch (CredenciaisInvalidasException exception) {
+            alert.setContentText(exception.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -103,6 +120,5 @@ public class MainFrameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }

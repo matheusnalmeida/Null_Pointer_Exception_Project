@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -37,6 +38,9 @@ public class Principal extends Application {
         stage.show();
         stage.setResizable(false);
         setStage(stage);
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            MainFrame.getStage().show();
+        });
     }
 
     public static Stage getStage() {

@@ -22,10 +22,14 @@ public class MatriculaGenerator {
         int digito2 = aux1.get(aux1.size() - 1);
         LocalDate data = LocalDate.now();
         String aux2 = "";
+        String aux3 = "";
         if (data.getMonthValue() < 10) {
             aux2 = "0";
         }
-        String stringData = Integer.toString(data.getDayOfMonth()) + aux2 + Integer.toString(data.getMonthValue()) + Integer.toString(data.getYear());
+        if (data.getDayOfMonth() < 10) {
+            aux3 = "0";
+        }
+        String stringData = aux3 + Integer.toString(data.getDayOfMonth()) + aux2 + Integer.toString(data.getMonthValue()) + Integer.toString(data.getYear());
         return stringData + Integer.toString(digito1) + Integer.toString(digito2) + tipo;
     }
 }

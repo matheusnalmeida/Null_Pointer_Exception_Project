@@ -1,7 +1,11 @@
 package app.model.domain;
 
+import app.model.dao.UsuarioDAO;
 import app.utilits.EncryptionPassword;
+import app.utilits.CredenciaisInvalidasException;
+import app.utilits.Sistema;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -89,6 +93,19 @@ public abstract class Usuario implements Serializable {
         if (!Objects.equals(this.matricula, other.matricula)) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean autenticar(String matricula, String senha) throws CredenciaisInvalidasException {
+        senha = EncryptionPassword.encrypt(senha);
+        System.out.println(senha);
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.autenticar(matricula, senha);
+        if (usuario == null) {
+            return false;
+        }
+        Sessao sessao = new Sessao(0, usuario, LocalDateTime.now(), null);
+        Sistema.setSessao(sessao);
         return true;
     }
 }

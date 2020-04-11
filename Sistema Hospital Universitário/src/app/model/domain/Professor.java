@@ -1,8 +1,10 @@
 package app.model.domain;
 
+import java.util.HashMap;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "professores")
@@ -10,6 +12,8 @@ public class Professor extends Medico {
 
     @Column(nullable = false)
     private String titulacao;
+    @Transient
+    private HashMap<String, Aluno> alunos;
 
     public Professor() {
         super(null, null, null, null, 0);

@@ -1,10 +1,12 @@
 package app.model.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "alunos")
@@ -16,6 +18,8 @@ public class Aluno extends Usuario {
     private LocalDate dataNascimento;
     @ManyToOne
     private Professor professor;
+    @Transient
+    private ArrayList<PacienteAlunoRelatorio> atendimentosRealizados;
 
     public Aluno() {
         super(null, null, null, 0);
