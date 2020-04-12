@@ -2,6 +2,8 @@ package app.utilits;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CPF {
 
@@ -9,8 +11,14 @@ public class CPF {
     private ArrayList<Integer> cpf = new ArrayList<>();
 
     public CPF(String cpf) throws CPFInvalidoException {
-        if (cpf.length() < 11) {
-            throw new CPFInvalidoException("CPF Inválido");
+        String regex1 = "(([0-9]{3}){3})([0-9]{2})";
+        String regex2 = "[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}";
+        Pattern pattern1 = Pattern.compile(regex1);
+        Pattern pattern2 = Pattern.compile(regex2);
+        Matcher matcher1 = pattern1.matcher(cpf);
+        Matcher matcher2 = pattern2.matcher(cpf);
+        if (!matcher1.find() && !matcher2.find()) {
+            throw new CPFInvalidoException("CPF Inválido.");
         }
         char cpfChars[] = cpf.toCharArray();
         if (cpf.length() == 11) {
