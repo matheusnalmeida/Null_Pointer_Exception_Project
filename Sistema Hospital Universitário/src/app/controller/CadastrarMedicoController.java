@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import app.model.dao.MedicoDAO;
 import app.model.domain.Medico;
 import app.utilits.CPFInvalidoException;
+import app.utilits.CRM;
+import app.utilits.CRMInvalidoException;
 import app.utilits.MatriculaGenerator;
 import app.view.CadastrarMedico;
 import app.view.MainFrame;
@@ -55,6 +57,7 @@ public class CadastrarMedicoController implements Initializable {
         String senha = this.senhaField.getText();
         Alert alert;
         try {
+            CRM crmValido = new CRM(crm);
             MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
             String matricula = matriculaGenerator.generateToken(cpf, "M");
             char aux1[] = cpf.toCharArray();
@@ -62,7 +65,7 @@ public class CadastrarMedicoController implements Initializable {
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);
-            Medico medico = new Medico(nome, matricula, senha, crm, Integer.parseInt(aux2 + aux3));
+            Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm(), Integer.parseInt(aux2 + aux3));
             MedicoDAO medicoDAO = new MedicoDAO();
             boolean result = medicoDAO.create(medico);
             if (result) {
@@ -76,7 +79,7 @@ public class CadastrarMedicoController implements Initializable {
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Erro ao realizar cadastro.");
             }
-        } catch (CPFInvalidoException exception) {
+        } catch (CPFInvalidoException|CRMInvalidoException exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
