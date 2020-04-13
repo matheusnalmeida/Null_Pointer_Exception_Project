@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import app.model.dao.ProfessorDAO;
 import app.model.domain.Professor;
 import app.utilits.CPFInvalidoException;
+import app.utilits.CRM;
+import app.utilits.CRMInvalidoException;
 import app.utilits.MatriculaGenerator;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;
@@ -56,6 +58,7 @@ public class CadastrarProfessorController implements Initializable {
         String crm = this.crmField.getText().trim();
         Alert alert;
         try {
+            CRM crmValido = new CRM(crm);
             MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
             String matricula = matriculaGenerator.generateToken(cpf, "P");
             char aux1[] = cpf.toCharArray();
@@ -63,7 +66,7 @@ public class CadastrarProfessorController implements Initializable {
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);
-            Professor professor = new Professor(nome, matricula, senha, crm, titulacao, Integer.parseInt(aux2 + aux3));
+            Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao, Integer.parseInt(aux2 + aux3));
             boolean result = professorDAO.create(professor);
             if (result) {
                 alert = new Alert(Alert.AlertType.INFORMATION);
@@ -76,7 +79,7 @@ public class CadastrarProfessorController implements Initializable {
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Erro ao realizar cadastro.");
             }
-        } catch (CPFInvalidoException exception) {
+        } catch (CPFInvalidoException|CRMInvalidoException exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
