@@ -16,16 +16,20 @@ public class PacienteDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(Paciente paciente) {
+    public boolean create(Paciente paciente) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(paciente);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public Paciente read(Paciente paciente) {
@@ -40,30 +44,37 @@ public class PacienteDAO {
         return retorno;
     }
 
-    public void update(Paciente paciente) {
+    public boolean update(Paciente paciente) {
+        boolean result = false;
         try {
-            this.delete(paciente);
             this.em.getTransaction().begin();
-            this.em.persist(paciente);
+            this.em.merge(paciente);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(Paciente paciente) {
+    public boolean delete(Paciente paciente) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             paciente = this.em.find(Paciente.class, paciente.getCpf());
             this.em.remove(paciente);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

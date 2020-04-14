@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class PacienteAlunoRelatorioDAO {
-    
+
     private EntityManagerFactory emf;
     private EntityManager em;
 
@@ -16,16 +16,20 @@ public class PacienteAlunoRelatorioDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+    public boolean create(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(pacienteAlunoRelatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public PacienteAlunoRelatorio read(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
@@ -40,30 +44,37 @@ public class PacienteAlunoRelatorioDAO {
         return retorno;
     }
 
-    public void update(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+    public boolean update(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+        boolean result = false;
         try {
-            this.delete(pacienteAlunoRelatorio);
             this.em.getTransaction().begin();
             this.em.merge(pacienteAlunoRelatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+    public boolean delete(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             pacienteAlunoRelatorio = this.em.find(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo());
             this.em.remove(pacienteAlunoRelatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

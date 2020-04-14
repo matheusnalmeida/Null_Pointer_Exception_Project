@@ -16,16 +16,20 @@ public class RelatorioDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(Relatorio relatorio) {
+    public boolean create(Relatorio relatorio) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(relatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public Relatorio read(Relatorio relatorio) {
@@ -40,30 +44,37 @@ public class RelatorioDAO {
         return retorno;
     }
 
-    public void update(Relatorio relatorio) {
+    public boolean update(Relatorio relatorio) {
+        boolean result = false;
         try {
-            this.delete(relatorio);
             this.em.getTransaction().begin();
             this.em.merge(relatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(Relatorio relatorio) {
+    public boolean delete(Relatorio relatorio) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             relatorio = this.em.find(Relatorio.class, relatorio.getCodigo());
             this.em.remove(relatorio);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

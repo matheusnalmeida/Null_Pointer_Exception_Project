@@ -24,8 +24,8 @@ public class MedicoDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
@@ -47,16 +47,13 @@ public class MedicoDAO {
     public boolean update(Medico medico) {
         boolean result = false;
         try {
-            result = this.delete(medico) || result;
-            if (result) {
-                this.em.getTransaction().begin();
-                this.em.merge(medico);
-                this.em.getTransaction().commit();
-                result = true;
-            }
+            this.em.getTransaction().begin();
+            this.em.merge(medico);
+            this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
@@ -72,8 +69,8 @@ public class MedicoDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }

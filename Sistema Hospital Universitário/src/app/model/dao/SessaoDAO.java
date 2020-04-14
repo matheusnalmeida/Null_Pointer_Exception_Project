@@ -16,16 +16,20 @@ public class SessaoDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(Sessao sessao) {
+    public boolean create(Sessao sessao) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(sessao);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
         } finally {
+            result = false;
             this.emf.close();
         }
+        return result;
     }
 
     public Sessao read(Sessao sessao) {
@@ -40,30 +44,37 @@ public class SessaoDAO {
         return retorno;
     }
 
-    public void update(Sessao sessao) {
+    public boolean update(Sessao sessao) {
+        boolean result = false;
         try {
-            this.delete(sessao);
             this.em.getTransaction().begin();
-            this.em.persist(sessao);
+            this.em.merge(sessao);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(Sessao sessao) {
+    public boolean delete(Sessao sessao) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             sessao = this.em.find(Sessao.class, sessao.getCodigo());
             this.em.remove(sessao);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

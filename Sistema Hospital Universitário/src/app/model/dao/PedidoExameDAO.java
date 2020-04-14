@@ -16,16 +16,20 @@ public class PedidoExameDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(PedidoExame pedidoExame) {
+    public boolean create(PedidoExame pedidoExame) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(pedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public PedidoExame read(PedidoExame pedidoExame) {
@@ -40,30 +44,37 @@ public class PedidoExameDAO {
         return retorno;
     }
 
-    public void update(PedidoExame pedidoExame) {
+    public boolean update(PedidoExame pedidoExame) {
+        boolean result = false;
         try {
-            this.delete(pedidoExame);
             this.em.getTransaction().begin();
             this.em.merge(pedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(PedidoExame pedidoExame) {
+    public boolean delete(PedidoExame pedidoExame) {
+        boolean result = true;
         try {
             this.em.getTransaction().begin();
             pedidoExame = this.em.find(PedidoExame.class, pedidoExame.getCodigo());
             this.em.remove(pedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

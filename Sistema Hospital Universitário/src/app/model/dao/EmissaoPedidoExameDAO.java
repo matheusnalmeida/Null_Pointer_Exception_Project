@@ -16,16 +16,20 @@ public class EmissaoPedidoExameDAO {
         this.em = this.emf.createEntityManager();
     }
 
-    public void create(EmissaoPedidoExame emissaoPedidoExame) {
+    public boolean create(EmissaoPedidoExame emissaoPedidoExame) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.persist(emissaoPedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     public EmissaoPedidoExame read(EmissaoPedidoExame emissaoPedidoExame) {
@@ -40,29 +44,37 @@ public class EmissaoPedidoExameDAO {
         return retorno;
     }
 
-    public void update(EmissaoPedidoExame emissaoPedidoExame) {
+    public boolean update(EmissaoPedidoExame emissaoPedidoExame) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             this.em.merge(emissaoPedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
-    public void delete(EmissaoPedidoExame emissaoPedidoExame) {
+    public boolean delete(EmissaoPedidoExame emissaoPedidoExame) {
+        boolean result = false;
         try {
             this.em.getTransaction().begin();
             emissaoPedidoExame = this.em.find(EmissaoPedidoExame.class, emissaoPedidoExame.getPedidoExame());
             this.em.remove(emissaoPedidoExame);
             this.em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
+        return result;
     }
 
     @SuppressWarnings("unchecked")

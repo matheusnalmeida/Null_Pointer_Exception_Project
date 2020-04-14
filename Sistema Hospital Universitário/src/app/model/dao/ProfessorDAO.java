@@ -24,8 +24,8 @@ public class ProfessorDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
@@ -47,16 +47,13 @@ public class ProfessorDAO {
     public boolean update(Professor professor) {
         boolean result = false;
         try {
-            result = this.delete(professor) || result;
-            if (result) {
-                this.em.getTransaction().begin();
-                this.em.merge(professor);
-                this.em.getTransaction().commit();
-                result = true;
-            }
+            this.em.getTransaction().begin();
+            this.em.merge(professor);
+            this.em.getTransaction().commit();
+            result = true;
         } catch (Exception exception) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
@@ -72,8 +69,8 @@ public class ProfessorDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {
-            this.em.getTransaction().rollback();
             result = false;
+            this.em.getTransaction().rollback();
         } finally {
             this.emf.close();
         }
