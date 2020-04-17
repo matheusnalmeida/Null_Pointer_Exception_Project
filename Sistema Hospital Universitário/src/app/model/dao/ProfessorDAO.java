@@ -64,8 +64,9 @@ public class ProfessorDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            professor = this.em.find(Professor.class, professor.getMatricula());
-            this.em.remove(professor);
+            /*professor = this.em.find(Professor.class, professor.getMatricula());
+            this.em.remove(professor);*/
+            this.em.remove(this.em.getReference(Professor.class, professor.getMatricula()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

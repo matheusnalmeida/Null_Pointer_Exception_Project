@@ -64,8 +64,9 @@ public class PacienteAlunoRelatorioDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            pacienteAlunoRelatorio = this.em.find(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo());
-            this.em.remove(pacienteAlunoRelatorio);
+            /*pacienteAlunoRelatorio = this.em.find(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo());
+            this.em.remove(pacienteAlunoRelatorio);*/
+            this.em.remove(this.em.getReference(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

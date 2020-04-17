@@ -64,8 +64,9 @@ public class MedicoDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            medico = this.em.find(Medico.class, medico.getMatricula());
-            this.em.remove(medico);
+            /*medico = this.em.find(Medico.class, medico.getMatricula());
+            this.em.remove(medico);*/
+            this.em.remove(this.em.getReference(Medico.class, medico.getMatricula()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

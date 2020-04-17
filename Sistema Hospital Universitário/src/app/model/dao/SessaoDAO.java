@@ -64,8 +64,9 @@ public class SessaoDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            sessao = this.em.find(Sessao.class, sessao.getCodigo());
-            this.em.remove(sessao);
+            /*sessao = this.em.find(Sessao.class, sessao.getCodigo());
+            this.em.remove(sessao);*/
+            this.em.remove(this.em.getReference(Sessao.class, sessao.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

@@ -64,8 +64,9 @@ public class AlunoDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            aluno = this.em.find(Aluno.class, aluno.getMatricula());
-            this.em.remove(aluno);
+            /*aluno = this.em.find(Aluno.class, aluno.getMatricula());
+            this.em.remove(aluno);*/
+            this.em.remove(this.em.getReference(Aluno.class, aluno.getMatricula()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

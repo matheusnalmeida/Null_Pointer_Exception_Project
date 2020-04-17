@@ -64,8 +64,9 @@ public class PedidoExameDAO {
         boolean result = true;
         try {
             this.em.getTransaction().begin();
-            pedidoExame = this.em.find(PedidoExame.class, pedidoExame.getCodigo());
-            this.em.remove(pedidoExame);
+            /*pedidoExame = this.em.find(PedidoExame.class, pedidoExame.getCodigo());
+            this.em.remove(pedidoExame);*/
+            this.em.remove(this.em.getReference(PedidoExame.class, pedidoExame.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

@@ -64,8 +64,9 @@ public class PacienteDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            paciente = this.em.find(Paciente.class, paciente.getCpf());
-            this.em.remove(paciente);
+            /*paciente = this.em.find(Paciente.class, paciente.getCpf());
+            this.em.remove(paciente);*/
+            this.em.remove(this.em.getReference(Paciente.class, paciente.getCpf()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

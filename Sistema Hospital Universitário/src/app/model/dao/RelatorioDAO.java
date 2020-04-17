@@ -64,8 +64,9 @@ public class RelatorioDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            relatorio = this.em.find(Relatorio.class, relatorio.getCodigo());
-            this.em.remove(relatorio);
+            /*relatorio = this.em.find(Relatorio.class, relatorio.getCodigo());
+            this.em.remove(relatorio);*/
+            this.em.remove(this.em.getReference(Relatorio.class, relatorio.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {
