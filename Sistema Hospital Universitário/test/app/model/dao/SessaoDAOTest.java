@@ -43,7 +43,7 @@ public class SessaoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1), 18);
+                1, LocalDate.of(1998, 12, 1));
         Sessao sessao = new Sessao(aluno, LocalDateTime.now(), null);
         SessaoDAO sessaoDAO = new SessaoDAO();
         boolean expResult = true;
@@ -60,7 +60,7 @@ public class SessaoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1), 18);
+                1, LocalDate.of(1998, 12, 1));
         Sessao sessao = new Sessao(aluno, LocalDateTime.now(), null);
         SessaoDAO sessaoDAO = new SessaoDAO();
         Sessao expResult = new Sessao();
@@ -79,7 +79,7 @@ public class SessaoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1), 18);
+                1, LocalDate.of(1998, 12, 1));
         Sessao sessao = new Sessao(aluno, LocalDateTime.now(), LocalDateTime.of(2020, 4, 12, 23, 5));
         sessao.setCodigo(0);
         SessaoDAO sessaoDAO = new SessaoDAO();

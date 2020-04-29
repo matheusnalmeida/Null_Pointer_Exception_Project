@@ -32,13 +32,13 @@ public class PacienteAlunoRelatorioDAOTest {
         this.pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         this.relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
                 LocalDate.of(2020, 4, 27), null);
         senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         this.aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1), 18);
+                1, LocalDate.of(1998, 12, 1));
         this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
         this.pacienteAlunoRelatorio = new PacienteAlunoRelatorio(LocalDateTime.now(), paciente, aluno);
     }

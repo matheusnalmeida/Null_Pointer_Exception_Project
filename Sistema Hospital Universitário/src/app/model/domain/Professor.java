@@ -15,12 +15,21 @@ public class Professor extends Medico {
     @Transient
     private HashMap<String, Aluno> alunos;
 
-    public Professor() {
+    /*public Professor() {
         super(null, null, null, null, 0);
     }
 
     public Professor(String nome, String matricula, String senha, String crm, String titulacao, int id) {
         super(nome, matricula, senha, crm, id);
+        this.titulacao = titulacao;
+    }*/
+    
+    
+    public Professor() {
+    }
+
+    public Professor(String nome, String matricula, String senha, String crm, String titulacao) {
+        super(nome, matricula, senha, crm);
         this.titulacao = titulacao;
     }
 

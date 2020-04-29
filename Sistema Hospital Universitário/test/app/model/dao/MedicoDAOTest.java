@@ -39,7 +39,7 @@ public class MedicoDAOTest {
         System.out.println("create");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         boolean expResult = true;
         boolean result = medicoDAO.create(medico);
@@ -54,7 +54,7 @@ public class MedicoDAOTest {
         System.out.println("read");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         Medico expResult = new Medico();
         expResult.setMatricula("1204202018M");
@@ -71,7 +71,7 @@ public class MedicoDAOTest {
         //Exemplo de atualização de senha
         String senha = "789963951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         boolean expResult = true;
         boolean result = medicoDAO.update(medico);

@@ -26,18 +26,25 @@ public abstract class Usuario implements Serializable {
     private String matricula;
     @Column(nullable = false)
     private String senha;
-    @Column(name = "id", unique = true)
-    private int id;
+    /*@Column(name = "id", unique = true)
+    private int id;*/
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String matricula, String senha, int id) {
+    /*public Usuario(String nome, String matricula, String senha, int id) {
         this.nome = nome;
         this.matricula = matricula;
         this.senha = EncryptionPassword.encrypt(senha);
         this.id = id;
+    }*/
+
+    public Usuario(String nome, String matricula, String senha) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.senha = senha;
     }
+    
 
     public String getMatricula() {
         return matricula;
@@ -63,13 +70,13 @@ public abstract class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public int getId() {
+    /*public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
     @Override
     public int hashCode() {

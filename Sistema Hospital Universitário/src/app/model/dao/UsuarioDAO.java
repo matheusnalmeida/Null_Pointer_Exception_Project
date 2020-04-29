@@ -19,6 +19,16 @@ public class UsuarioDAO {
         this.em = this.emf.createEntityManager();
     }
 
+    public boolean existUser(String matricula) throws Exception {
+        boolean result = true;
+        this.em.getTransaction().begin();
+        if (this.em.find(Usuario.class, matricula) == null) {
+            result = false;
+        }
+        this.emf.close();
+        return result;
+    }
+
     public Usuario autenticar(String matricula, String senha) throws CredenciaisInvalidasException {
         Usuario usuario = null;
         char matriculaChar[] = matricula.toCharArray();

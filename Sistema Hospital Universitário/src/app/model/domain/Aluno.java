@@ -22,6 +22,23 @@ public class Aluno extends Usuario {
     private ArrayList<PacienteAlunoRelatorio> atendimentosRealizados;
 
     public Aluno() {
+        super(null, null, null);
+    }
+
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor) {
+        super(nome, matricula, senha);
+        this.anoResidencia = anoResidencia;
+        this.dataNascimento = dataNascimento;
+        this.professor = professor;
+    }
+
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento) {
+        super(nome, matricula, senha);
+        this.anoResidencia = anoResidencia;
+        this.dataNascimento = dataNascimento;
+    }
+
+    /*public Aluno() {
         super(null, null, null, 0);
     }
 
@@ -36,8 +53,8 @@ public class Aluno extends Usuario {
         super(nome, matricula, senha, id);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
-    }
-
+    }*/
+    
     public int getAnoResidencia() {
         return anoResidencia;
     }

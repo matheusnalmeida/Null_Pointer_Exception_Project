@@ -19,11 +19,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
 public class CadastrarMedicoController implements Initializable {
 
     @FXML
@@ -32,8 +27,8 @@ public class CadastrarMedicoController implements Initializable {
     private JFXTextField nomeField;
     @FXML
     private JFXTextField crmField;
-    @FXML
-    private JFXTextField cpfField;
+    /*@FXML
+    private JFXTextField cpfField;*/
     @FXML
     private JFXPasswordField senhaField;
     @FXML
@@ -52,20 +47,21 @@ public class CadastrarMedicoController implements Initializable {
     @FXML
     public void cadastrarAction(ActionEvent event) {
         String nome = this.nomeField.getText().trim().toUpperCase();
-        String cpf = this.cpfField.getText().trim();
+        //String cpf = this.cpfField.getText().trim();
         String crm = this.crmField.getText().trim();
         String senha = this.senhaField.getText();
         Alert alert;
         try {
             CRM crmValido = new CRM(crm);
             MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
-            String matricula = matriculaGenerator.generateToken(cpf, "M");
-            char aux1[] = cpf.toCharArray();
+            String matricula = matriculaGenerator.gerarMatricula("M");
+            /*char aux1[] = cpf.toCharArray();
             char digito1 = aux1[aux1.length - 2];
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);
-            Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm(), Integer.parseInt(aux2 + aux3));
+            Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm(), Integer.parseInt(aux2 + aux3));*/
+            Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm());
             MedicoDAO medicoDAO = new MedicoDAO();
             boolean result = medicoDAO.create(medico);
             if (result) {
@@ -79,7 +75,7 @@ public class CadastrarMedicoController implements Initializable {
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Erro ao realizar cadastro.");
             }
-        } catch (CPFInvalidoException|CRMInvalidoException exception) {
+        } catch (Exception exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");

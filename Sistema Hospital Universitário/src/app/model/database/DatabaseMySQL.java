@@ -12,7 +12,7 @@ public class DatabaseMySQL {
         Connection conexao = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital?serverTimezone=UTC", "root", "");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital2?serverTimezone=UTC", "root", "");
         } catch (ClassNotFoundException | SQLException exception) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erro de conexão");

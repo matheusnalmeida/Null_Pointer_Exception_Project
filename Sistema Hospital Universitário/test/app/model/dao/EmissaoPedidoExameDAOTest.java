@@ -26,7 +26,7 @@ public class EmissaoPedidoExameDAOTest {
     public EmissaoPedidoExameDAOTest() {
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        this.medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        this.medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
         this.pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12), "Test", "Test");
         this.emissaoPedidoExame = new EmissaoPedidoExame(null, medico, paciente, pedidoExame);

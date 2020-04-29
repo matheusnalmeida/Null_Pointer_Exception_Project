@@ -30,8 +30,8 @@ public class CadastrarProfessorController implements Initializable {
     private Label tituloLabel;
     @FXML
     private JFXTextField nomeField;
-    @FXML
-    private JFXTextField cpfField;
+    /*@FXML
+    private JFXTextField cpfField;*/
     @FXML
     private JFXTextField crmField;
     @FXML
@@ -52,7 +52,7 @@ public class CadastrarProfessorController implements Initializable {
     public void cadastrarAction(ActionEvent event) {
         ProfessorDAO professorDAO = new ProfessorDAO();
         String nome = this.nomeField.getText().trim().toUpperCase();
-        String cpf = this.cpfField.getText().trim();
+        //String cpf = this.cpfField.getText().trim();
         String senha = this.senhaField.getText();
         String titulacao = this.titulacaoField.getText().trim();
         String crm = this.crmField.getText().trim();
@@ -60,13 +60,14 @@ public class CadastrarProfessorController implements Initializable {
         try {
             CRM crmValido = new CRM(crm);
             MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
-            String matricula = matriculaGenerator.generateToken(cpf, "P");
-            char aux1[] = cpf.toCharArray();
+            String matricula = matriculaGenerator.gerarMatricula("P");
+            /*char aux1[] = cpf.toCharArray();
             char digito1 = aux1[aux1.length - 2];
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);
-            Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao, Integer.parseInt(aux2 + aux3));
+            Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao, Integer.parseInt(aux2 + aux3));*/
+            Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao);
             boolean result = professorDAO.create(professor);
             if (result) {
                 alert = new Alert(Alert.AlertType.INFORMATION);
@@ -79,7 +80,7 @@ public class CadastrarProfessorController implements Initializable {
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Erro ao realizar cadastro.");
             }
-        } catch (CPFInvalidoException|CRMInvalidoException exception) {
+        } catch (Exception exception) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");

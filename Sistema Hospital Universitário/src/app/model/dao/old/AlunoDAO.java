@@ -77,7 +77,7 @@ public class AlunoDAO {
                         int anoResidencia = resultSet.getInt("anoResidencia");
                         String dataNascimento[] = resultSet.getString("dataNascimento").split("-");
                         LocalDate data = LocalDate.of(Integer.parseInt(dataNascimento[0]), Integer.parseInt(dataNascimento[1]), Integer.parseInt(dataNascimento[2]));
-                        aluno2 = new Aluno(nome, matricula, senha, anoResidencia, data, 0);
+                        aluno2 = new Aluno(nome, matricula, senha, anoResidencia, data);
                     }
                 } catch (SQLException exception) {
                 }

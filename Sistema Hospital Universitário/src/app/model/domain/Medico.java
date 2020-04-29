@@ -21,14 +21,26 @@ public class Medico extends Usuario {
     @Transient
     private ArrayList<EmissaoPedidoExame> pedidosExamesEmitidos;
 
-    public Medico(String nome, String matricula, String senha, String crm, int id) {
+    public Medico() {
+    }
+    
+    public Medico(String crm) {
+        this.crm = crm;
+    }
+
+    public Medico(String crm, String nome, String matricula, String senha) {
+        super(nome, matricula, senha);
+        this.crm = crm;
+    }
+    
+    /*public Medico(String nome, String matricula, String senha, String crm, int id) {
         super(nome, matricula, senha, id);
         this.crm = crm;
     }
 
     public Medico() {
         super(null, null, null, 0);
-    }
+    }*/
 
     public String getCrm() {
         return crm;

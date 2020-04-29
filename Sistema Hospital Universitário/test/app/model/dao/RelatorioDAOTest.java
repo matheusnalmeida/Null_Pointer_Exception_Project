@@ -42,7 +42,7 @@ public class RelatorioDAOTest {
         System.out.println("create");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
                 LocalDate.of(2020, 4, 27), null);
         RelatorioDAO relatorioDAO = new RelatorioDAO();
@@ -74,7 +74,7 @@ public class RelatorioDAOTest {
         System.out.println("update");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE", 0);
+        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
                 LocalDate.of(2020, 4, 30), null);
         RelatorioDAO relatorioDAO = new RelatorioDAO();

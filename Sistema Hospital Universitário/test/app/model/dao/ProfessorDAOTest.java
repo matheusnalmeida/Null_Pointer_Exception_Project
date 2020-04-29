@@ -40,7 +40,7 @@ public class ProfessorDAOTest {
         System.out.println("create");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado", 0);
+        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado");
         ProfessorDAO professorDAO = new ProfessorDAO();
         boolean expResult = true;
         boolean result = professorDAO.create(professor);
@@ -55,7 +55,7 @@ public class ProfessorDAOTest {
         System.out.println("read");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado", 0);
+        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado");
         ProfessorDAO professorDAO = new ProfessorDAO();
         Professor expResult = new Professor();
         expResult.setMatricula("1204202021P");
@@ -72,7 +72,7 @@ public class ProfessorDAOTest {
         //Exemplo de atualização de titulação
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Mestrando", 0);
+        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Mestrando");
         ProfessorDAO professorDAO = new ProfessorDAO();
         boolean expResult = true;
         boolean result = professorDAO.update(professor);
