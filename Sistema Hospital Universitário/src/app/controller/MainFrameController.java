@@ -1,7 +1,11 @@
 package app.controller;
 
+import app.model.domain.Aluno;
+import app.model.domain.Medico;
+import app.model.domain.Professor;
 import app.model.domain.Usuario;
 import app.utilits.CredenciaisInvalidasException;
+import app.utilits.Sistema;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -55,24 +59,27 @@ public class MainFrameController implements Initializable {
 
     @FXML
     public void acaoBotaoLogin(ActionEvent event) {
-        /*Cada tipo de entidade do sistema tem uma senha que irá terminar com a primeira letra
-        //que identifica o nome da entidade. A partir dessa última letra, redirecionar o usuário
-        para uma home adequada.*/
         String matricula = this.campoMatricula.getText().trim();
         String senha = this.campoSenha.getText();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Erro login");
-        alert.setContentText("Erro ao realizar cadastro.");
         try {
             if (Usuario.autenticar(matricula, senha)) {
-                try {
-                    Principal principal = new Principal();
-                    principal.start(new Stage());
-                    MainFrame.getStage().close();
-                    this.campoMatricula.setText("");
-                    this.campoSenha.setText("");
-                } catch (Exception exception) {
+                if (Sistema.getSessao().getUsuario() instanceof Aluno) {
+                    Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
+                    if (aluno.getProfessor() == null) {
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Aguarde autorização");
+                        alert.setContentText("Aguarde até que o seu professor autorize seu acesso ao sistema.");
+                        alert.showAndWait();
+                    } else {
+                        //Lançar home de Aluno
+                    }
+                } else if (Sistema.getSessao().getUsuario() instanceof Professor) {
+                    //Lançar home de Professor
+                } else if (Sistema.getSessao().getUsuario() instanceof Medico) {
+                    //Lançar home de Médico
                 }
             } else {
                 alert.setContentText("Credenciais Inválidas.");

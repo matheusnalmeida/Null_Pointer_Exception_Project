@@ -12,6 +12,7 @@ import app.model.domain.Medico;
 import app.utilits.CPFInvalidoException;
 import app.utilits.CRM;
 import app.utilits.CRMInvalidoException;
+import app.utilits.EncryptionPassword;
 import app.utilits.MatriculaGenerator;
 import app.view.CadastrarMedico;
 import app.view.MainFrame;
@@ -50,6 +51,7 @@ public class CadastrarMedicoController implements Initializable {
         //String cpf = this.cpfField.getText().trim();
         String crm = this.crmField.getText().trim();
         String senha = this.senhaField.getText();
+        senha = EncryptionPassword.encrypt(senha);
         Alert alert;
         try {
             CRM crmValido = new CRM(crm);

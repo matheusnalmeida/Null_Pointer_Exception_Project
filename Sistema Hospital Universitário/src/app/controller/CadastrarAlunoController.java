@@ -14,6 +14,7 @@ import app.view.MainFrame;
 import app.model.dao.AlunoDAO;
 import app.model.domain.Aluno;
 import app.utilits.CPFInvalidoException;
+import app.utilits.EncryptionPassword;
 import app.utilits.MatriculaGenerator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -58,6 +59,7 @@ public class CadastrarAlunoController implements Initializable {
         String nome = this.nomeField.getText().trim();
         //String cpf = this.cpfField.getText().trim();
         String senha = this.senhaField.getText();
+        senha = EncryptionPassword.encrypt(senha);
         String anoResidencia = this.anoResidenciaField.getText().trim();
         LocalDate dataNascimento = this.dataNascimentoField.getValue();
         MatriculaGenerator matriculaGeneretor = new MatriculaGenerator();

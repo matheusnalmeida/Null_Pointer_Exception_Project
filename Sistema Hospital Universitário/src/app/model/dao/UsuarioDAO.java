@@ -32,6 +32,7 @@ public class UsuarioDAO {
     public Usuario autenticar(String matricula, String senha) throws CredenciaisInvalidasException {
         Usuario usuario = null;
         char matriculaChar[] = matricula.toCharArray();
+        boolean except = false;
         if (matriculaChar.length > 11 || matriculaChar.length < 11) {
             throw new CredenciaisInvalidasException();
         }
@@ -50,15 +51,18 @@ public class UsuarioDAO {
                         break;
                     default:
                         this.emf.close();
-                        throw new CredenciaisInvalidasException();
+                        except = true;
                 }
             } else {
                 this.emf.close();
-                throw new CredenciaisInvalidasException();
+                except = true;
             }
         } catch (Exception exception) {
         } finally {
             this.emf.close();
+        }
+        if (except) {
+            throw new CredenciaisInvalidasException();
         }
         return usuario;
     }

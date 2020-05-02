@@ -11,6 +11,7 @@ import app.model.domain.Professor;
 import app.utilits.CPFInvalidoException;
 import app.utilits.CRM;
 import app.utilits.CRMInvalidoException;
+import app.utilits.EncryptionPassword;
 import app.utilits.MatriculaGenerator;
 import app.view.CadastrarProfessor;
 import app.view.MainFrame;
@@ -56,6 +57,7 @@ public class CadastrarProfessorController implements Initializable {
         String senha = this.senhaField.getText();
         String titulacao = this.titulacaoField.getText().trim();
         String crm = this.crmField.getText().trim();
+        senha = EncryptionPassword.encrypt(senha);
         Alert alert;
         try {
             CRM crmValido = new CRM(crm);
