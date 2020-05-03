@@ -1,7 +1,6 @@
 package app.model.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,14 +19,14 @@ public class Sessao implements Serializable {
     @ManyToOne
     private Usuario usuario;
     @Column
-    private LocalDateTime dataInicioSessao;
+    private String dataInicioSessao;
     @Column
-    private LocalDateTime dataTerminoSessao;
+    private String dataTerminoSessao;
 
     public Sessao() {
     }
 
-    public Sessao(Usuario usuario, LocalDateTime dataInicioSessao, LocalDateTime dataTerminoSessao) {
+    public Sessao(Usuario usuario, String dataInicioSessao, String dataTerminoSessao) {
         this.usuario = usuario;
         this.dataInicioSessao = dataInicioSessao;
         this.dataTerminoSessao = dataTerminoSessao;
@@ -49,19 +48,19 @@ public class Sessao implements Serializable {
         this.usuario = usuario;
     }
 
-    public LocalDateTime getDataInicioSessao() {
+    public String getDataInicioSessao() {
         return dataInicioSessao;
     }
 
-    public void setDataInicioSessao(LocalDateTime dataInicioSessao) {
+    public void setDataInicioSessao(String dataInicioSessao) {
         this.dataInicioSessao = dataInicioSessao;
     }
 
-    public LocalDateTime getDataTerminoSessao() {
+    public String getDataTerminoSessao() {
         return dataTerminoSessao;
     }
 
-    public void setDataTerminoSessao(LocalDateTime dataTerminoSessao) {
+    public void setDataTerminoSessao(String dataTerminoSessao) {
         this.dataTerminoSessao = dataTerminoSessao;
     }
 

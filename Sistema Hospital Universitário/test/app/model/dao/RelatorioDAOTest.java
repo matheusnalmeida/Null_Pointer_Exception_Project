@@ -3,7 +3,6 @@ package app.model.dao;
 import app.model.domain.Medico;
 import app.model.domain.Relatorio;
 import app.utilits.EncryptionPassword;
-import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.After;
@@ -34,26 +33,20 @@ public class RelatorioDAOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class RelatorioDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
         Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
-                LocalDate.of(2020, 4, 27), null);
+        Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13).toString(), "Test", medico,
+                LocalDate.of(2020, 4, 27).toString(), null);
         RelatorioDAO relatorioDAO = new RelatorioDAO();
         boolean expResult = true;
         boolean result = relatorioDAO.create(relatorio);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class RelatorioDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
@@ -66,26 +59,20 @@ public class RelatorioDAOTest {
         assertEquals(expResult.getCodigo(), result.getCodigo());
     }
 
-    /**
-     * Test of update method, of class RelatorioDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
         Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
-                LocalDate.of(2020, 4, 30), null);
+        Relatorio relatorio = new Relatorio(LocalDate.of(2020, 4, 13).toString(), "Test", medico,
+                LocalDate.of(2020, 4, 30).toString(), null);
         RelatorioDAO relatorioDAO = new RelatorioDAO();
         boolean expResult = true;
         boolean result = relatorioDAO.update(relatorio);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class RelatorioDAO.
-     */
     @Test
     public void testDelete() {
         System.out.println("delete");
@@ -97,9 +84,6 @@ public class RelatorioDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of selectAll method, of class RelatorioDAO.
-     */
     @Test
     public void testSelectAll() {
         System.out.println("selectAll");

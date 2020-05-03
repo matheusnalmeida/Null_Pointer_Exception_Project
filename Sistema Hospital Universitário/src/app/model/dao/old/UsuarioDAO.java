@@ -1,4 +1,4 @@
-package app.model.dao.old;
+/*package app.model.dao.old;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,4 +101,4 @@ public class UsuarioDAO {
         DatabaseMySQL.desconectar(this.connection);
         return result;
     }
-}
+}*/

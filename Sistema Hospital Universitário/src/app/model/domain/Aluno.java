@@ -15,7 +15,7 @@ public class Aluno extends Usuario {
     @Column(nullable = false)
     private int anoResidencia;
     @Column(nullable = false)
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     @ManyToOne
     private Professor professor;
     @Transient
@@ -25,14 +25,14 @@ public class Aluno extends Usuario {
         super(null, null, null);
     }
 
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor) {
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, String dataNascimento, Professor professor) {
         super(nome, matricula, senha);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
         this.professor = professor;
     }
 
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento) {
+    public Aluno(String nome, String matricula, String senha, int anoResidencia, String dataNascimento) {
         super(nome, matricula, senha);
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
@@ -63,11 +63,11 @@ public class Aluno extends Usuario {
         this.anoResidencia = anoResidencia;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

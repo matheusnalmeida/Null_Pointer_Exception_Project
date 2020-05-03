@@ -1,7 +1,6 @@
 package app.model.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +13,7 @@ import javax.persistence.Table;
 public class EmissaoPedidoExame implements Serializable {
 
     @Column
-    private LocalDateTime dataEmissao;
+    private String dataEmissao;
     @ManyToOne
     private Medico medico;
     @ManyToOne
@@ -26,18 +25,18 @@ public class EmissaoPedidoExame implements Serializable {
     public EmissaoPedidoExame() {
     }
 
-    public EmissaoPedidoExame(LocalDateTime dataEmissao, Medico medico, Paciente paciente, PedidoExame pedidoExame) {
+    public EmissaoPedidoExame(String dataEmissao, Medico medico, Paciente paciente, PedidoExame pedidoExame) {
         this.dataEmissao = dataEmissao;
         this.medico = medico;
         this.paciente = paciente;
         this.pedidoExame = pedidoExame;
     }
 
-    public LocalDateTime getDataEmissao() {
+    public String getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(LocalDateTime dataEmissao) {
+    public void setDataEmissao(String dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 

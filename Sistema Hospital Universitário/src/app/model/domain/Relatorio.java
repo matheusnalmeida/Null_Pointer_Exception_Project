@@ -18,22 +18,22 @@ public class Relatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    @Column
-    private LocalDate dataRelatorio;
+    @Column(nullable = false)
+    private String dataRelatorio;
     @Column(nullable = false)
     private String descricao;
     @ManyToOne
     private Medico medicoAutorizacao;
     @Column
-    private LocalDate dataAutorizacao;
+    private String dataAutorizacao;
     @Column
     private File relatorio;
 
     public Relatorio() {
     }
 
-    public Relatorio(LocalDate dataRelatorio, String descricao, Medico medicoAutorizacao,
-            LocalDate dataAutorizacao, File relatorio) {
+    public Relatorio(String dataRelatorio, String descricao, Medico medicoAutorizacao,
+            String dataAutorizacao, File relatorio) {
         this.dataRelatorio = dataRelatorio;
         this.descricao = descricao;
         this.medicoAutorizacao = medicoAutorizacao;
@@ -49,11 +49,11 @@ public class Relatorio implements Serializable {
         this.codigo = codigo;
     }
 
-    public LocalDate getDataRelatorio() {
+    public String getDataRelatorio() {
         return dataRelatorio;
     }
 
-    public void setDataRelatorio(LocalDate dataRelatorio) {
+    public void setDataRelatorio(String dataRelatorio) {
         this.dataRelatorio = dataRelatorio;
     }
 
@@ -73,11 +73,11 @@ public class Relatorio implements Serializable {
         this.medicoAutorizacao = medicoAutorizacao;
     }
 
-    public LocalDate getDataAutorizacao() {
+    public String getDataAutorizacao() {
         return dataAutorizacao;
     }
 
-    public void setDataAutorizacao(LocalDate dataAutorizacao) {
+    public void setDataAutorizacao(String dataAutorizacao) {
         this.dataAutorizacao = dataAutorizacao;
     }
 

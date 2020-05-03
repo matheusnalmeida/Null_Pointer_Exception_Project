@@ -24,9 +24,9 @@ public class SessaoDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
+            result = false;
             this.em.getTransaction().rollback();
         } finally {
-            result = false;
             this.emf.close();
         }
         return result;

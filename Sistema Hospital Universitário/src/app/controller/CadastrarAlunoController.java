@@ -72,7 +72,7 @@ public class CadastrarAlunoController implements Initializable {
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);*/
             //Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento, Integer.parseInt(aux2 + aux3));
-            Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento);
+            Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento.toString());
             boolean result = alunoDAO.create(aluno);
             if (result) {
                 alert = new Alert(AlertType.INFORMATION);

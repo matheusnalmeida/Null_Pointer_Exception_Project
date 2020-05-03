@@ -38,9 +38,9 @@ public class AlunoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
+                1, LocalDate.of(1998, 12, 1).toString());
         AlunoDAO alunoDAO = new AlunoDAO();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = alunoDAO.create(aluno);
         assertEquals(expResult, result);
     }
@@ -54,7 +54,7 @@ public class AlunoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno expResult = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
+                1, LocalDate.of(1998, 12, 1).toString());
         Aluno result = alunoDAO.read(aluno);
         assertEquals(expResult, result);
     }
@@ -64,21 +64,10 @@ public class AlunoDAOTest {
         System.out.println("update");
         //Atualizando ano de residência
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92",
-                2, LocalDate.of(1998, 12, 1));
+                2, LocalDate.of(1998, 12, 1).toString());
         AlunoDAO alunoDAO = new AlunoDAO();
         boolean expResult = true;
         boolean result = alunoDAO.update(aluno);
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testDelete() {
-        System.out.println("delete");
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92",
-                2, LocalDate.of(1998, 12, 1));
-        AlunoDAO alunoDAO = new AlunoDAO();
-        boolean expResult = true;
-        boolean result = alunoDAO.delete(aluno);
         assertEquals(expResult, result);
     }
 
@@ -88,5 +77,16 @@ public class AlunoDAOTest {
         AlunoDAO alunoDAO = new AlunoDAO();
         List<Aluno> result = alunoDAO.selectAll();
         assertEquals(1, result.size());
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92",
+                2, LocalDate.of(1998, 12, 1).toString());
+        AlunoDAO alunoDAO = new AlunoDAO();
+        boolean expResult = true;
+        boolean result = alunoDAO.delete(aluno);
+        assertEquals(expResult, result);
     }
 }

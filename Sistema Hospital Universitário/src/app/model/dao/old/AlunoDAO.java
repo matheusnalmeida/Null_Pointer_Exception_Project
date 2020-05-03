@@ -1,4 +1,4 @@
-package app.model.dao.old;
+/*package app.model.dao.old;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,13 +16,6 @@ public class AlunoDAO {
     public AlunoDAO() {
     }
 
-    /**
-     * Insere os dados de um aluno no banco de dados.
-     *
-     * @param aluno
-     * @param matriculaProfessor
-     * @return
-     */
     public boolean create(Aluno aluno, String matriculaProfessor) {
         boolean result = true;
         if (aluno != null) {
@@ -51,12 +44,6 @@ public class AlunoDAO {
         return result;
     }
 
-    /**
-     * Resgata os dados de um aluno no banco de dados.
-     *
-     * @param aluno
-     * @return
-     */
     public Aluno read(Aluno aluno) {
         Aluno aluno2 = null;
         if (aluno != null) {
@@ -87,12 +74,6 @@ public class AlunoDAO {
         return aluno2;
     }
 
-    /**
-     * Atualiza os dados de um aluno.
-     *
-     * @param aluno
-     * @return
-     */
     public boolean update(Aluno aluno) {
         boolean result = true;
         if (aluno != null) {
@@ -135,4 +116,4 @@ public class AlunoDAO {
         DatabaseMySQL.desconectar(this.connection);
         return result;
     }
-}
+}*/

@@ -12,29 +12,26 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ProfessorDAOTest {
-    
+
     public ProfessorDAOTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class ProfessorDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
@@ -47,9 +44,6 @@ public class ProfessorDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class ProfessorDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
@@ -63,9 +57,6 @@ public class ProfessorDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of update method, of class ProfessorDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
@@ -79,9 +70,14 @@ public class ProfessorDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class ProfessorDAO.
-     */
+    @Test
+    public void testSelectAll() {
+        System.out.println("selectAll");
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        List<Professor> result = professorDAO.selectAll();
+        assertEquals(1, result.size());
+    }
+
     @Test
     public void testDelete() {
         System.out.println("delete");
@@ -91,16 +87,5 @@ public class ProfessorDAOTest {
         boolean expResult = true;
         boolean result = professorDAO.delete(professor);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of selectAll method, of class ProfessorDAO.
-     */
-    @Test
-    public void testSelectAll() {
-        System.out.println("selectAll");
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        List<Professor> result = professorDAO.selectAll();
-        assertEquals(1, result.size());
     }
 }

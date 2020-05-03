@@ -1,7 +1,6 @@
 package app.model.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ public class PacienteAlunoRelatorio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     @Column(nullable = false)
-    private LocalDateTime dataAtendimento;
+    private String dataAtendimento;
     @ManyToOne
     private Paciente paciente;
     @ManyToOne
@@ -29,7 +28,7 @@ public class PacienteAlunoRelatorio implements Serializable {
     public PacienteAlunoRelatorio() {
     }
     
-    public PacienteAlunoRelatorio(LocalDateTime dataConsulta, Paciente paciente, Aluno aluno) {
+    public PacienteAlunoRelatorio(String dataConsulta, Paciente paciente, Aluno aluno) {
         this.dataAtendimento = dataConsulta;
         this.paciente = paciente;
         this.aluno = aluno;
@@ -43,11 +42,11 @@ public class PacienteAlunoRelatorio implements Serializable {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getDataAtendimento() {
+    public String getDataAtendimento() {
         return dataAtendimento;
     }
 
-    public void setDataConsulta(LocalDateTime dataAtendimento) {
+    public void setDataConsulta(String dataAtendimento) {
         this.dataAtendimento = dataAtendimento;
     }
 
@@ -75,7 +74,7 @@ public class PacienteAlunoRelatorio implements Serializable {
         this.relatorio = relatorio;
     }
 
-    public void setDataAtendimento(LocalDateTime dataAtendimento) {
+    public void setDataAtendimento(String dataAtendimento) {
         this.dataAtendimento = dataAtendimento;
     }
     

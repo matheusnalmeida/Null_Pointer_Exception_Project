@@ -1,4 +1,4 @@
-package app.model.dao.old;
+/*package app.model.dao.old;
 
 import app.model.database.DatabaseMySQL;
 import app.model.domain.PacienteAlunoRelatorio;
@@ -76,4 +76,4 @@ public class PacienteAlunoRelatorioDAO {
         DatabaseMySQL.desconectar(this.connection);
         return result;
     }
-}
+}*/

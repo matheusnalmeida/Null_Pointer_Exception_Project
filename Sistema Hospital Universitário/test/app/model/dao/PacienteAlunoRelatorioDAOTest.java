@@ -16,10 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Usuario
- */
 public class PacienteAlunoRelatorioDAOTest {
 
     private Paciente paciente;
@@ -33,14 +29,14 @@ public class PacienteAlunoRelatorioDAOTest {
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
         Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        this.relatorio = new Relatorio(LocalDate.of(2020, 4, 13), "Test", medico,
-                LocalDate.of(2020, 4, 27), null);
+        this.relatorio = new Relatorio(LocalDateTime.now().toString(), "Test", medico,
+                LocalDate.now().toString(), null);
         senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         this.aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
+                1, LocalDate.of(1998, 12, 1).toString());
         this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
-        this.pacienteAlunoRelatorio = new PacienteAlunoRelatorio(LocalDateTime.now(), paciente, aluno);
+        this.pacienteAlunoRelatorio = new PacienteAlunoRelatorio(LocalDateTime.now().toString(), paciente, aluno);
     }
 
     @BeforeClass
@@ -59,9 +55,6 @@ public class PacienteAlunoRelatorioDAOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class PacienteAlunoRelatorioDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
@@ -70,9 +63,6 @@ public class PacienteAlunoRelatorioDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class PacienteAlunoRelatorioDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
@@ -82,9 +72,6 @@ public class PacienteAlunoRelatorioDAOTest {
         assertEquals(pacienteAlunoRelatorio, result);
     }
 
-    /**
-     * Test of update method, of class PacienteAlunoRelatorioDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
@@ -94,9 +81,6 @@ public class PacienteAlunoRelatorioDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class PacienteAlunoRelatorioDAO.
-     */
     @Test
     public void testDelete() {
         System.out.println("delete");
@@ -105,9 +89,6 @@ public class PacienteAlunoRelatorioDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of selectAll method, of class PacienteAlunoRelatorioDAO.
-     */
     @Test
     public void testSelectAll() {
         System.out.println("selectAll");

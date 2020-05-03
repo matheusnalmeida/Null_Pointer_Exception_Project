@@ -1,4 +1,4 @@
-package app.model.database;
+/*package app.model.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,4 +36,4 @@ public class DatabaseMySQL {
             alert.showAndWait();
         }
     }
-}
+}*/

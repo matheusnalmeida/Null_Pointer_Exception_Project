@@ -31,70 +31,55 @@ public class PedidoExameDAOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class PedidoExameDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
-        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12), "Test", "Test");
+        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12).toString(), "Test", "Test");
         PedidoExameDAO pedidoExameDAO = new PedidoExameDAO();
         boolean expResult = true;
         boolean result = pedidoExameDAO.create(pedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class PedidoExameDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
         PedidoExame pedidoExame = new PedidoExame();
-        pedidoExame.setCodigo(0);
+        pedidoExame.setCodigo(1);
         PedidoExameDAO pedidoExameDAO = new PedidoExameDAO();
-        PedidoExame expResult = new PedidoExame("Test", LocalDate.of(2020, 04, 12), "Test", "Test");
-        expResult.setCodigo(0);
+        PedidoExame expResult = new PedidoExame("Test", LocalDate.of(2020, 04, 12).toString(), "Test", "Test");
+        expResult.setCodigo(1);
         PedidoExame result = pedidoExameDAO.read(pedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of update method, of class PedidoExameDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
-        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 20), "Test", "Test");
-        pedidoExame.setCodigo(0);
+        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 20).toString(), "Test", "Test");
+        pedidoExame.setCodigo(1);
         PedidoExameDAO pedidoDAO = new PedidoExameDAO();
         boolean expResult = true;
         boolean result = pedidoDAO.update(pedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class PedidoExameDAO.
-     */
-    @Test
-    public void testDelete() {
-        System.out.println("delete");
-        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 20), "Test", "Test");
-        pedidoExame.setCodigo(0);
-        PedidoExameDAO pedidoExameDAO = new PedidoExameDAO();
-        boolean expResult = true;
-        boolean result = pedidoExameDAO.delete(pedidoExame);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of selectAll method, of class PedidoExameDAO.
-     */
     @Test
     public void testSelectAll() {
         System.out.println("selectAll");
         PedidoExameDAO pedidoExameDAO = new PedidoExameDAO();
         List<PedidoExame> result = pedidoExameDAO.selectAll();
         assertEquals(1, result.size());
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        PedidoExame pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 20).toString(), "Test", "Test");
+        pedidoExame.setCodigo(1);
+        PedidoExameDAO pedidoExameDAO = new PedidoExameDAO();
+        boolean expResult = true;
+        boolean result = pedidoExameDAO.delete(pedidoExame);
+        assertEquals(expResult, result);
     }
 }

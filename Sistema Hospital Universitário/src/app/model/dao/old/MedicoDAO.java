@@ -1,4 +1,4 @@
-package app.model.dao.old;
+/*package app.model.dao.old;
 
 import app.model.database.DatabaseMySQL;
 import app.model.domain.Medico;
@@ -113,4 +113,4 @@ public class MedicoDAO {
         DatabaseMySQL.desconectar(this.connection);
         return result;
     }
-}
+}*/

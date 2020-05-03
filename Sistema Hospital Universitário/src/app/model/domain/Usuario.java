@@ -110,7 +110,7 @@ public abstract class Usuario implements Serializable {
         if (usuario == null) {
             return false;
         }
-        Sessao sessao = new Sessao(usuario, LocalDateTime.now(), null);
+        Sessao sessao = new Sessao(usuario, LocalDateTime.now().toString(), null);
         Sistema.setSessao(sessao);
         return true;
     }

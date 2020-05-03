@@ -1,4 +1,4 @@
-package app.model.dao.old;
+/*package app.model.dao.old;
 
 import app.model.database.DatabaseMySQL;
 import app.model.domain.Professor;
@@ -102,4 +102,4 @@ public class ProfessorDAO {
         DatabaseMySQL.desconectar(this.connection);
         return result;
     }
-}
+}*/

@@ -11,29 +11,26 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MedicoDAOTest {
-    
+
     public MedicoDAOTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class MedicoDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
@@ -46,9 +43,6 @@ public class MedicoDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class MedicoDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
@@ -62,9 +56,6 @@ public class MedicoDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of update method, of class MedicoDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
@@ -78,9 +69,14 @@ public class MedicoDAOTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class MedicoDAO.
-     */
+    @Test
+    public void testSelectAll() {
+        System.out.println("selectAll");
+        MedicoDAO medicoDAO = new MedicoDAO();
+        List<Medico> result = medicoDAO.selectAll();
+        assertEquals(1, result.size());
+    }
+
     @Test
     public void testDelete() {
         System.out.println("delete");
@@ -90,16 +86,5 @@ public class MedicoDAOTest {
         boolean expResult = true;
         boolean result = medicoDAO.delete(medico);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of selectAll method, of class MedicoDAO.
-     */
-    @Test
-    public void testSelectAll() {
-        System.out.println("selectAll");
-        MedicoDAO medicoDAO = new MedicoDAO();
-        List<Medico> result = medicoDAO.selectAll();
-        assertEquals(1, result.size());
     }
 }

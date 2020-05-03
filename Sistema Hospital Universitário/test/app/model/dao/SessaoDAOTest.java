@@ -34,44 +34,36 @@ public class SessaoDAOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class SessaoDAO.
-     */
     @Test
     public void testCreate() {
         System.out.println("create");
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
-        Sessao sessao = new Sessao(aluno, LocalDateTime.now(), null);
+                1, LocalDate.of(1998, 12, 1).toString());
+        Sessao sessao = new Sessao(aluno, LocalDateTime.now().toString(), null);
         SessaoDAO sessaoDAO = new SessaoDAO();
         boolean expResult = true;
         boolean result = sessaoDAO.create(sessao);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class SessaoDAO.
-     */
     @Test
     public void testRead() {
         System.out.println("read");
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
-        Sessao sessao = new Sessao(aluno, LocalDateTime.now(), null);
+                1, LocalDate.of(1998, 12, 1).toString());
+        Sessao sessao = new Sessao(aluno, LocalDateTime.now().toString(), null);
         SessaoDAO sessaoDAO = new SessaoDAO();
         Sessao expResult = new Sessao();
-        sessao.setCodigo(0);
+        sessao.setCodigo(10);
+        expResult.setCodigo(10);
         Sessao result = sessaoDAO.read(sessao);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of update method, of class SessaoDAO.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
@@ -79,18 +71,15 @@ public class SessaoDAOTest {
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1));
-        Sessao sessao = new Sessao(aluno, LocalDateTime.now(), LocalDateTime.of(2020, 4, 12, 23, 5));
-        sessao.setCodigo(0);
+                1, LocalDate.of(1998, 12, 1).toString());
+        Sessao sessao = new Sessao(aluno, "2020-05-03 16:00:32", LocalDateTime.now().toString());
+        sessao.setCodigo(12);
         SessaoDAO sessaoDAO = new SessaoDAO();
         boolean expResult = true;
         boolean result = sessaoDAO.update(sessao);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of selectAll method, of class SessaoDAO.
-     */
     @Test
     public void testSelectAll() {
         System.out.println("selectAll");

@@ -1,7 +1,6 @@
 package app.model.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ public class PedidoExame implements Serializable {
     @Column(nullable = false)
     private String recomendacoes;
     @Column(nullable = false)
-    private LocalDate dataExame;
+    private String dataExame;
     @Column(nullable = false)
     private String hipoteseDiagnostica;
     @Column(nullable = false)
@@ -28,7 +27,7 @@ public class PedidoExame implements Serializable {
     public PedidoExame() {
     }
 
-    public PedidoExame(String recomendacoes, LocalDate dataExame, String hipoteseDiagnostica, String tipoExame) {
+    public PedidoExame(String recomendacoes, String dataExame, String hipoteseDiagnostica, String tipoExame) {
         this.recomendacoes = recomendacoes;
         this.dataExame = dataExame;
         this.hipoteseDiagnostica = hipoteseDiagnostica;
@@ -51,11 +50,11 @@ public class PedidoExame implements Serializable {
         this.recomendacoes = recomendacoes;
     }
 
-    public LocalDate getDataExame() {
+    public String getDataExame() {
         return dataExame;
     }
 
-    public void setDataExame(LocalDate dataExame) {
+    public void setDataExame(String dataExame) {
         this.dataExame = dataExame;
     }
 

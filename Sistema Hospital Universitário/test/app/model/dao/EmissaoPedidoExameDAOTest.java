@@ -28,7 +28,7 @@ public class EmissaoPedidoExameDAOTest {
         senha = EncryptionPassword.encrypt(senha);
         this.medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
         this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
-        this.pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12), "Test", "Test");
+        this.pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12).toString(), "Test", "Test");
         this.emissaoPedidoExame = new EmissaoPedidoExame(null, medico, paciente, pedidoExame);
     }
     
@@ -77,7 +77,7 @@ public class EmissaoPedidoExameDAOTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        this.emissaoPedidoExame.setDataEmissao(LocalDateTime.of(2020, 5, 1, 15, 30));
+        this.emissaoPedidoExame.setDataEmissao(LocalDateTime.of(2020, 5, 1, 15, 30).toString());
         boolean expResult = true;
         boolean result = this.emissaoPedidoExameDAO.update(emissaoPedidoExame);
         assertEquals(expResult, result);
