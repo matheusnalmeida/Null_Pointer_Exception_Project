@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAlunoController">
+<children>
+  <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+     <image>
+        <Image url="@../../Images/iconHospital.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Nome1" layoutX="335.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nome2" layoutX="425.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="12.0" layoutY="159.0" prefHeight="416.0" prefWidth="869.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+         <children>
+            <Label fx:id="tituloLabel" layoutX="352.0" layoutY="22.0" text="Meus dados" textFill="#0262ac">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="Icon1" fitHeight="241.0" fitWidth="226.0" layoutX="637.0" layoutY="188.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/iconProfessor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tituloLabel1" layoutX="30.0" layoutY="112.0" text="Nome:" textFill="#606061">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="tituloLabel11" layoutX="31.0" layoutY="227.0" text="Matrícula:" textFill="#606061">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="tituloLabel111" layoutX="31.0" layoutY="269.0" text="Senha:" textFill="#606061">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="tituloLabel1111" layoutX="30.0" layoutY="188.0" text="Titulação:" textFill="#606061">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="tituloLabel11111" layoutX="31.0" layoutY="150.0" text="CRM:" textFill="#606061">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="nome" layoutX="105.0" layoutY="112.0" text="(Aqui o Nome)" textFill="#a7a9ab">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="matricula" layoutX="136.0" layoutY="227.0" text="(Aqui a Matrícula)" textFill="#a7a9ab">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="senha" layoutX="107.0" layoutY="269.0" text="(Aqui a Senha)" textFill="#a7a9ab">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="titulacao" layoutX="137.0" layoutY="188.0" text="(Aqui a Titulação)" textFill="#a7a9ab">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="crm" layoutX="95.0" layoutY="150.0" text="(Aqui o CRM)" textFill="#a7a9ab">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="alterar" layoutX="451.0" layoutY="612.0" onAction="#alterar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Alterar" textFill="WHITE" />
+      <JFXButton fx:id="voltar" layoutX="282.0" layoutY="612.0" onAction="#voltar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Voltar" textFill="WHITE" />
+   </children>
+</AnchorPane>

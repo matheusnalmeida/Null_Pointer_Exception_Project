@@ -13,12 +13,14 @@ public class Sistema {
     }
 
     public static void setSessao(Sessao sessao) {
+        SessaoDAO sessaoDAO = new SessaoDAO();
         if (sessao == null) {
-            Sistema.getSessao().setDataTerminoSessao(LocalDateTime.now().toString());
-            SessaoDAO sessaoDAO = new SessaoDAO();
-            sessaoDAO.create(Sistema.getSessao());
+            Sistema.sessao.setDataTerminoSessao(LocalDateTime.now().toString());
+            sessaoDAO.update(Sistema.sessao);
             Sistema.sessao = null;
+        } else {
+            Sistema.sessao = sessao;
+            sessaoDAO.create(sessao);
         }
-        Sistema.sessao = sessao;
     }
 }
