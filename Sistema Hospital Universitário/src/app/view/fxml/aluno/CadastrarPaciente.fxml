@@ -13,7 +13,7 @@
    <children>
       <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Images/iconHospital.png" />
+            <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
       <Label fx:id="Nome1" layoutX="335.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
@@ -56,7 +56,7 @@
             </Label>
             <ImageView fx:id="Icon1" fitHeight="237.0" fitWidth="308.0" layoutX="316.0" layoutY="152.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/iconPaciente.png" />
+                  <Image url="@../../Images/iconPaciente.png" />
                </image>
             </ImageView>
          </children>

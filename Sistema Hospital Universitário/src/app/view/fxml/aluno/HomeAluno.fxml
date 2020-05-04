@@ -11,7 +11,7 @@
 <children>
   <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
-        <Image url="@../../../Images/iconHospital.png" />
+        <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
       <Label fx:id="Nome1" layoutX="335.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
@@ -33,25 +33,25 @@
             </Label>
             <ImageView fx:id="Icon1" fitHeight="241.0" fitWidth="226.0" layoutX="640.0" layoutY="289.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/iconAluno.png" />
+                  <Image url="@../../Images/iconAluno.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="cadastrarPaciente" layoutX="121.0" layoutY="289.0" onAction="#cadastrarPaciente" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar Paciente" textFill="WHITE" />
             <ImageView fx:id="Icon111" fitHeight="190.0" fitWidth="159.0" layoutX="124.0" layoutY="81.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/iconPacienteColorido.png" />
+                  <Image url="@../../Images/iconPacienteColorido.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="gerarConsulta" layoutX="349.0" layoutY="289.0" onAction="#gerarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerar consulta" textFill="WHITE" />
             <ImageView fx:id="Icon1111" fitHeight="190.0" fitWidth="159.0" layoutX="587.0" layoutY="97.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/iconAlunoColorido.png" />
+                  <Image url="@../../Images/iconAlunoColorido.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="meusDados" layoutX="587.0" layoutY="289.0" onAction="#meusDados" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Meus dados" textFill="WHITE" />
             <ImageView fx:id="Icon1112" fitHeight="190.0" fitWidth="159.0" layoutX="349.0" layoutY="97.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/iconRelatorioColorido.png" />
+                  <Image url="@../../Images/iconRelatorioColorido.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="gerirRelatorios" layoutX="349.0" layoutY="357.0" onAction="#gerirRelatorios" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerir Relatórios" textFill="WHITE" />
