@@ -12,7 +12,7 @@ public class HomeAlunoController implements Initializable {
     }
 
     public void cadastrarPaciente(ActionEvent event) {
-
+      
     }
 
     public void gerarConsulta(ActionEvent event) {

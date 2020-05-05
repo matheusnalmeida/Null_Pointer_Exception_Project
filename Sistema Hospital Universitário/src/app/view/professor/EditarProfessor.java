@@ -1,8 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package app.view.professor;
 
-import app.utilits.Sistema;
-import app.view.main.MainFrame;
-import app.view.medico.HomeMedico;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class HomeProfessor extends Application {
+/**
+ *
+ * @author Matheus Nunes
+ */
+public class EditarProfessor extends Application{
 
     private static Stage stage;
 
@@ -19,22 +25,23 @@ public class HomeProfessor extends Application {
     }
 
     public static void setStage(Stage stage) {
-        HomeProfessor.stage = stage;
+        EditarProfessor.stage = stage;
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/professor/HomeProfessor.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/professor/EditarProfessor.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("Home");
+        stage.setTitle("Dados");
         stage.centerOnScreen();
         stage.show();
-        HomeProfessor.setStage(stage);
+        EditarProfessor.setStage(stage);
         stage.setOnCloseRequest((WindowEvent event) -> {
-            Sistema.setSessao(null);
-            MainFrame.getStage().show();
+            ViewProfessor.getStage().show();
         });
     }
+
+
 }
