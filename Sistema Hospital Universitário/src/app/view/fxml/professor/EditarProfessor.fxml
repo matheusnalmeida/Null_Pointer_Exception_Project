@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarProfessorController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.professor.EditarProfessorController">
    <children>
       <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,14 +26,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="192.0" layoutY="158.0" prefHeight="391.0" prefWidth="508.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="192.0" layoutY="158.0" prefHeight="427.0" prefWidth="508.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
-            <JFXTextField fx:id="nomeField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="81.0" prefHeight="44.0" prefWidth="323.0" promptText="Nome" unFocusColor="#a7a9ab">
+            <JFXTextField fx:id="nomeField" alignment="CENTER" editable="false" focusColor="#0262ac" layoutX="93.0" layoutY="81.0" prefHeight="44.0" prefWidth="323.0" promptText="Nome" unFocusColor="#a7a9ab">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="crmField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="137.0" prefHeight="44.0" prefWidth="323.0" promptText="CRM" unFocusColor="#a7a9ab">
+            <JFXTextField fx:id="crmField" alignment="CENTER" editable="false" focusColor="#0262ac" layoutX="93.0" layoutY="137.0" prefHeight="44.0" prefWidth="323.0" promptText="CRM" unFocusColor="#a7a9ab">
                <font>
                   <Font size="20.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="matriculaField" alignment="CENTER" focusColor="#0262ac" layoutX="93.0" layoutY="252.0" prefHeight="44.0" prefWidth="323.0" promptText="Matrícula" unFocusColor="#a7a9ab">
+            <JFXTextField fx:id="matriculaField" alignment="CENTER" editable="false" focusColor="#0262ac" layoutX="93.0" layoutY="252.0" prefHeight="44.0" prefWidth="323.0" promptText="Matrícula" unFocusColor="#a7a9ab">
                <font>
                   <Font size="20.0" />
                </font>
@@ -58,14 +58,19 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <ImageView fx:id="Icon1" fitHeight="244.0" fitWidth="250.0" layoutX="264.0" layoutY="147.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Icon1" fitHeight="244.0" fitWidth="243.0" layoutX="265.0" layoutY="147.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconProfessor.png" />
                </image>
             </ImageView>
+            <JFXPasswordField id="novaSenhaId" fx:id="novaSenha" alignment="CENTER" focusColor="#0262ac" layoutX="100.0" layoutY="375.0" prefHeight="44.0" prefWidth="323.0" promptText="Nova Senha" unFocusColor="#a7a9ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXPasswordField>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="alterar" layoutX="451.0" layoutY="571.0" onAction="#alterar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Alterar" textFill="WHITE" />
-      <JFXButton fx:id="cancelar" layoutX="282.0" layoutY="571.0" onAction="#cancelarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="alterar" layoutX="451.0" layoutY="602.0" onAction="#alterar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Alterar" textFill="WHITE" />
+      <JFXButton fx:id="cancelar" layoutX="279.0" layoutY="602.0" onAction="#cancelarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
    </children>
 </AnchorPane>
