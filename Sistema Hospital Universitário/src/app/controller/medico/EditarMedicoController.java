@@ -74,13 +74,18 @@ public class EditarMedicoController implements Initializable{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Dados Alterados Com Sucesso!");
                 alert.showAndWait();
-                this.cancelarAction(event);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Information Dialog");
+                alert.setContentText("Erro ao realizar cadastro.");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Dados Invalidos!");
             alert.showAndWait();
         }
+        this.cancelarAction(event);
     }
 
     boolean validaSenha() {

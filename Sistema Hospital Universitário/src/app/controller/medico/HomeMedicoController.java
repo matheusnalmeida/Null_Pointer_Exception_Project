@@ -1,5 +1,6 @@
 package app.controller.medico;
 
+import app.view.medico.CadastrarExames;
 import app.view.medico.HomeMedico;
 import app.view.medico.ViewMedico;
 import java.net.URL;
@@ -16,7 +17,13 @@ public class HomeMedicoController implements Initializable {
     }
 
     public void exame(ActionEvent evt) {
-
+        try {
+            CadastrarExames cadastrarExamesMedico = new CadastrarExames();
+            cadastrarExamesMedico.start(new Stage());
+            HomeMedico.getStage().close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void listarRelatorios(ActionEvent evt) {
