@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,12 +23,13 @@ public class PacienteAlunoRelatorio implements Serializable {
     private Paciente paciente;
     @ManyToOne
     private Aluno aluno;
-    @ManyToOne
+    //@ManyToOne
+    @OneToOne
     private Relatorio relatorio;
 
     public PacienteAlunoRelatorio() {
     }
-    
+
     public PacienteAlunoRelatorio(String dataConsulta, Paciente paciente, Aluno aluno) {
         this.dataAtendimento = dataConsulta;
         this.paciente = paciente;
@@ -46,7 +48,7 @@ public class PacienteAlunoRelatorio implements Serializable {
         return dataAtendimento;
     }
 
-    public void setDataConsulta(String dataAtendimento) {
+    public void setDataAtendimento(String dataAtendimento) {
         this.dataAtendimento = dataAtendimento;
     }
 
@@ -74,10 +76,6 @@ public class PacienteAlunoRelatorio implements Serializable {
         this.relatorio = relatorio;
     }
 
-    public void setDataAtendimento(String dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 7;

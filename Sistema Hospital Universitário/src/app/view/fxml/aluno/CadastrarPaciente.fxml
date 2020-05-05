@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarPacienteController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.aluno.CadastroPacienteController">
    <children>
       <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,7 +48,6 @@
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXDatePicker fx:id="dataNascimentoField" defaultColor="#0262ac" editable="false" layoutX="179.0" layoutY="314.0" prefHeight="44.0" prefWidth="179.0" promptText="Data de Nascimento" />
             <Label fx:id="tituloLabel" layoutX="114.0" layoutY="22.0" text="Cadastro de Paciente" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
@@ -59,9 +58,10 @@
                   <Image url="@../../Images/iconPaciente.png" />
                </image>
             </ImageView>
+            <JFXDatePicker fx:id="dataNascimentoField" defaultColor="#0262ac" editable="false" layoutX="169.0" layoutY="336.0" promptText="Data de Nascimento" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="cadastrar" layoutX="451.0" layoutY="573.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar" textFill="WHITE" />
-      <JFXButton fx:id="cancelar" layoutX="282.0" layoutY="573.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="cadastrarBotao" layoutX="451.0" layoutY="573.0" onAction="#cadastrarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar" textFill="WHITE" />
+      <JFXButton fx:id="cancelarBotao" layoutX="282.0" layoutY="573.0" onAction="#cancelarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
    </children>
 </AnchorPane>

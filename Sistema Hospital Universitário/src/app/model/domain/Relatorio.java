@@ -18,7 +18,8 @@ public class Relatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    @Column(nullable = false)
+    //@Column(nullable = false)
+    @Column
     private String dataRelatorio;
     @Column(nullable = false)
     private String descricao;

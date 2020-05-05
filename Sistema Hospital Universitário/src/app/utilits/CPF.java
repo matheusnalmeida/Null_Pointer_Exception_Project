@@ -33,6 +33,7 @@ public class CPF {
             }
         } else {
             try {
+                this.cpfString = cpf;
                 validarCPF(cpfChars);
             } catch (CPFInvalidoException exception) {
                 System.out.print(exception.getMessage());
