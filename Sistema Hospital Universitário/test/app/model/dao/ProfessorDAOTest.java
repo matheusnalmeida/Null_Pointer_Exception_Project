@@ -1,6 +1,6 @@
 package app.model.dao;
 
-import app.model.domain.Medico;
+import app.model.domain.Aluno;
 import app.model.domain.Professor;
 import app.utilits.EncryptionPassword;
 import java.util.List;
@@ -32,7 +32,7 @@ public class ProfessorDAOTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void testCreate() {
         System.out.println("create");
         String senha = "741753951";
@@ -87,5 +87,15 @@ public class ProfessorDAOTest {
         boolean expResult = true;
         boolean result = professorDAO.delete(professor);
         assertEquals(expResult, result);
+    }*/
+        
+    @Test
+    public void testGetAlunos(){
+        System.out.println("getAlunos");
+        Professor professor = new Professor();
+        professor.setMatricula("4456319868");
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        List<Aluno> alunos = professorDAO.getAlunos(professor);
+        assertEquals(1, alunos.size());
     }
 }

@@ -1,6 +1,7 @@
 package app.model.dao;
 
 import app.model.domain.Aluno;
+import app.model.domain.Relatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -85,6 +86,22 @@ public class AlunoDAO {
             this.em.getTransaction().begin();
             retorno = this.em.createQuery("from "
                     + Aluno.class.getName()).getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
+        }
+        return retorno;
+    }
+
+    /**
+     *
+     * @param aluno
+     * @return relatórios de um aluno
+     */
+    public List<Relatorio> getRelatorios(Aluno aluno) {
+        List<Relatorio> retorno = null;
+        try {
+
         } catch (Exception exception) {
         } finally {
             this.emf.close();

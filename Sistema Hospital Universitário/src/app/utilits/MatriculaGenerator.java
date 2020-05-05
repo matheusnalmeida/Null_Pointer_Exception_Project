@@ -33,7 +33,6 @@ public class MatriculaGenerator {
         String stringData = aux3 + Integer.toString(data.getDayOfMonth()) + aux2 + Integer.toString(data.getMonthValue()) + Integer.toString(data.getYear());
         return stringData + Integer.toString(digito1) + Integer.toString(digito2) + tipo;
     }*/
-    
     public String gerarMatricula(String tipoUsuario) throws Exception {
         String matriculaString = "";
         Random random = new Random();
@@ -46,6 +45,15 @@ public class MatriculaGenerator {
             }
             matriculaString = matricula.toString();
         } while (usuarioDAO.existUser(matriculaString));
-        return matriculaString.concat(tipoUsuario);
+        //return matriculaString.concat(tipoUsuario);
+        String end = "";
+        if (tipoUsuario.equals("A")) {
+            end = "3";
+        } else if (tipoUsuario.equals("P")) {
+            end = "2";
+        } else if (tipoUsuario.equals("M")) {
+            end = "1";
+        }
+        return matriculaString.concat(end);
     }
 }

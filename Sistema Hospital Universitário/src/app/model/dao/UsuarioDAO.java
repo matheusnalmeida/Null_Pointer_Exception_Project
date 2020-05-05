@@ -40,13 +40,13 @@ public class UsuarioDAO {
             this.em.getTransaction().begin();
             if (this.em.find(Usuario.class, matricula) != null && this.em.find(Usuario.class, matricula).getSenha().equals(senha)) {
                 switch (matriculaChar[10]) {
-                    case 'A':
+                    case '3':
                         usuario = (Aluno) this.em.find(Aluno.class, matricula);
                         break;
-                    case 'M':
+                    case '1':
                         usuario = (Medico) this.em.find(Medico.class, matricula);
                         break;
-                    case 'P':
+                    case '2':
                         usuario = (Professor) this.em.find(Professor.class, matricula);
                         break;
                     default:

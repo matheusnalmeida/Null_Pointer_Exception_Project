@@ -1,10 +1,12 @@
 package app.model.dao;
 
 import app.model.domain.Medico;
+import app.model.domain.Relatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class MedicoDAO {
 
@@ -85,6 +87,43 @@ public class MedicoDAO {
             this.em.getTransaction().begin();
             retorno = this.em.createQuery("from "
                     + Medico.class.getName()).getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
+        }
+        return retorno;
+    }
+
+    /**
+     * 
+     * @param medico
+     * @return lista de relatórios autorizados pelo médico
+     */
+    public List<Relatorio> getRelatorios(Medico medico) {
+        List<Relatorio> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula = :medicoAutorizacao_matricula");
+            query.setParameter("medicoAutorizacao_matricula", medico.getMatricula());
+            retorno = (List<Relatorio>) query.getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
+        }
+        return retorno;
+    }
+
+    /**
+     *
+     * @return Lista de relatórios que ainda não foram autorizados
+     */
+    public List<Relatorio> getRelatorios() {
+        List<Relatorio> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula = :medicoAutorizacao_matricula");
+            query.setParameter("medicoAutorizacao_matricula", "null");
+            retorno = (List<Relatorio>) query.getResultList();
         } catch (Exception exception) {
         } finally {
             this.emf.close();

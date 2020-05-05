@@ -36,7 +36,7 @@
               <columns>
                 <TableColumn id="cod" fx:id="codigo" prefWidth="70.0" text="Codigo" />
                 <TableColumn id="descricao" fx:id="descricao" minWidth="0.0" prefWidth="376.0" text="Descrição" />
-                  <TableColumn id="crmMedico" fx:id="crmMedico" prefWidth="175.0" text="CRM Médico" />
+                  <TableColumn id="crmMedico" fx:id="crmMedico" prefWidth="175.0" text="Matrícula Medico Autorização" />
                   <TableColumn id="dateRelatorio" fx:id="dataRelatorio" minWidth="0.0" prefWidth="175.0" text="Data do Relatório" />
                   <TableColumn id="dataAutorizacao" fx:id="dataAutorizacao" minWidth="0.0" prefWidth="175.0" text="Data da Autorização" />
                   <TableColumn id="acoes" fx:id="arquivo" minWidth="0.0" prefWidth="175.0" text="Arquivo" />

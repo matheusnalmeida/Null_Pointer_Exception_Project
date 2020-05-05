@@ -1,10 +1,13 @@
 package app.model.dao;
 
+import app.model.domain.Aluno;
 import app.model.domain.Professor;
+import app.model.domain.Relatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class ProfessorDAO {
 
@@ -88,6 +91,34 @@ public class ProfessorDAO {
         } catch (Exception exception) {
         } finally {
             this.emf.close();
+        }
+        return retorno;
+    }
+
+    public List<Aluno> getAlunos(Professor professor) {
+        List<Aluno> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("FROM " + Aluno.class.getName() + " WHERE professor_matricula = :professor_matricula");
+            query.setParameter("professor_matricula", professor.getMatricula());
+            retorno = (List<Aluno>) query.getResultList();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            this.emf.close();
+        }
+        return retorno;
+    }
+
+    public List<Relatorio> getRelatoriosAlunos(Professor professor) {
+        List<Relatorio> retorno = null;
+        List<Aluno> alunos = this.getAlunos(professor);
+        AlunoDAO alunoDAO = new AlunoDAO();
+        if (alunos != null) {
+            //Para cada aluno obter a lista de relatórios concatenando-as em "retorno"
+            for (Aluno aluno : alunos) {
+                
+            }
         }
         return retorno;
     }
