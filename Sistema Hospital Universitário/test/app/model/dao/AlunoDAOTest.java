@@ -1,6 +1,7 @@
 package app.model.dao;
 
 import app.model.domain.Aluno;
+import app.model.domain.Relatorio;
 import app.utilits.EncryptionPassword;
 import java.time.LocalDate;
 import java.util.List;
@@ -88,5 +89,14 @@ public class AlunoDAOTest {
         boolean expResult = true;
         boolean result = alunoDAO.delete(aluno);
         assertEquals(expResult, result);
+    }
+
+    @Test
+    public void getRelatorios() {
+        Aluno aluno = new Aluno();
+        aluno.setMatricula("81149163393");
+        AlunoDAO alunoDAO = new AlunoDAO();
+        List<Relatorio> relatorios = alunoDAO.getRelatorios(aluno);
+        assertNotEquals(null, relatorios);
     }
 }

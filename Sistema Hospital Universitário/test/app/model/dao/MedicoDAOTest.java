@@ -1,6 +1,7 @@
 package app.model.dao;
 
 import app.model.domain.Medico;
+import app.model.domain.Relatorio;
 import app.utilits.EncryptionPassword;
 import java.util.List;
 import org.junit.After;
@@ -86,5 +87,17 @@ public class MedicoDAOTest {
         boolean expResult = true;
         boolean result = medicoDAO.delete(medico);
         assertEquals(expResult, result);
+    }
+
+    @Test
+    public void getRelatorios() {
+        MedicoDAO medicoDAO = new MedicoDAO();
+
+        /*List<Relatorio> relatorios = medicoDAO.getRelatorios();
+        assertEquals(1, relatorios.size());*/
+         /*Medico medico = new Medico();
+        medico.setMatricula("17789661622");
+        List<Relatorio> relatorios = medicoDAO.getRelatorios(medico);
+        assertEquals(1, relatorios.size());*/
     }
 }

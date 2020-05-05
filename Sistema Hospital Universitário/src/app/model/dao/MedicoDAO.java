@@ -121,8 +121,7 @@ public class MedicoDAO {
         List<Relatorio> retorno = null;
         try {
             this.em.getTransaction().begin();
-            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula = :medicoAutorizacao_matricula");
-            query.setParameter("medicoAutorizacao_matricula", "null");
+            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula is null");
             retorno = (List<Relatorio>) query.getResultList();
         } catch (Exception exception) {
         } finally {

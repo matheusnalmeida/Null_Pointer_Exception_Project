@@ -1,11 +1,13 @@
 package app.model.dao;
 
 import app.model.domain.Aluno;
+import app.model.domain.PacienteAlunoRelatorio;
 import app.model.domain.Relatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class AlunoDAO {
 
@@ -101,8 +103,11 @@ public class AlunoDAO {
     public List<Relatorio> getRelatorios(Aluno aluno) {
         List<Relatorio> retorno = null;
         try {
-
+            Query query = this.em.createQuery("SELECT relatorio FROM " + Relatorio.class.getName() + " relatorio INNER JOIN " + PacienteAlunoRelatorio.class.getName() + " ON relatorio.codigo = relatorio_codigo WHERE aluno_matricula = :matricula");
+            query.setParameter("matricula", aluno.getMatricula());
+            retorno = query.getResultList();
         } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         } finally {
             this.emf.close();
         }
