@@ -88,12 +88,11 @@ public class ViewMedicoController implements Initializable {
         this.nome.setText(medico.getNome());
         this.crm.setText(medico.getCrm());
         this.matricula.setText(medico.getMatricula());
-        this.senha.setText(medico.getSenha());
+        //this.senha.setText(medico.getSenha());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.preencherCampos();
     }
-
 }

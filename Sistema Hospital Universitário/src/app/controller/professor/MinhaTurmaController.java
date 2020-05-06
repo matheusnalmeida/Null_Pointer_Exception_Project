@@ -58,6 +58,7 @@ public class MinhaTurmaController implements Initializable {
     }
 
     public void carregarTableViewAlunos() {
+        this.removerBotao.setDisable(false);
         this.tableViewAlunos.getItems().clear();
         this.tableColumnAlunoNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         this.tableColumnAlunoMatricula.setCellValueFactory(new PropertyValueFactory<>("Matricula"));
@@ -71,20 +72,26 @@ public class MinhaTurmaController implements Initializable {
     }
 
     public void removerAlunoAction(ActionEvent evt) {
-        AlunoDAO alunoDAO = new AlunoDAO();
-        Aluno aluno = this.tableViewAlunos.getSelectionModel().getSelectedItem();
-        aluno.setProfessor(null);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if (alunoDAO.update(aluno)) {
-            this.tableViewAlunos.getItems().remove(aluno);
-            alert.setTitle("Operação concluida");
-            alert.setContentText("Aluno removido com sucesso");
-            if (this.tableViewAlunos.getItems().isEmpty()) {
-                this.removerBotao.setDisable(true);
+        Aluno aluno = this.tableViewAlunos.getSelectionModel().getSelectedItem();
+        if (aluno != null) {
+            aluno.setProfessor(null);
+            AlunoDAO alunoDAO = new AlunoDAO();
+            if (alunoDAO.update(aluno)) {
+                this.tableViewAlunos.getItems().remove(aluno);
+                alert.setTitle("Operação concluida");
+                alert.setContentText("Aluno removido com sucesso");
+                if (this.tableViewAlunos.getItems().isEmpty()) {
+                    this.removerBotao.setDisable(true);
+                }
+            } else {
+                alert.setTitle("Erro banco de dados");
+                alert.setContentText("Não foi possível conectar ao banco de dados.");
             }
         } else {
-            alert.setTitle("Erro banco de dados");
-            alert.setContentText("Não foi possível conectar ao banco de dados.");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de seleção");
+            alert.setContentText("Nenhum aluno foi selecionado");
         }
         alert.showAndWait();
     }
