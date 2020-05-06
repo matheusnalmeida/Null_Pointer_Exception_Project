@@ -107,9 +107,9 @@ public class CadastrarExamesController implements Initializable {
     }
 
     boolean validaCamposVazio() {
-        return !"".equals(this.recomendacoes.getText())
-                && !"".equals(this.hipoteses.getText())
-                && !"".equals(this.tipoExame.getText())
+        return !"".equals(this.recomendacoes.getText().trim())
+                && !"".equals(this.hipoteses.getText().trim())
+                && !"".equals(this.tipoExame.getText().trim())
                 && null != this.dataExame.getValue();
     }
 

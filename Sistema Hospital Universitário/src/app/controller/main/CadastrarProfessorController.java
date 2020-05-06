@@ -50,44 +50,58 @@ public class CadastrarProfessorController implements Initializable {
         // TODO
     }
 
+    public boolean validaCampos() {
+        return !this.nomeField.getText().trim().equals("")
+                && !this.crmField.getText().trim().equals("")
+                && !this.senhaField.getText().equals("")
+                && !this.titulacaoField.getText().equals("");
+    }
+
     @FXML
     public void cadastrarAction(ActionEvent event) {
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        String nome = this.nomeField.getText().trim().toUpperCase();
-        //String cpf = this.cpfField.getText().trim();
-        String senha = this.senhaField.getText();
-        String titulacao = this.titulacaoField.getText().trim();
-        String crm = this.crmField.getText().trim();
-        senha = EncryptionPassword.encrypt(senha);
         Alert alert;
-        try {
-            CRM crmValido = new CRM(crm);
-            MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
-            String matricula = matriculaGenerator.gerarMatricula("P");
-            /*char aux1[] = cpf.toCharArray();
+        if (validaCampos()) {
+            ProfessorDAO professorDAO = new ProfessorDAO();
+            String nome = this.nomeField.getText().trim().toUpperCase();
+            //String cpf = this.cpfField.getText().trim();
+            String senha = this.senhaField.getText();
+            String titulacao = this.titulacaoField.getText().trim();
+            String crm = this.crmField.getText().trim();
+            senha = EncryptionPassword.encrypt(senha);
+            try {
+                CRM crmValido = new CRM(crm);
+                MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
+                String matricula = matriculaGenerator.gerarMatricula("P");
+                /*char aux1[] = cpf.toCharArray();
             char digito1 = aux1[aux1.length - 2];
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);
             Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao, Integer.parseInt(aux2 + aux3));*/
-            Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao);
-            boolean result = professorDAO.create(professor);
-            if (result) {
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Information Dialog");
-                alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula);
-            } else {
+                Professor professor = new Professor(nome, matricula, senha, crmValido.getCrm(), titulacao);
+                boolean result = professorDAO.create(professor);
+                if (result) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Information Dialog");
+                    alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula);
+                } else {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Information Dialog");
+                    alert.setContentText("Erro ao realizar cadastro.");
+                }
+            } catch (Exception exception) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Information Dialog");
-                alert.setContentText("Erro ao realizar cadastro.");
+                alert.setContentText(exception.getMessage());
             }
-        } catch (Exception exception) {
+        } else {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
-            alert.setContentText(exception.getMessage());
+            alert.setContentText("Preencha todos os campos obrigatorios!");
         }
         alert.showAndWait();
         CadastrarProfessor.getStage().close();

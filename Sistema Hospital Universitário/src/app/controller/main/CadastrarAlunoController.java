@@ -13,7 +13,6 @@ import app.view.main.CadastrarAluno;
 import app.view.main.MainFrame;
 import app.model.dao.AlunoDAO;
 import app.model.domain.Aluno;
-import app.utilits.CPFInvalidoException;
 import app.utilits.EncryptionPassword;
 import app.utilits.MatriculaGenerator;
 import com.jfoenix.controls.JFXButton;
@@ -56,43 +55,57 @@ public class CadastrarAlunoController implements Initializable {
         // TODO
     }
 
+    public boolean validaCampos() {
+        return !this.nomeField.getText().trim().equals("")
+                && !this.anoResidenciaField.getText().trim().equals("")
+                && !this.senhaField.getText().equals("")
+                && this.dataNascimentoField.getValue() != null;
+    }
+
     @FXML
     public void cadastrarAcao(ActionEvent event) {
-        AlunoDAO alunoDAO = new AlunoDAO();
-        String nome = this.nomeField.getText().trim();
-        //String cpf = this.cpfField.getText().trim();
-        String senha = this.senhaField.getText();
-        senha = EncryptionPassword.encrypt(senha);
-        String anoResidencia = this.anoResidenciaField.getText().trim();
-        LocalDate dataNascimento = this.dataNascimentoField.getValue();
-        MatriculaGenerator matriculaGeneretor = new MatriculaGenerator();
         Alert alert;
-        try {
-            String matricula = matriculaGeneretor.gerarMatricula("A");
-            /*char aux1[] = cpf.toCharArray();
+        if (validaCampos()) {
+            AlunoDAO alunoDAO = new AlunoDAO();
+            String nome = this.nomeField.getText().trim();
+            //String cpf = this.cpfField.getText().trim();
+            String senha = this.senhaField.getText();
+            senha = EncryptionPassword.encrypt(senha);
+            String anoResidencia = this.anoResidenciaField.getText().trim();
+            LocalDate dataNascimento = this.dataNascimentoField.getValue();
+            MatriculaGenerator matriculaGeneretor = new MatriculaGenerator();
+            try {
+                String matricula = matriculaGeneretor.gerarMatricula("A");
+                /*char aux1[] = cpf.toCharArray();
             char digito1 = aux1[aux1.length - 2];
             char digito2 = aux1[aux1.length - 1];
             String aux2 = Character.toString(digito1);
             String aux3 = Character.toString(digito2);*/
-            //Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento, Integer.parseInt(aux2 + aux3));
-            Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento.toString());
-            boolean result = alunoDAO.create(aluno);
-            if (result) {
-                alert = new Alert(AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Information Dialog");
-                alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula + "\nFique aguardando até que seu professor autorize o seu acesso ao sistema.");
-            } else {
+                //Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento, Integer.parseInt(aux2 + aux3));
+                Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento.toString());
+                boolean result = alunoDAO.create(aluno);
+                if (result) {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Information Dialog");
+                    alert.setContentText("Cadastro realizado com sucesso!\nSua matrícula: " + matricula + "\nFique aguardando até que seu professor autorize o seu acesso ao sistema.");
+                } else {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Information Dialog");
+                    alert.setContentText("Erro ao realizar cadastro.");
+                }
+            } catch (Exception exception) {
                 alert = new Alert(AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Information Dialog");
-                alert.setContentText("Erro ao realizar cadastro.");
+                alert.setContentText(exception.getMessage());
             }
-        } catch (Exception exception) {
+        } else {
             alert = new Alert(AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
-            alert.setContentText(exception.getMessage());
+            alert.setContentText("Preencha todos os campos obrigatorios!");
         }
         alert.showAndWait();
         CadastrarAluno.getStage().close();
