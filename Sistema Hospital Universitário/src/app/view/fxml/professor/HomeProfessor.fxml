@@ -36,19 +36,19 @@
                   <Image url="@../../Images/iconProfessor.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="minhaTurma" layoutX="121.0" layoutY="289.0" onAction="#minhaTurma" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Minha turma" textFill="WHITE" />
+            <JFXButton fx:id="minhaTurmaBotao" layoutX="121.0" layoutY="289.0" onAction="#minhaTurma" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Minha turma" textFill="WHITE" />
             <ImageView fx:id="Icon111" fitHeight="190.0" fitWidth="159.0" layoutX="124.0" layoutY="81.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconAlunoColorido.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="listarConsulta" layoutX="349.0" layoutY="289.0" onAction="#listarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Listar consultas" textFill="WHITE" />
+            <JFXButton fx:id="listarConsultasBotao" layoutX="349.0" layoutY="289.0" onAction="#listarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Listar consultas" textFill="WHITE" />
             <ImageView fx:id="Icon1111" fitHeight="190.0" fitWidth="159.0" layoutX="587.0" layoutY="97.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconProfessorColorido.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="meusDados" layoutX="587.0" layoutY="289.0" onAction="#meusDados" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Meus dados" textFill="WHITE" />
+            <JFXButton fx:id="meusDadosBotao" layoutX="587.0" layoutY="289.0" onAction="#meusDados" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Meus dados" textFill="WHITE" />
             <ImageView fx:id="Icon1112" fitHeight="190.0" fitWidth="159.0" layoutX="349.0" layoutY="97.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconRelatorioColorido.png" />

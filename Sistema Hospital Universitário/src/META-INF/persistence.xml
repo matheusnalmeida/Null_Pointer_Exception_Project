@@ -14,6 +14,7 @@
         <class>PedidoExame</class>
         <class>Relatorio</class>
         <class>Usuario</class>
+        <class>Sessao</class>
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

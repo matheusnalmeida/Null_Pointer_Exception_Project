@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="9.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="16.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
             <Label fx:id="tituloLabel" layoutX="518.0" layoutY="14.0" text="Consultas" textFill="#0262ac">
                <font>

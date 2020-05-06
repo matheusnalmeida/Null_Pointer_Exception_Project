@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.professor.SelecionarAlunoController">
 <children>
   <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="549.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
@@ -25,22 +26,22 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="9.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="16.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
             <Label fx:id="tituloLabel" layoutX="540.0" layoutY="14.0" text="Alunos" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <TableView layoutX="21.0" layoutY="66.0" prefHeight="544.0" prefWidth="1129.0">
+            <TableView fx:id="tableViewAlunos" layoutX="21.0" layoutY="66.0" prefHeight="544.0" prefWidth="1129.0">
               <columns>
-                <TableColumn id="cod" fx:id="codigo" prefWidth="355.0" text="Nome" />
-                <TableColumn id="descricao" fx:id="descricao" minWidth="0.0" prefWidth="190.0" text="Matricula" />
-                  <TableColumn id="crmMedico" fx:id="crmMedico" prefWidth="190.0" text="Ano Residência" />
-                  <TableColumn id="dateRelatorio" fx:id="dataRelatorio" minWidth="0.0" prefWidth="190.0" text="Data de Nascimento" />
-                  <TableColumn id="acoes" minWidth="0.0" prefWidth="203.0" text="Selecionar" />
+                <TableColumn id="cod" fx:id="tableColumnAlunoNome" prefWidth="355.0" text="Nome" />
+                <TableColumn id="descricao" fx:id="tableColumnAlunoMatricula" minWidth="0.0" prefWidth="190.0" text="Matricula" />
+                  <TableColumn id="crmMedico" fx:id="tableColumnAlunoAnoResidencia" prefWidth="190.0" text="Ano Residência" />
+                  <TableColumn id="dateRelatorio" fx:id="tableColumnAlunoDataNascimento" minWidth="0.0" prefWidth="231.0" text="Data de Nascimento" />
               </columns>
             </TableView>
+            <JFXButton fx:id="adicionarBotao" layoutX="1001.0" layoutY="11.0" onAction="#adicionarAction" prefHeight="45.0" prefWidth="149.0" style="-fx-background-color: #0262ac;" text="Adicionar" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

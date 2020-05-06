@@ -54,8 +54,8 @@ public class ViewProfessorController implements Initializable {
     @FXML
     private Label matricula;
 
-    @FXML
-    private Label senha;
+    /*@FXML
+    private Label senha;*/
 
     @FXML
     private Label titulacao;
@@ -96,7 +96,7 @@ public class ViewProfessorController implements Initializable {
         this.crm.setText(professor.getCrm());
         this.titulacao.setText(professor.getTitulacao());
         this.matricula.setText(professor.getMatricula());
-        this.senha.setText(professor.getSenha());
+        //this.senha.setText(professor.getSenha());
     }
 
     @Override

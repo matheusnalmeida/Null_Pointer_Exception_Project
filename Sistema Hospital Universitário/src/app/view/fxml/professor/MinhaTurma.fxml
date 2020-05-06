@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.professor.MinhaTurmaController">
 <children>
   <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="549.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
@@ -33,14 +33,15 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="cadastrar" layoutX="991.0" layoutY="14.0" onAction="#cadastrarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Adicionar a turma" textFill="WHITE" />
-            <TableView layoutX="21.0" layoutY="66.0" prefHeight="544.0" prefWidth="1129.0">
+            <JFXButton fx:id="adicionarBotao" layoutX="991.0" layoutY="14.0" onAction="#adicionarTurmaAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Adicionar Mais Alunos" textFill="WHITE" />
+            <TableView fx:id="tableViewAlunos" layoutX="21.0" layoutY="66.0" prefHeight="544.0" prefWidth="1129.0">
               <columns>
-                <TableColumn prefWidth="400.0" text="Nome" />
-                <TableColumn minWidth="0.0" prefWidth="350.0" text="Matricula" />
-                  <TableColumn minWidth="0.0" prefWidth="350.0" text="Data Nascimento" />
+                <TableColumn fx:id="tableColumnAlunoNome" prefWidth="400.0" text="Nome" />
+                <TableColumn fx:id="tableColumnAlunoMatricula" minWidth="0.0" prefWidth="350.0" text="Matricula" />
+                  <TableColumn fx:id="tableColumnAlunoDataNascimento" minWidth="0.0" prefWidth="350.0" text="Data Nascimento" />
               </columns>
             </TableView>
+            <JFXButton fx:id="removerBotao" layoutX="812.0" layoutY="14.0" onAction="#removerAlunoAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Remover Aluno" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

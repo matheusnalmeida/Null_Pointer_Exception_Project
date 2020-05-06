@@ -87,7 +87,7 @@ public class ProfessorDAOTest {
         boolean expResult = true;
         boolean result = professorDAO.delete(professor);
         assertEquals(expResult, result);
-    }*/
+    }
         
     @Test
     public void testGetAlunos(){
@@ -96,6 +96,14 @@ public class ProfessorDAOTest {
         professor.setMatricula("4456319868");
         ProfessorDAO professorDAO = new ProfessorDAO();
         List<Aluno> alunos = professorDAO.getAlunos(professor);
+        assertEquals(1, alunos.size());
+    }*/
+    
+    @Test
+    public void testGetAlunosSemProfessor(){
+        System.out.println("getAlunosSemProfessor");
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        List<Aluno> alunos = professorDAO.getAlunosSemProfessor();
         assertEquals(1, alunos.size());
     }
 }

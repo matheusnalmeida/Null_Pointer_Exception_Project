@@ -86,7 +86,7 @@ public class ProfessorDAO {
         List<Professor> retorno = null;
         try {
             this.em.getTransaction().begin();
-            retorno = this.em.createQuery("from "
+            retorno = this.em.createQuery("FROM "
                     + Professor.class.getName()).getResultList();
         } catch (Exception exception) {
         } finally {
@@ -117,8 +117,24 @@ public class ProfessorDAO {
         if (alunos != null) {
             //Para cada aluno obter a lista de relatórios concatenando-as em "retorno"
             for (Aluno aluno : alunos) {
-                
+                List<Relatorio> relatorios = alunoDAO.getRelatorios(aluno);
+                if (relatorios != null) {
+                    retorno.addAll(relatorios);
+                }
             }
+        }
+        return retorno;
+    }
+
+    public List<Aluno> getAlunosSemProfessor() {
+        List<Aluno> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("FROM " + Aluno.class.getName() + " WHERE professor_matricula is null");
+            retorno = (List<Aluno>) query.getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
         }
         return retorno;
     }
