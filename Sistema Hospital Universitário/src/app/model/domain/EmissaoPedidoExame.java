@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,6 +14,9 @@ import javax.persistence.Table;
 @Table(name = "emissao_pedidos_exames")
 public class EmissaoPedidoExame implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codigo;
     @Column
     private String dataEmissao;
     @ManyToOne
@@ -19,7 +24,6 @@ public class EmissaoPedidoExame implements Serializable {
     @ManyToOne
     private Paciente paciente;
     @ManyToOne
-    @Id
     private PedidoExame pedidoExame;
 
     public EmissaoPedidoExame() {
@@ -64,9 +68,20 @@ public class EmissaoPedidoExame implements Serializable {
         this.pedidoExame = pedidoExame;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
+        hash = 97 * hash + this.codigo;
+        hash = 97 * hash + Objects.hashCode(this.medico);
+        hash = 97 * hash + Objects.hashCode(this.paciente);
         hash = 97 * hash + Objects.hashCode(this.pedidoExame);
         return hash;
     }
@@ -83,6 +98,15 @@ public class EmissaoPedidoExame implements Serializable {
             return false;
         }
         final EmissaoPedidoExame other = (EmissaoPedidoExame) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.medico, other.medico)) {
+            return false;
+        }
+        if (!Objects.equals(this.paciente, other.paciente)) {
+            return false;
+        }
         if (!Objects.equals(this.pedidoExame, other.pedidoExame)) {
             return false;
         }

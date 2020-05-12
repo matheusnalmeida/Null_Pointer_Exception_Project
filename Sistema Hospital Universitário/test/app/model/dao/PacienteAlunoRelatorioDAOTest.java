@@ -4,7 +4,6 @@ import app.model.domain.Aluno;
 import app.model.domain.Medico;
 import app.model.domain.Paciente;
 import app.model.domain.PacienteAlunoRelatorio;
-import app.model.domain.Relatorio;
 import app.utilits.EncryptionPassword;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +18,6 @@ import static org.junit.Assert.*;
 public class PacienteAlunoRelatorioDAOTest {
 
     private Paciente paciente;
-    private Relatorio relatorio;
     private Aluno aluno;
     private PacienteAlunoRelatorioDAO pacienteAlunoRelatorioDAO;
     private PacienteAlunoRelatorio pacienteAlunoRelatorio;
@@ -29,8 +27,6 @@ public class PacienteAlunoRelatorioDAOTest {
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
         Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        this.relatorio = new Relatorio(LocalDateTime.now().toString(), "Test", medico,
-                LocalDate.now().toString(), null);
         senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
         this.aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
@@ -75,7 +71,6 @@ public class PacienteAlunoRelatorioDAOTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        this.pacienteAlunoRelatorio.setRelatorio(this.relatorio);
         boolean expResult = true;
         boolean result = this.pacienteAlunoRelatorioDAO.update(pacienteAlunoRelatorio);
         assertEquals(expResult, result);

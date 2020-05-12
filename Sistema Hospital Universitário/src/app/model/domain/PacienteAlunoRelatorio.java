@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,15 +16,17 @@ public class PacienteAlunoRelatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    @Column(nullable = false)
-    private String dataAtendimento;
     @ManyToOne
     private Paciente paciente;
     @ManyToOne
     private Aluno aluno;
-    //@ManyToOne
-    @OneToOne
-    private Relatorio relatorio;
+    @ManyToOne
+    private Medico medicoAutorizacao;
+    @Column(nullable = false)
+    private String dataAtendimento;
+    @Column(nullable = false, length = 1000)
+    private String descricao;
+    private String dataAutorizacao;
 
     public PacienteAlunoRelatorio() {
     }
@@ -68,18 +69,34 @@ public class PacienteAlunoRelatorio implements Serializable {
         this.aluno = aluno;
     }
 
-    public Relatorio getRelatorio() {
-        return relatorio;
+    public Medico getMedicoAutorizacao() {
+        return medicoAutorizacao;
     }
 
-    public void setRelatorio(Relatorio relatorio) {
-        this.relatorio = relatorio;
+    public void setMedicoAutorizacao(Medico medicoAutorizacao) {
+        this.medicoAutorizacao = medicoAutorizacao;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDataAutorizacao() {
+        return dataAutorizacao;
+    }
+
+    public void setDataAutorizacao(String dataAutorizacao) {
+        this.dataAutorizacao = dataAutorizacao;
+    }
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.codigo;
+        int hash = 5;
+        hash = 97 * hash + this.codigo;
         return hash;
     }
 

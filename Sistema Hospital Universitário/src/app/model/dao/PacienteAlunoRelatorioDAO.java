@@ -84,7 +84,7 @@ public class PacienteAlunoRelatorioDAO {
         List<PacienteAlunoRelatorio> retorno = null;
         try {
             this.em.getTransaction().begin();
-            retorno = this.em.createQuery("from "
+            retorno = this.em.createQuery("FROM "
                     + PacienteAlunoRelatorio.class.getName()).getResultList();
         } catch (Exception exception) {
         } finally {

@@ -1,7 +1,6 @@
 package app.model.dao;
 
 import app.model.domain.Medico;
-import app.model.domain.Relatorio;
 import app.utilits.EncryptionPassword;
 import java.util.List;
 import org.junit.After;

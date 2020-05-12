@@ -1,7 +1,7 @@
 package app.model.dao;
 
 import app.model.domain.Medico;
-import app.model.domain.Relatorio;
+import app.model.domain.PacienteAlunoRelatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -95,17 +95,17 @@ public class MedicoDAO {
     }
 
     /**
-     * 
+     *
      * @param medico
      * @return lista de relatórios autorizados pelo médico
      */
-    public List<Relatorio> getRelatorios(Medico medico) {
-        List<Relatorio> retorno = null;
+    public List<PacienteAlunoRelatorio> getRelatorios(Medico medico) {
+        List<PacienteAlunoRelatorio> retorno = null;
         try {
             this.em.getTransaction().begin();
-            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula = :medicoAutorizacao_matricula");
+            Query query = this.em.createQuery("FROM " + PacienteAlunoRelatorio.class.getName() + " WHERE medicoAutorizacao_matricula = :medicoAutorizacao_matricula");
             query.setParameter("medicoAutorizacao_matricula", medico.getMatricula());
-            retorno = (List<Relatorio>) query.getResultList();
+            retorno = (List<PacienteAlunoRelatorio>) query.getResultList();
         } catch (Exception exception) {
         } finally {
             this.emf.close();
@@ -117,12 +117,12 @@ public class MedicoDAO {
      *
      * @return Lista de relatórios que ainda não foram autorizados
      */
-    public List<Relatorio> getRelatorios() {
-        List<Relatorio> retorno = null;
+    public List<PacienteAlunoRelatorio> getRelatorios() {
+        List<PacienteAlunoRelatorio> retorno = null;
         try {
             this.em.getTransaction().begin();
-            Query query = this.em.createQuery("FROM " + Relatorio.class.getName() + " WHERE medicoAutorizacao_matricula is null");
-            retorno = (List<Relatorio>) query.getResultList();
+            Query query = this.em.createQuery("FROM " + PacienteAlunoRelatorio.class.getName() + " WHERE medicoAutorizacao_matricula is null");
+            retorno = (List<PacienteAlunoRelatorio>) query.getResultList();
         } catch (Exception exception) {
         } finally {
             this.emf.close();

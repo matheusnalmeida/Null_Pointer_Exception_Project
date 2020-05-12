@@ -2,7 +2,6 @@ package app.model.dao;
 
 import app.model.domain.Aluno;
 import app.model.domain.PacienteAlunoRelatorio;
-import app.model.domain.Relatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -67,8 +66,6 @@ public class AlunoDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            /*aluno = this.em.find(Aluno.class, aluno.getMatricula());
-            this.em.remove(aluno);*/
             this.em.remove(this.em.getReference(Aluno.class, aluno.getMatricula()));
             this.em.getTransaction().commit();
             result = true;
@@ -86,7 +83,7 @@ public class AlunoDAO {
         List<Aluno> retorno = null;
         try {
             this.em.getTransaction().begin();
-            retorno = this.em.createQuery("from "
+            retorno = this.em.createQuery("FROM "
                     + Aluno.class.getName()).getResultList();
         } catch (Exception exception) {
         } finally {
@@ -100,10 +97,10 @@ public class AlunoDAO {
      * @param aluno
      * @return relatórios de um aluno
      */
-    public List<Relatorio> getRelatorios(Aluno aluno) {
-        List<Relatorio> retorno = null;
+    public List<PacienteAlunoRelatorio> getRelatorios(Aluno aluno) {
+        List<PacienteAlunoRelatorio> retorno = null;
         try {
-            Query query = this.em.createQuery("SELECT relatorio FROM " + Relatorio.class.getName() + " relatorio INNER JOIN " + PacienteAlunoRelatorio.class.getName() + " ON relatorio.codigo = relatorio_codigo WHERE aluno_matricula = :matricula");
+            Query query = this.em.createQuery("SELECT paciente_aluno_relatorio FROM " + PacienteAlunoRelatorio.class.getName() + " paciente_aluno_relatorio WHERE aluno_matricula = :matricula");
             query.setParameter("matricula", aluno.getMatricula());
             retorno = query.getResultList();
         } catch (Exception exception) {

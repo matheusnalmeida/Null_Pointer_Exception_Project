@@ -1,12 +1,9 @@
 package app.model.domain;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "alunos")
@@ -18,8 +15,6 @@ public class Aluno extends Usuario {
     private String dataNascimento;
     @ManyToOne
     private Professor professor;
-    @Transient
-    private ArrayList<PacienteAlunoRelatorio> atendimentosRealizados;
 
     public Aluno() {
         super(null, null, null);
@@ -37,23 +32,6 @@ public class Aluno extends Usuario {
         this.anoResidencia = anoResidencia;
         this.dataNascimento = dataNascimento;
     }
-
-    /*public Aluno() {
-        super(null, null, null, 0);
-    }
-
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, Professor professor, int id) {
-        super(nome, matricula, senha, id);
-        this.anoResidencia = anoResidencia;
-        this.dataNascimento = dataNascimento;
-        this.professor = professor;
-    }
-
-    public Aluno(String nome, String matricula, String senha, int anoResidencia, LocalDate dataNascimento, int id) {
-        super(nome, matricula, senha, id);
-        this.anoResidencia = anoResidencia;
-        this.dataNascimento = dataNascimento;
-    }*/
     
     public int getAnoResidencia() {
         return anoResidencia;

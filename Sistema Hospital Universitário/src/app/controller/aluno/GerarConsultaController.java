@@ -1,11 +1,9 @@
 package app.controller.aluno;
 
 import app.model.dao.PacienteAlunoRelatorioDAO;
-import app.model.dao.RelatorioDAO;
 import app.model.domain.Aluno;
 import app.model.domain.Paciente;
 import app.model.domain.PacienteAlunoRelatorio;
-import app.model.domain.Relatorio;
 import app.utilits.CPF;
 import app.utilits.Sistema;
 import app.view.aluno.GerarConsulta;
@@ -51,25 +49,15 @@ public class GerarConsultaController implements Initializable {
             CPF cpf = new CPF(cpfValue);
             Paciente paciente = new Paciente();
             paciente.setCpf(cpfValue);
-            RelatorioDAO relatorioDAO = new RelatorioDAO();
-            Relatorio relatorio = new Relatorio();
-            relatorio.setDescricao(descricao);
-            if (relatorioDAO.create(relatorio)) {
-                PacienteAlunoRelatorioDAO pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
-                Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
-                PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio(dataAtendimento.toString(), paciente, aluno);
-                pacienteAlunoRelatorio.setRelatorio(relatorio);
-                if (pacienteAlunoRelatorioDAO.create(pacienteAlunoRelatorio)) {
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Cadastro realizado.");
-                    alert.setContentText("Cadastro da consulta realizado com sucesso!");
-                } else {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Erro ao gerar consulta.");
-                    alert.setContentText("Não foi possível conectar ao banco de dados.");
-                }
+            PacienteAlunoRelatorioDAO pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
+            Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
+            PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio(dataAtendimento.toString(), paciente, aluno);
+            pacienteAlunoRelatorio.setDescricao(descricao);
+            if (pacienteAlunoRelatorioDAO.create(pacienteAlunoRelatorio)) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Cadastro realizado.");
+                alert.setContentText("Cadastro da consulta realizado com sucesso!");
             } else {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
