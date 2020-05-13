@@ -41,7 +41,7 @@
                   <TableColumn prefWidth="152.0" text="Data da Consulta" />
                   <TableColumn prefWidth="149.0" text="Médico" />
                   <TableColumn prefWidth="273.0" text="Descrição" />
-                  <TableColumn prefWidth="200.0" text="Data de autorização do Relatorio" />
+                  <TableColumn prefWidth="200.0" text="Data de Autorização do Relatorio" />
               </columns>
             </TableView>
             <JFXButton fx:id="novaConsultaBotao" layoutX="1210.0" layoutY="14.0" onAction="#adicionarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Nova Consulta" textFill="WHITE" />
