@@ -18,12 +18,10 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,10 +31,17 @@ import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
+import javafx.animation.PauseTransition;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.Event;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class GerarConsultaController implements Initializable {
 
@@ -58,7 +63,7 @@ public class GerarConsultaController implements Initializable {
     private JFXButton chooseFile;
 
     private List<Byte[]> listaDeImagens;
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.listaDeImagens = new ArrayList<>();
@@ -110,9 +115,30 @@ public class GerarConsultaController implements Initializable {
     @FXML
     public void itemClicked(MouseEvent event) {
         try {
-            MostrarImagem mostrarImagem = new MostrarImagem();
-            MostrarImagem.setImagem(this.listaDeImagens.get(this.listArquivos.getSelectionModel().getSelectedIndex()));
-            mostrarImagem.start(new Stage());
+            if (this.listArquivos.getSelectionModel().getSelectedItem() != null) {
+                Alert alert;
+                String valor = this.listArquivos.getSelectionModel().getSelectedItem();
+                int indiceSelecionado = this.listArquivos.getSelectionModel().getSelectedIndex();
+                if (event.getButton().equals(MouseButton.SECONDARY)) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Remover Imagem");
+                    alert.setContentText("Deseja remover a imagem selecionada?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        this.listArquivos.getItems().remove(indiceSelecionado);
+                        this.listaDeImagens.remove(indiceSelecionado);
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Remover Imagem");
+                        alert.setContentText("Item removido com sucesso");
+                    }
+                } else if(event.getButton().equals(MouseButton.PRIMARY)){
+                    MostrarImagem mostrarImagem = new MostrarImagem();
+                    MostrarImagem.setImagem(this.listaDeImagens.get(indiceSelecionado));
+                    mostrarImagem.start(new Stage());
+                }
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
