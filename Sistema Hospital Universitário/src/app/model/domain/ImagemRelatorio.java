@@ -18,12 +18,14 @@ public class ImagemRelatorio implements Serializable {
     private int codigo;
     @ManyToOne
     private PacienteAlunoRelatorio pacienteAlunoRelatorio;
+    private Byte[] arquivo;
 
     public ImagemRelatorio() {
     }
 
-    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
+    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio,Byte[]  arquivo) {
         this.pacienteAlunoRelatorio = pacienteAlunoRelatorio;
+        this.arquivo = arquivo;
     }
     
     public ImagemRelatorio(int codigo) {
@@ -44,6 +46,14 @@ public class ImagemRelatorio implements Serializable {
 
     public void setPacienteAlunoRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio) {
         this.pacienteAlunoRelatorio = pacienteAlunoRelatorio;
+    }
+
+    public Byte[]  getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(Byte[]  arquivo) {
+        this.arquivo = arquivo;
     }
 
     @Override
