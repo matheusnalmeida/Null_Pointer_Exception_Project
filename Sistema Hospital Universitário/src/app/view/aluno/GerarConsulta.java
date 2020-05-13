@@ -1,9 +1,11 @@
 package app.view.aluno;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -21,6 +23,7 @@ public class GerarConsulta extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/aluno/GerarConsulta.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
