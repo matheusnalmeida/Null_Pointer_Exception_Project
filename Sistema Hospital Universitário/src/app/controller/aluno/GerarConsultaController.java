@@ -1,5 +1,6 @@
 package app.controller.aluno;
 
+import app.model.dao.ImagemRelatorioDAO;
 import app.model.dao.PacienteAlunoRelatorioDAO;
 import app.model.domain.Aluno;
 import app.model.domain.ImagemRelatorio;
@@ -9,6 +10,7 @@ import app.utilits.CPF;
 import app.utilits.Sistema;
 import app.view.aluno.GerarConsulta;
 import app.view.aluno.HomeAluno;
+import app.view.aluno.MostrarImagem;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
@@ -30,8 +32,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class GerarConsultaController implements Initializable {
 
@@ -56,7 +61,7 @@ public class GerarConsultaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.listaDeImagens = new LinkedList<>();
+        this.listaDeImagens = new ArrayList<>();
     }
 
     public void gerarConsulta(ActionEvent evt) {
@@ -72,11 +77,6 @@ public class GerarConsultaController implements Initializable {
             Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
             PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio(dataAtendimento.toString(), paciente, aluno);
             pacienteAlunoRelatorio.setDescricao(descricao);
-            //Cadastrando imagens no banco
-            for (Byte[] imagem : this.listaDeImagens) {
-                ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem);
-                //TODO => Inserir os dados na tabela de relatorios
-            }
             if (pacienteAlunoRelatorioDAO.create(pacienteAlunoRelatorio)) {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
@@ -87,6 +87,14 @@ public class GerarConsultaController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setTitle("Erro ao gerar consulta.");
                 alert.setContentText("Não foi possível conectar ao banco de dados.");
+            }
+            for (Byte[] imagem : this.listaDeImagens) {
+                System.out.println("##########################################" + imagem.length + "##########################################");
+                ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
+                ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem);
+                if (imagemRelatorioDao.create(imagemRelatorio)) {
+                    System.out.println("foi");
+                }
             }
         } catch (Exception exception) {
             alert = new Alert(Alert.AlertType.ERROR);
@@ -100,42 +108,60 @@ public class GerarConsultaController implements Initializable {
     }
 
     @FXML
-    void chooseFile(ActionEvent event) {
+    public void itemClicked(MouseEvent event) {
+        try {
+            MostrarImagem mostrarImagem = new MostrarImagem();
+            MostrarImagem.setImagem(this.listaDeImagens.get(this.listArquivos.getSelectionModel().getSelectedIndex()));
+            mostrarImagem.start(new Stage());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void chooseFile(ActionEvent event) {
         Alert alert;
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 "Arquivos de imagem", "*.png", "*.jpg");
         fc.setSelectedExtensionFilter(extFilter);
         File arquivoSelecionado = fc.showOpenDialog(null);
-        File file;
-        try {
-            byte[] fileContent = Files.readAllBytes(arquivoSelecionado.toPath());
-            Byte[] byteObjects = new Byte[fileContent.length];
-            int i = 0;
-            for (byte b : fileContent) {
-                byteObjects[i++] = b;
-            }
-            if (arquivoSelecionado != null) {
-                listArquivos.getItems().add(arquivoSelecionado.getName());
-                this.listaDeImagens.add(byteObjects);
-            } else {
+        if (!listArquivos.getItems().contains(arquivoSelecionado.getName())) {
+            try {
+                byte[] fileContent = Files.readAllBytes(arquivoSelecionado.toPath());
+                Byte[] byteObjects = new Byte[fileContent.length];
+                int i = 0;
+                for (byte b : fileContent) {
+                    byteObjects[i++] = b;
+                }
+                if (arquivoSelecionado != null) {
+                    listArquivos.getItems().add(arquivoSelecionado.getName());
+                    this.listaDeImagens.add(byteObjects);
+                } else {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Erro ao carregar Arquivo");
+                    alert.setContentText("O arquivo escolhido nao é valido");
+                    alert.showAndWait();
+                }
+            } catch (FileNotFoundException ex) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setTitle("Erro ao carregar Arquivo");
-                alert.setContentText("O arquivo escolhido nao é valido");
+                alert.setTitle("Arquivo nao encontrado");
+                alert.setContentText(ex.getMessage());
+                alert.showAndWait();
+            } catch (IOException ex) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Arquivo nao encontrado");
+                alert.setContentText(ex.getMessage());
                 alert.showAndWait();
             }
-        } catch (FileNotFoundException ex) {
+        } else {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("Arquivo nao encontrado");
-            alert.setContentText(ex.getMessage());
-            alert.showAndWait();
-        } catch (IOException ex) {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Arquivo nao encontrado");
-            alert.setContentText(ex.getMessage());
+            alert.setTitle("Arquivo ja existentes");
+            alert.setContentText("Ja foi selecionado um arquivo com o nome informado");
             alert.showAndWait();
         }
     }

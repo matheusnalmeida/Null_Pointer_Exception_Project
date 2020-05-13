@@ -1,10 +1,14 @@
 package app.model.domain;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,16 +21,18 @@ public class ImagemRelatorio implements Serializable {
     private int codigo;
     @ManyToOne
     private PacienteAlunoRelatorio pacienteAlunoRelatorio;
+    @Lob
+    @Column(name = "arquivo", columnDefinition = "LONGBLOB")
     private Byte[] arquivo;
 
     public ImagemRelatorio() {
     }
 
-    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio,Byte[]  arquivo) {
+    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio, Byte[] arquivo) {
         this.pacienteAlunoRelatorio = pacienteAlunoRelatorio;
         this.arquivo = arquivo;
     }
-    
+
     public ImagemRelatorio(int codigo) {
         this.codigo = codigo;
     }
@@ -47,11 +53,11 @@ public class ImagemRelatorio implements Serializable {
         this.pacienteAlunoRelatorio = pacienteAlunoRelatorio;
     }
 
-    public Byte[]  getArquivo() {
+    public Byte[] getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(Byte[]  arquivo) {
+    public void setArquivo(Byte[] arquivo) {
         this.arquivo = arquivo;
     }
 

@@ -25,6 +25,7 @@ public class CrudConsultasController implements Initializable {
             gerarConsulta.start(new Stage());
             CrudConsultas.getStage().close();
         } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         }
     }
 }

@@ -28,6 +28,7 @@ public class ImagemRelatorioDAO {
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
             result = false;
+            System.out.println(exception.getMessage());
         } finally {
             this.emf.close();
         }
