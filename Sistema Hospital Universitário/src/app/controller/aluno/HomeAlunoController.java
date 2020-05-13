@@ -1,7 +1,6 @@
 package app.controller.aluno;
 
 import app.view.aluno.CadastrarPaciente;
-import app.view.aluno.GerarConsulta;
 import app.view.aluno.HomeAluno;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -10,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
+import app.view.aluno.CrudConsultas;
 
 public class HomeAlunoController implements Initializable {
 
@@ -37,9 +37,9 @@ public class HomeAlunoController implements Initializable {
 
     public void gerarConsulta(ActionEvent event) {
         try {
-            GerarConsulta gerarConsulta = new GerarConsulta();
+            CrudConsultas crudConsultas = new CrudConsultas();
             HomeAluno.getStage().close();
-            gerarConsulta.start(new Stage());
+            crudConsultas.start(new Stage());
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }

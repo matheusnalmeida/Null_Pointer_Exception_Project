@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class GerarConsulta extends Application {
+public class CrudConsultas extends Application {
 
     private static Stage stage;
 
@@ -16,21 +16,22 @@ public class GerarConsulta extends Application {
     }
 
     public static void setStage(Stage stage) {
-        GerarConsulta.stage = stage;
+        CrudConsultas.stage = stage;
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/aluno/GerarConsulta.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/aluno/CrudConsultas.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("Cadastro de consultas");
+        stage.setTitle("Consultas");
         stage.centerOnScreen();
         stage.show();
-        GerarConsulta.setStage(stage);
+        CrudConsultas.setStage(stage);
+        CadastrarPaciente.setStage(stage);
         stage.setOnCloseRequest((WindowEvent event) -> {
-            CrudConsultas.getStage().show();
+            HomeAluno.getStage().show();
         });
     }
 }

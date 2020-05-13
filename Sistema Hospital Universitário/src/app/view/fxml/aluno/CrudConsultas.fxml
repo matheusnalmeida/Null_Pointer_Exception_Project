@@ -9,40 +9,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1400.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.aluno.CrudConsultasController">
 <children>
-  <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="549.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+  <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="662.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
         <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
-      <Label fx:id="Nome1" layoutX="487.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
+      <Label fx:id="Nome1" layoutX="618.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Nome2" layoutX="577.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
+      <Label fx:id="Nome2" layoutX="711.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="16.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="7.0" layoutY="147.0" prefHeight="630.0" prefWidth="1383.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
-            <Label fx:id="tituloLabel" layoutX="518.0" layoutY="14.0" text="Consultas" textFill="#0262ac">
+            <Label fx:id="tituloLabel" layoutX="648.0" layoutY="14.0" text="Consultas" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <TableView layoutX="18.0" layoutY="72.0" prefHeight="544.0" prefWidth="1129.0">
+            <TableView layoutX="4.0" layoutY="72.0" prefHeight="544.0" prefWidth="1376.0">
               <columns>
-                <TableColumn id="cod" fx:id="codigo" prefWidth="70.0" text="Codigo" />
-                <TableColumn id="CPFpaciente" fx:id="cpfPaciente" minWidth="0.0" prefWidth="180.0" text="CPF do Paciente" />
-                  <TableColumn id="crmMedico" fx:id="dataAtendimento" prefWidth="180.0" text="Data do Atendimento" />
-                  <TableColumn id="dateRelatorio" fx:id="descricao" minWidth="0.0" prefWidth="551.0" text="Descrição" />
-                  <TableColumn id="acoes" fx:id="atualizar" minWidth="0.0" prefWidth="147.0" text="Atualizar" />
+                <TableColumn id="cod" fx:id="codigo" prefWidth="121.0" text="Código da Consulta" />
+                <TableColumn id="CPFpaciente" fx:id="cpfPaciente" minWidth="0.0" prefWidth="183.0" text="CPF do Paciente" />
+                  <TableColumn prefWidth="274.0" text="Nome do Paciente" />
+                  <TableColumn prefWidth="152.0" text="Data da Consulta" />
+                  <TableColumn prefWidth="149.0" text="Médico" />
+                  <TableColumn prefWidth="273.0" text="Descrição" />
+                  <TableColumn prefWidth="200.0" text="Data de autorização do Relatorio" />
               </columns>
             </TableView>
-            <JFXButton fx:id="add" layoutX="991.0" layoutY="14.0" onAction="#add" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Nova Consulta" textFill="WHITE" />
+            <JFXButton fx:id="novaConsultaBotao" layoutX="1210.0" layoutY="14.0" onAction="#adicionarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Nova Consulta" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
