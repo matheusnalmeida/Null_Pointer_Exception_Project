@@ -8,8 +8,8 @@ import app.model.domain.Paciente;
 import app.model.domain.PacienteAlunoRelatorio;
 import app.utilits.CPF;
 import app.utilits.Sistema;
+import app.view.aluno.CrudConsultas;
 import app.view.aluno.GerarConsulta;
-import app.view.aluno.HomeAluno;
 import app.view.aluno.MostrarImagem;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -32,16 +32,10 @@ import javafx.stage.FileChooser;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Optional;
-import javafx.animation.PauseTransition;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.Event;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class GerarConsultaController implements Initializable {
 
@@ -94,12 +88,9 @@ public class GerarConsultaController implements Initializable {
                 alert.setContentText("Não foi possível conectar ao banco de dados.");
             }
             for (Byte[] imagem : this.listaDeImagens) {
-                System.out.println("##########################################" + imagem.length + "##########################################");
                 ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
                 ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem);
-                if (imagemRelatorioDao.create(imagemRelatorio)) {
-                    System.out.println("foi");
-                }
+                imagemRelatorioDao.create(imagemRelatorio);
             }
         } catch (Exception exception) {
             alert = new Alert(Alert.AlertType.ERROR);
@@ -109,7 +100,7 @@ public class GerarConsultaController implements Initializable {
         }
         alert.showAndWait();
         GerarConsulta.getStage().close();
-        HomeAluno.getStage().show();
+        CrudConsultas.getStage().show();
     }
 
     @FXML
@@ -193,7 +184,7 @@ public class GerarConsultaController implements Initializable {
     }
 
     public void cancelarAcao(ActionEvent evt) {
-        HomeAluno.getStage().show();
+        CrudConsultas.getStage().show();
         GerarConsulta.getStage().close();
     }
 }

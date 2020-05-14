@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,10 +39,9 @@ public class CadastroPacienteController implements Initializable {
 
     public void cadastrarAction(ActionEvent event) {
         String cpfValue = this.cpfField.getText().trim().toLowerCase();
-        String nome = this.nomeField.getText().trim();
+        String nome = this.nomeField.getText().trim().toUpperCase();
         String cor = this.corField.getText().trim();
         String sexo = this.sexoField.getText().trim();
-        //String dataNascimento = this.dataNascimentoField.getValue().toString();
         Alert alert;
         try {
             CPF cpf = new CPF(cpfValue);

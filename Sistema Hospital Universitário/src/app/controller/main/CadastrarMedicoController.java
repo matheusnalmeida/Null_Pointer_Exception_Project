@@ -27,8 +27,6 @@ public class CadastrarMedicoController implements Initializable {
     private JFXTextField nomeField;
     @FXML
     private JFXTextField crmField;
-    /*@FXML
-    private JFXTextField cpfField;*/
     @FXML
     private JFXPasswordField senhaField;
     @FXML
@@ -38,12 +36,8 @@ public class CadastrarMedicoController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     public boolean validaCampos() {
@@ -57,7 +51,6 @@ public class CadastrarMedicoController implements Initializable {
         Alert alert;
         if (validaCampos()) {
             String nome = this.nomeField.getText().trim().toUpperCase();
-            //String cpf = this.cpfField.getText().trim();
             String crm = this.crmField.getText().trim();
             String senha = this.senhaField.getText();
             senha = EncryptionPassword.encrypt(senha);
@@ -65,12 +58,6 @@ public class CadastrarMedicoController implements Initializable {
                 CRM crmValido = new CRM(crm);
                 MatriculaGenerator matriculaGenerator = new MatriculaGenerator();
                 String matricula = matriculaGenerator.gerarMatricula("M");
-                /*char aux1[] = cpf.toCharArray();
-            char digito1 = aux1[aux1.length - 2];
-            char digito2 = aux1[aux1.length - 1];
-            String aux2 = Character.toString(digito1);
-            String aux3 = Character.toString(digito2);
-            Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm(), Integer.parseInt(aux2 + aux3));*/
                 Medico medico = new Medico(nome, matricula, senha, crmValido.getCrm());
                 MedicoDAO medicoDAO = new MedicoDAO();
                 boolean result = medicoDAO.create(medico);

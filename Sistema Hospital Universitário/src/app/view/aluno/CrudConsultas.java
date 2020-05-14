@@ -1,8 +1,8 @@
 package app.view.aluno;
 
+import app.controller.aluno.CrudConsultasController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -21,15 +21,18 @@ public class CrudConsultas extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/app/view/fxml/aluno/CrudConsultas.fxml"));
-        Scene scene = new Scene(root);
+        FXMLLoader root = new FXMLLoader(getClass().getResource("/app/view/fxml/aluno/CrudConsultas.fxml"));
+        Scene scene = new Scene(root.load());
         stage.setScene(scene);
+        CrudConsultasController controller = root.getController();
         stage.setResizable(false);
-        stage.setTitle("Consultas");
+        stage.setTitle("Suas Consultas");
         stage.centerOnScreen();
         stage.show();
         CrudConsultas.setStage(stage);
-        CadastrarPaciente.setStage(stage);
+        stage.setOnShowing((WindowEvent event) -> {
+            controller.carregarTableViewPacienteAlunoRelatorio();
+        });
         stage.setOnCloseRequest((WindowEvent event) -> {
             HomeAluno.getStage().show();
         });

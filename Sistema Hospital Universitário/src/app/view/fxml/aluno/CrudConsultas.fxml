@@ -33,15 +33,15 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <TableView layoutX="4.0" layoutY="72.0" prefHeight="544.0" prefWidth="1376.0">
+            <TableView fx:id="tableViewPacienteAlunoRelatorio" layoutX="4.0" layoutY="72.0" prefHeight="544.0" prefWidth="1376.0">
               <columns>
-                <TableColumn id="cod" fx:id="codigo" prefWidth="121.0" text="Código da Consulta" />
-                <TableColumn id="CPFpaciente" fx:id="cpfPaciente" minWidth="0.0" prefWidth="183.0" text="CPF do Paciente" />
-                  <TableColumn prefWidth="274.0" text="Nome do Paciente" />
-                  <TableColumn prefWidth="152.0" text="Data da Consulta" />
-                  <TableColumn prefWidth="149.0" text="Médico" />
-                  <TableColumn prefWidth="273.0" text="Descrição" />
-                  <TableColumn prefWidth="200.0" text="Data de Autorização do Relatorio" />
+                <TableColumn id="cod" fx:id="tableColumnCodigoConsulta" prefWidth="121.0" text="Código da Consulta" />
+                <TableColumn id="CPFpaciente" fx:id="tableColumnCpfPaciente" minWidth="0.0" prefWidth="183.0" text="CPF do Paciente" />
+                  <TableColumn fx:id="tableColumnNomePaciente" prefWidth="274.0" text="Nome do Paciente" />
+                  <TableColumn fx:id="tableColumnDataConsulta" prefWidth="152.0" text="Data da Consulta" />
+                  <TableColumn fx:id="tableColumnMedicoAutorizacao" prefWidth="149.0" text="Autorização Médica" />
+                  <TableColumn fx:id="tableColumnDescricao" prefWidth="273.0" text="Descrição" />
+                  <TableColumn fx:id="tableColumnDataAutorizacao" prefWidth="200.0" text="Data de Autorização do Relatorio" />
               </columns>
             </TableView>
             <JFXButton fx:id="novaConsultaBotao" layoutX="1210.0" layoutY="14.0" onAction="#adicionarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Nova Consulta" textFill="WHITE" />

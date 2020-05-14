@@ -1,6 +1,7 @@
 package app.controller.professor;
 
 import app.view.professor.HomeProfessor;
+import app.view.professor.ListarConsultasProfessor;
 import app.view.professor.MinhaTurma;
 import app.view.professor.ViewProfessor;
 import com.jfoenix.controls.JFXButton;
@@ -12,14 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
 public class HomeProfessorController implements Initializable {
-    
+
     @FXML
     private JFXButton minhaTurmaBotao;
     @FXML
     private JFXButton listarConsultasBotao;
     @FXML
     private JFXButton meusDadosBotao;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -36,7 +37,13 @@ public class HomeProfessorController implements Initializable {
     }
 
     public void listarConsulta(ActionEvent evt) {
-
+        try {
+            ListarConsultasProfessor listarConsultasProfessor = new ListarConsultasProfessor();
+            listarConsultasProfessor.start(new Stage());
+            HomeProfessor.getStage().close();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void meusDados(ActionEvent evt) {

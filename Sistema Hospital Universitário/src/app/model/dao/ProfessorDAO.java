@@ -3,6 +3,7 @@ package app.model.dao;
 import app.model.domain.Aluno;
 import app.model.domain.PacienteAlunoRelatorio;
 import app.model.domain.Professor;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -109,7 +110,7 @@ public class ProfessorDAO {
     }
 
     public List<PacienteAlunoRelatorio> getRelatoriosAlunos(Professor professor) {
-        List<PacienteAlunoRelatorio> retorno = null;
+        List<PacienteAlunoRelatorio> retorno = new ArrayList<>();
         List<Aluno> alunos = this.getAlunos(professor);
         AlunoDAO alunoDAO = new AlunoDAO();
         if (alunos != null) {

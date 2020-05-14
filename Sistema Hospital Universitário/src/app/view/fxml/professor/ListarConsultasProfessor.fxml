@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,44 +8,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1400.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.professor.ListarConsultasProfessorController">
 <children>
-  <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="549.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+  <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="663.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
         <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
-      <Label fx:id="Nome1" layoutX="487.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
+      <Label fx:id="Nome1" layoutX="619.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Nome2" layoutX="577.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
+      <Label fx:id="Nome2" layoutX="712.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="16.0" layoutY="147.0" prefHeight="630.0" prefWidth="1164.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="5.0" layoutY="147.0" prefHeight="630.0" prefWidth="1393.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
-            <Label fx:id="tituloLabel" layoutX="518.0" layoutY="14.0" text="Consultas" textFill="#0262ac">
+            <Label fx:id="tituloLabel" layoutX="653.0" layoutY="14.0" text="Consultas" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="filtrar" layoutX="1049.0" layoutY="14.0" onAction="#filtrar" prefHeight="45.0" prefWidth="98.0" style="-fx-background-color: #0262ac;" text="Filtrar" textFill="WHITE" />
-            <JFXTextField fx:id="crmField" alignment="CENTER" focusColor="#0262ac" layoutX="715.0" layoutY="15.0" prefHeight="44.0" prefWidth="323.0" promptText="Pesquisar..." unFocusColor="#a7a9ab">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXTextField>
-            <TableView layoutX="18.0" layoutY="72.0" prefHeight="544.0" prefWidth="1129.0">
-              <columns>
-                <TableColumn id="cod" fx:id="codigo" prefWidth="146.0" text="Matricula do Aluno" />
-                  <TableColumn id="cod" fx:id="codigo" prefWidth="125.0" text="Cod. Consulta" />
-                <TableColumn id="CPFpaciente" fx:id="cpfPaciente" minWidth="0.0" prefWidth="175.0" text="CPF Paciente" />
-                  <TableColumn id="crmMedico" fx:id="dataAtendimento" prefWidth="175.0" text="Data do Atendimento" />
-                  <TableColumn id="dateRelatorio" fx:id="descricao" minWidth="0.0" prefWidth="507.0" text="Descrição" />
-              </columns>
+            <TableView fx:id="tableViewPacienteAlunoRelatorio" layoutX="6.0" layoutY="72.0" prefHeight="544.0" prefWidth="1374.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnCodigoConsulta" prefWidth="116.00003051757812" text="Código da Consulta" />
+                  <TableColumn fx:id="tableColumnMatriculaAluno" prefWidth="150.0" text="Matrícula do Aluno" />
+                  <TableColumn fx:id="tableColumnNomeAluno" prefWidth="240.0" text="Nome do Aluno" />
+                  <TableColumn fx:id="tableColumnNomePaciente" prefWidth="271.0" text="Paciente" />
+                  <TableColumn fx:id="tableColumnDataConsulta" prefWidth="130.0" text="Data da Consulta" />
+                  <TableColumn fx:id="tableColumnDescricao" prefWidth="332.0" text="Descrição" />
+                  <TableColumn fx:id="tableColumnAutorizacaoMedica" prefWidth="133.0" text="Autorização Médica" />
+               </columns>
             </TableView>
          </children>
       </AnchorPane>

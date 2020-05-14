@@ -32,8 +32,6 @@ public class CadastrarAlunoController implements Initializable {
     private Label tituloLabel;
     @FXML
     private JFXTextField nomeField;
-    /*@FXML
-    private JFXTextField cpfField;*/
     @FXML
     private JFXTextField anoResidenciaField;
     @FXML
@@ -52,7 +50,6 @@ public class CadastrarAlunoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     public boolean validaCampos() {
@@ -67,8 +64,7 @@ public class CadastrarAlunoController implements Initializable {
         Alert alert;
         if (validaCampos()) {
             AlunoDAO alunoDAO = new AlunoDAO();
-            String nome = this.nomeField.getText().trim();
-            //String cpf = this.cpfField.getText().trim();
+            String nome = this.nomeField.getText().trim().toUpperCase();
             String senha = this.senhaField.getText();
             senha = EncryptionPassword.encrypt(senha);
             String anoResidencia = this.anoResidenciaField.getText().trim();
@@ -76,12 +72,6 @@ public class CadastrarAlunoController implements Initializable {
             MatriculaGenerator matriculaGeneretor = new MatriculaGenerator();
             try {
                 String matricula = matriculaGeneretor.gerarMatricula("A");
-                /*char aux1[] = cpf.toCharArray();
-            char digito1 = aux1[aux1.length - 2];
-            char digito2 = aux1[aux1.length - 1];
-            String aux2 = Character.toString(digito1);
-            String aux3 = Character.toString(digito2);*/
-                //Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento, Integer.parseInt(aux2 + aux3));
                 Aluno aluno = new Aluno(nome, matricula, senha, Integer.parseInt(anoResidencia), dataNascimento.toString());
                 boolean result = alunoDAO.create(aluno);
                 if (result) {
