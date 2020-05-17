@@ -3,7 +3,6 @@ package app.controller.professor;
 import app.model.domain.Professor;
 import app.utilits.Sistema;
 import app.view.professor.EditarProfessor;
-import app.view.professor.HomeProfessor;
 import app.view.professor.ViewProfessor;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -54,9 +53,6 @@ public class ViewProfessorController implements Initializable {
     @FXML
     private Label matricula;
 
-    /*@FXML
-    private Label senha;*/
-
     @FXML
     private Label titulacao;
 
@@ -96,7 +92,6 @@ public class ViewProfessorController implements Initializable {
         this.crm.setText(professor.getCrm());
         this.titulacao.setText(professor.getTitulacao());
         this.matricula.setText(professor.getMatricula());
-        //this.senha.setText(professor.getSenha());
     }
 
     @Override

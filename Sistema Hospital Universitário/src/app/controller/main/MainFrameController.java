@@ -110,8 +110,6 @@ public class MainFrameController implements Initializable {
             CadastrarProfessor cadastrarProfessor = new CadastrarProfessor();
             cadastrarProfessor.start(new Stage());
             MainFrame.getStage().close();
-            /*AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/app/view/CadastrarProfessor.fxml"));
-            this.anchorPane.getChildren().setAll(ap);*/
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
@@ -123,8 +121,6 @@ public class MainFrameController implements Initializable {
             CadastrarAluno cadastrarAluno = new CadastrarAluno();
             cadastrarAluno.start(new Stage());
             MainFrame.getStage().close();
-            /*AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/app/view/CadastrarAluno.fxml"));
-            this.anchorPane.getChildren().setAll(ap);*/
         } catch (Exception exception) {
         }
     }
@@ -135,8 +131,6 @@ public class MainFrameController implements Initializable {
             CadastrarMedico cadastrarMedico = new CadastrarMedico();
             cadastrarMedico.start(new Stage());
             MainFrame.getStage().close();
-            /*AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/app/view/CadastrarMedico.fxml"));
-            this.anchorPane.getChildren().setAll(ap);*/
         } catch (Exception exception) {
         }
     }

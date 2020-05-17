@@ -1,7 +1,5 @@
 package app.view.aluno;
 
-import app.utilits.Sistema;
-import app.view.main.MainFrame;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

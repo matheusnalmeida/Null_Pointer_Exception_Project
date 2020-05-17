@@ -54,7 +54,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <MenuBar fx:id="menuBar" layoutX="30.0" prefHeight="25.0" prefWidth="850.0" style="-fx-background-color: #fff;">
+      <MenuBar fx:id="menuBar" layoutX="30.0" prefHeight="25.0" prefWidth="850.0" style="-fx-background-color: #fff; -fx-background-radius: 5;">
         <menus>
           <Menu fx:id="Menu" mnemonicParsing="false" text="Cadastro">
             <items>
