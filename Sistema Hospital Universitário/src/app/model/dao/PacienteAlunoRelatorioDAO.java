@@ -1,10 +1,12 @@
 package app.model.dao;
 
+import app.model.domain.ImagemRelatorio;
 import app.model.domain.PacienteAlunoRelatorio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class PacienteAlunoRelatorioDAO {
 
@@ -65,12 +67,13 @@ public class PacienteAlunoRelatorioDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            /*pacienteAlunoRelatorio = this.em.find(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo());
-            this.em.remove(pacienteAlunoRelatorio);*/
+            Query query = this.em.createQuery("DELETE FROM " + ImagemRelatorio.class.getName() + " WHERE pacienteAlunoRelatorio_codigo = :codigo");
+            query.setParameter("codigo", pacienteAlunoRelatorio.getCodigo());
+            query.executeUpdate();
             this.em.remove(this.em.getReference(PacienteAlunoRelatorio.class, pacienteAlunoRelatorio.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
-        } catch (Exception ex) {
+        } catch (Exception exception) {
             result = false;
             this.em.getTransaction().rollback();
         } finally {

@@ -75,7 +75,7 @@
             </JFXTextField>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="alterar" layoutX="654.0" layoutY="657.0" onAction="#alterar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Alterar" textFill="WHITE" />
-      <JFXButton fx:id="cancelar" layoutX="478.0" layoutY="657.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="alterar" layoutX="595.0" layoutY="657.0" onAction="#alterar" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Alterar" textFill="WHITE" />
+      <JFXButton fx:id="cancelar" layoutX="378.0" layoutY="657.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
    </children>
 </AnchorPane>

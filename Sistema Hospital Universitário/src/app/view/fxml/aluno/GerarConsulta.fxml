@@ -14,34 +14,34 @@
 
 <AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1106.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.aluno.GerarConsultaController">
 <children>
-  <ImageView fx:id="Icon" fitHeight="65.0" fitWidth="72.0" layoutX="487.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+  <ImageView fx:id="Icon" fitHeight="65.0" fitWidth="72.0" layoutX="504.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
      <image>
         <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
-      <Label fx:id="Nome1" layoutX="417.0" layoutY="79.0" text="Hospital" textFill="#0262ac">
+      <Label fx:id="Nome1" layoutX="431.0" layoutY="79.0" text="Hospital" textFill="#0262ac">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Nome2" layoutX="505.0" layoutY="79.0" prefHeight="31.0" prefWidth="135.0" text="Universitário" textFill="#a7a9ab">
+      <Label fx:id="Nome2" layoutX="525.0" layoutY="79.0" prefHeight="31.0" prefWidth="135.0" text="Universitário" textFill="#a7a9ab">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="136.0" layoutY="123.0" prefHeight="515.0" prefWidth="773.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="167.0" layoutY="136.0" prefHeight="515.0" prefWidth="773.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
             <JFXTextField fx:id="cpfField" alignment="CENTER" focusColor="#0262ac" layoutX="178.0" layoutY="59.0" prefHeight="44.0" prefWidth="397.0" promptText="CPF Do Paciente" unFocusColor="#a7a9ab">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="tituloLabel" layoutX="299.0" layoutY="14.0" text="Gerar consulta" textFill="#0262ac">
+            <Label fx:id="tituloLabel" layoutX="252.0" layoutY="14.0" text="Dados da Consulta" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <ImageView fx:id="Icon1" fitHeight="241.0" fitWidth="226.0" layoutX="282.0" layoutY="107.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Icon1" fitHeight="200.0" fitWidth="226.0" layoutX="282.0" layoutY="107.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconRelatorio.png" />
                </image>
@@ -49,11 +49,11 @@
             <JFXTextArea fx:id="descricaoField" layoutX="179.0" layoutY="186.0" prefHeight="83.0" prefWidth="406.0" promptText="Descrição" />
             <JFXDatePicker fx:id="dataAtendimentoField" defaultColor="#0262ac" layoutX="180.0" layoutY="129.0" promptText="Data da Consulta" />
             <JFXTimePicker fx:id="horarioField" defaultColor="#0262ac" layoutX="414.0" layoutY="129.0" prefHeight="25.0" prefWidth="171.0" promptText="Horário" />
-            <JFXButton id="chooseFileId" fx:id="chooseFile" layoutX="180.0" layoutY="357.0" onAction="#chooseFile" text="Escolher Arquivo" />
+            <JFXButton id="chooseFileId" fx:id="chooseFile" layoutX="180.0" layoutY="357.0" onAction="#chooseFile" text="Adicionar Imagem" />
             <JFXListView id="listArquivosID" fx:id="listArquivos" layoutX="359.0" layoutY="310.0" onMouseClicked="#itemClicked" prefHeight="125.0" prefWidth="226.0" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="gerarBotao" layoutX="533.0" layoutY="661.0" onAction="#gerarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerar" textFill="WHITE" />
-      <JFXButton fx:id="cancelarBotao" layoutX="369.0" layoutY="661.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="gerarBotao" layoutX="577.0" layoutY="661.0" onAction="#gerarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerar" textFill="WHITE" />
+      <JFXButton fx:id="cancelarBotao" layoutX="377.0" layoutY="661.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
    </children>
 </AnchorPane>

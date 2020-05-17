@@ -1,12 +1,14 @@
 package app.controller.aluno;
 
 import app.model.dao.AlunoDAO;
+import app.model.dao.PacienteAlunoRelatorioDAO;
 import app.model.domain.Aluno;
 import app.model.domain.ConsultaAux;
 import app.model.domain.PacienteAlunoRelatorio;
 import app.utilits.Sistema;
 import app.view.aluno.CrudConsultas;
 import app.view.aluno.GerarConsulta;
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +29,9 @@ public class CrudConsultasController implements Initializable {
     private List<PacienteAlunoRelatorio> listPacienteAlunoRelatorio;
     private ObservableList<ConsultaAux> observableListConsultaAux;
     @FXML
-    private Button novaConsultaBotao;
+    private JFXButton novaConsultaBotao;
+    @FXML
+    private JFXButton removerConsulta;
     @FXML
     private TableView<ConsultaAux> tableViewPacienteAlunoRelatorio;
     @FXML
@@ -58,6 +62,33 @@ public class CrudConsultasController implements Initializable {
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    public void removerConsulta(ActionEvent evt) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        ConsultaAux consultaAux = this.tableViewPacienteAlunoRelatorio.getSelectionModel().getSelectedItem();
+        if (consultaAux != null) {
+            PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio();
+            pacienteAlunoRelatorio.setCodigo(consultaAux.getCodigoConsulta());
+            if (consultaAux.getMedicoAutorizacao().equals("")) {
+                PacienteAlunoRelatorioDAO pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
+                if (pacienteAlunoRelatorioDAO.delete(pacienteAlunoRelatorio)) {
+                    alert.setContentText("Consulta removida com sucesso.");
+                    this.tableViewPacienteAlunoRelatorio.getItems().remove(consultaAux);
+                } else {
+                    alert.setAlertType(Alert.AlertType.ERROR);
+                    alert.setContentText("Não é possível remover a consulta.");
+                }
+            } else {
+                alert.setContentText("Não é possível remover a consulta, pois o relatório associado a ela já foi autorizado.");
+            }
+        } else {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de seleção");
+            alert.setContentText("Nenhuma consulta foi selecionada.");
+        }
+        alert.showAndWait();
     }
 
     public void carregarTableViewPacienteAlunoRelatorio() {
