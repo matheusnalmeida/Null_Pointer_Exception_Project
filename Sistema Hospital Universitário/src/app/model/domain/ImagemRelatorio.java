@@ -1,10 +1,8 @@
 package app.model.domain;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,13 +22,16 @@ public class ImagemRelatorio implements Serializable {
     @Lob
     @Column(name = "arquivo", columnDefinition = "LONGBLOB")
     private Byte[] arquivo;
+    @Column(name = "nome_arquivo")
+    private String nomeArquivo;
 
     public ImagemRelatorio() {
     }
 
-    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio, Byte[] arquivo) {
+    public ImagemRelatorio(PacienteAlunoRelatorio pacienteAlunoRelatorio, Byte[] arquivo, String nomeArquivo) {
         this.pacienteAlunoRelatorio = pacienteAlunoRelatorio;
         this.arquivo = arquivo;
+        this.nomeArquivo = nomeArquivo;
     }
 
     public ImagemRelatorio(int codigo) {
@@ -59,6 +60,14 @@ public class ImagemRelatorio implements Serializable {
 
     public void setArquivo(Byte[] arquivo) {
         this.arquivo = arquivo;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
     }
 
     @Override

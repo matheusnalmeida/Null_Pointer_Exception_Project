@@ -38,7 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GerarConsultaController implements Initializable {
-
+    
     @FXML
     private JFXTextField cpfField;
     @FXML
@@ -55,14 +55,14 @@ public class GerarConsultaController implements Initializable {
     private JFXListView<String> listArquivos;
     @FXML
     private JFXButton chooseFile;
-
+    
     private List<Byte[]> listaDeImagens;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.listaDeImagens = new ArrayList<>();
     }
-
+    
     public void gerarConsulta(ActionEvent evt) {
         LocalDateTime dataAtendimento = LocalDateTime.of(this.dataAtendimentoField.getValue(), this.horarioField.getValue());
         String descricao = this.descricaoField.getText();
@@ -87,9 +87,14 @@ public class GerarConsultaController implements Initializable {
                 alert.setTitle("Erro ao gerar consulta.");
                 alert.setContentText("Não foi possível conectar ao banco de dados.");
             }
+            int contador = 0;
             for (Byte[] imagem : this.listaDeImagens) {
+                StringBuilder nomeArquivo = new StringBuilder();
+                nomeArquivo.append("imagem").append(Integer.toString(pacienteAlunoRelatorio.getCodigo()))
+                        .append(" - ").append(Integer.toString(contador));
+                contador++;
                 ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
-                ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem);
+                ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem, nomeArquivo.toString());
                 imagemRelatorioDao.create(imagemRelatorio);
             }
         } catch (Exception exception) {
@@ -102,7 +107,7 @@ public class GerarConsultaController implements Initializable {
         GerarConsulta.getStage().close();
         CrudConsultas.getStage().show();
     }
-
+    
     @FXML
     public void itemClicked(MouseEvent event) {
         try {
@@ -124,7 +129,7 @@ public class GerarConsultaController implements Initializable {
                         alert.setTitle("Remover Imagem");
                         alert.setContentText("Item removido com sucesso");
                     }
-                } else if(event.getButton().equals(MouseButton.PRIMARY)){
+                } else if (event.getButton().equals(MouseButton.PRIMARY)) {
                     MostrarImagem mostrarImagem = new MostrarImagem();
                     MostrarImagem.setImagem(this.listaDeImagens.get(indiceSelecionado));
                     mostrarImagem.start(new Stage());
@@ -134,7 +139,7 @@ public class GerarConsultaController implements Initializable {
             ex.printStackTrace();
         }
     }
-
+    
     @FXML
     public void chooseFile(ActionEvent event) {
         Alert alert;
@@ -182,7 +187,7 @@ public class GerarConsultaController implements Initializable {
             alert.showAndWait();
         }
     }
-
+    
     public void cancelarAcao(ActionEvent evt) {
         CrudConsultas.getStage().show();
         GerarConsulta.getStage().close();

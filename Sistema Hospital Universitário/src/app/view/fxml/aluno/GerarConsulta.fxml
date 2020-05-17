@@ -49,7 +49,7 @@
             <JFXTextArea fx:id="descricaoField" layoutX="179.0" layoutY="186.0" prefHeight="83.0" prefWidth="406.0" promptText="Descrição" />
             <JFXDatePicker fx:id="dataAtendimentoField" defaultColor="#0262ac" layoutX="180.0" layoutY="129.0" promptText="Data da Consulta" />
             <JFXTimePicker fx:id="horarioField" defaultColor="#0262ac" layoutX="414.0" layoutY="129.0" prefHeight="25.0" prefWidth="171.0" promptText="Horário" />
-            <JFXButton id="chooseFileId" fx:id="chooseFile" layoutX="180.0" layoutY="357.0" onAction="#chooseFile" text="Adicionar Imagem" />
+            <JFXButton id="chooseFileId" fx:id="chooseFile" layoutX="180.0" layoutY="357.0" onAction="#chooseFile" style="-fx-background-color: #0262ac;" text="Adicionar Imagem" textFill="WHITE" />
             <JFXListView id="listArquivosID" fx:id="listArquivos" layoutX="359.0" layoutY="310.0" onMouseClicked="#itemClicked" prefHeight="125.0" prefWidth="226.0" />
          </children>
       </AnchorPane>
