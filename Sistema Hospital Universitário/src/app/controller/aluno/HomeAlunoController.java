@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import app.view.aluno.CrudConsultas;
+import app.view.aluno.ViewAluno;
 
 public class HomeAlunoController implements Initializable {
 
@@ -46,7 +47,13 @@ public class HomeAlunoController implements Initializable {
     }
 
     public void meusDados(ActionEvent event) {
-
+        try {
+            ViewAluno viewAluno = new ViewAluno();
+            viewAluno.start(new Stage());
+            HomeAluno.getStage().close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void gerirRelatorios(ActionEvent event) {
