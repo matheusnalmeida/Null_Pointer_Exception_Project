@@ -57,7 +57,7 @@
             <JFXDatePicker fx:id="dataNascimentoField" defaultColor="#0262ac" editable="false" layoutX="176.0" layoutY="298.0" promptText="Data de nascimento" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="cadastrar" layoutX="451.0" layoutY="612.0" onAction="#cadastrarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar" textFill="WHITE" />
-      <JFXButton fx:id="cancelar" layoutX="282.0" layoutY="612.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+      <JFXButton fx:id="cadastrar" layoutX="457.0" layoutY="612.0" onAction="#cadastrarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Cadastrar" textFill="WHITE" />
+      <JFXButton fx:id="cancelar" layoutX="288.0" layoutY="612.0" onAction="#cancelarAcao" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -2,7 +2,6 @@ package app.view.professor;
 
 import app.utilits.Sistema;
 import app.view.main.MainFrame;
-import app.view.medico.HomeMedico;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

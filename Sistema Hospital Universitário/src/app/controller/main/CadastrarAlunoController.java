@@ -45,9 +45,6 @@ public class CadastrarAlunoController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
