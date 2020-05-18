@@ -85,10 +85,12 @@ public class ImagemRelatorioDAO {
         try {
             this.em.getTransaction().begin();
             Query query = this.em.createQuery("SELECT imagemRelatorio FROM "
-                    + ImagemRelatorio.class.getName() + " imagemRelatorio WHERE imagemRelatorio.pacienteAlunoRelatorio_codigo = :pacientealunoRelatorioCodigo");
+                    + ImagemRelatorio.class.getName() + " imagemRelatorio WHERE pacienteAlunoRelatorio_Codigo = :pacientealunoRelatorioCodigo");
             query.setParameter("pacientealunoRelatorioCodigo", pacientealunoRelatorio.getCodigo());
             retorno = query.getResultList();
         } catch (Exception exception) {
+            System.out.println("###############################");
+            exception.printStackTrace();
         } finally {
             this.emf.close();
         }
