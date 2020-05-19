@@ -32,7 +32,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <TableView fx:id="tableViewPacienteAlunoRelatorio" layoutX="6.0" layoutY="72.0" prefHeight="544.0" prefWidth="1374.0">
+            <TableView fx:id="tableViewPacienteAlunoRelatorio" layoutX="6.0" layoutY="72.0" onMouseClicked="#itemClicked" prefHeight="544.0" prefWidth="1374.0">
                <columns>
                   <TableColumn fx:id="tableColumnCodigoConsulta" prefWidth="116.00003051757812" text="Código da Consulta" />
                   <TableColumn fx:id="tableColumnMatriculaAluno" prefWidth="150.0" text="Matrícula do Aluno" />

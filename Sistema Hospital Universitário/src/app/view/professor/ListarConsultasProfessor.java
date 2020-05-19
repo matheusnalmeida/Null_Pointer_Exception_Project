@@ -31,6 +31,7 @@ public class ListarConsultasProfessor extends Application {
         ListarConsultasProfessor.setStage(stage);
         stage.setOnCloseRequest((WindowEvent event) -> {
             HomeProfessor.getStage().show();
+            ListarConsultasProfessor.setStage(null);
         });
     }
 }

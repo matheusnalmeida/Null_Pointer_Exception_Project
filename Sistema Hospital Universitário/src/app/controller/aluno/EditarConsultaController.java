@@ -1,5 +1,6 @@
 package app.controller.aluno;
 
+import app.model.dao.ImagemRelatorioDAO;
 import app.model.dao.PacienteAlunoRelatorioDAO;
 import app.model.domain.ConsultaAux;
 import app.model.domain.ImagemRelatorio;
@@ -7,17 +8,17 @@ import app.model.domain.PacienteAlunoRelatorio;
 import app.view.aluno.CrudConsultas;
 import app.view.aluno.EditarConsulta;
 import app.view.aluno.MostrarImagem;
+import app.view.professor.ListarConsultasProfessor;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -77,10 +78,15 @@ public class EditarConsultaController implements Initializable {
     private ConsultaAux consultaAux;
 
     private List<ImagemRelatorio> listaDeImagens;
+    private List<ImagemRelatorio> imagensRemovidas;
 
     @FXML
     void cancelarAcao(ActionEvent event) {
-        CrudConsultas.getStage().show();
+        if (CrudConsultas.getStage() != null) {
+            CrudConsultas.getStage().show();
+        } else {
+            ListarConsultasProfessor.getStage().show();
+        }
         EditarConsulta.getStage().close();
     }
 
@@ -103,7 +109,10 @@ public class EditarConsultaController implements Initializable {
                 if (arquivoSelecionado != null) {
                     listArquivos.getItems().add(arquivoSelecionado.getName());
                     ImagemRelatorio novaImagem = new ImagemRelatorio();
-                    novaImagem.setCodigo(this.consultaAux.getCodigoConsulta());
+                    novaImagem.setEstaNoBanco(false);
+                    PacienteAlunoRelatorio novoPacienteAlunoRelatorio = new PacienteAlunoRelatorio();
+                    novoPacienteAlunoRelatorio.setCodigo(this.consultaAux.getCodigoConsulta());
+                    novaImagem.setPacienteAlunoRelatorio(novoPacienteAlunoRelatorio);
                     novaImagem.setNomeArquivo(arquivoSelecionado.getName());
                     novaImagem.setArquivo(byteObjects);
                     this.listaDeImagens.add(novaImagem);
@@ -145,8 +154,31 @@ public class EditarConsultaController implements Initializable {
             pacienteAlunoRelatorio.setCodigo(this.consultaAux.getCodigoConsulta());
             PacienteAlunoRelatorio pacienteAlterar = pacienteAlunoRelatorioDao.read(pacienteAlunoRelatorio);
             pacienteAlterar.setDescricao(this.descricaoField.getText().trim());
+            pacienteAlunoRelatorioDao = new PacienteAlunoRelatorioDAO();
             pacienteAlunoRelatorioDao.update(pacienteAlterar);
         }
+        //Removendo imagens selecionadas para remocao
+        for (ImagemRelatorio imagensRemovida : this.imagensRemovidas) {
+            ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
+            if (imagensRemovida.isEstaNoBanco()) {
+                imagemRelatorioDao.delete(imagensRemovida);
+            }
+        }
+        //Adicionando Imagens no banco
+        for (ImagemRelatorio imagensAdicionar : this.listaDeImagens) {
+            ImagemRelatorioDAO imagemRelatorioADao = new ImagemRelatorioDAO();
+            System.out.println(this.listaDeImagens.size());
+            if (!imagensAdicionar.isEstaNoBanco()) {
+                imagemRelatorioADao.create(imagensAdicionar);
+                System.out.println("ENENENENENENENEEN");
+            }
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Edição De Consulta");
+        alert.setContentText("Consulta Editada com Sucesso");
+        alert.showAndWait();
+        this.cancelarAcao(event);
     }
 
     @FXML
@@ -163,6 +195,7 @@ public class EditarConsultaController implements Initializable {
                     alert.setContentText("Deseja remover a imagem selecionada?");
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK) {
+                        this.imagensRemovidas.add(this.listaDeImagens.get(indiceSelecionado));
                         this.listArquivos.getItems().remove(indiceSelecionado);
                         this.listaDeImagens.remove(indiceSelecionado);
                         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -183,19 +216,33 @@ public class EditarConsultaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.imagensRemovidas = new ArrayList<>();
     }
 
     public void atualizaImagens() {
         if (this.listaDeImagens != null) {
             for (ImagemRelatorio imagem : this.listaDeImagens) {
-                this.listArquivos.getItems().add(imagem.getNomeArquivo());
+                imagem.setEstaNoBanco(true);
+                String nomeProcessado = imagem.getNomeArquivo();
+                this.listArquivos.getItems().add(nomeProcessado);
             }
         }
     }
 
+    private String[] processaData(String data) {
+        String[] dataProcessada = data.split("T");
+        return dataProcessada;
+    }
+
     public void preencherCampos() {
+        if (!"".equals(this.consultaAux.getMedicoAutorizacao())) {
+            this.gerarBotao.setDisable(true);
+            this.chooseFile.setDisable(true);
+        }
         this.cpfField.setText(this.consultaAux.getCpfPaciente());
-        this.dataDaConsultaFIeld.setText(this.consultaAux.getDataConsulta());
+        String[] dataProcessada = this.processaData(this.consultaAux.getDataConsulta());
+        this.dataDaConsultaFIeld.setText(dataProcessada[0]);
+        this.horarioDaConsultaFIeld.setText(dataProcessada[1]);
         this.descricaoField.setText(this.consultaAux.getDescricao());
         this.atualizaImagens();
     }

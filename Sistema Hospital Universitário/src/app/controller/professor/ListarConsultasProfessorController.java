@@ -1,10 +1,14 @@
 package app.controller.professor;
 
+import app.model.dao.ImagemRelatorioDAO;
 import app.model.dao.ProfessorDAO;
 import app.model.domain.ConsultaAux;
+import app.model.domain.ImagemRelatorio;
 import app.model.domain.PacienteAlunoRelatorio;
 import app.model.domain.Professor;
 import app.utilits.Sistema;
+import app.view.aluno.EditarConsulta;
+import app.view.professor.ListarConsultasProfessor;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class ListarConsultasProfessorController implements Initializable {
 
@@ -76,6 +82,25 @@ public class ListarConsultasProfessorController implements Initializable {
             }
             this.observableListConsultaAux = FXCollections.observableArrayList(consultaAuxList);
             this.tableViewPacienteAlunoRelatorio.setItems(this.observableListConsultaAux);
+        }
+    }
+    
+    
+    @FXML
+    void itemClicked(MouseEvent event) {
+        ConsultaAux consultaSelecionada = this.tableViewPacienteAlunoRelatorio.getSelectionModel().getSelectedItem();
+        if (consultaSelecionada != null) {
+            PacienteAlunoRelatorio p = new PacienteAlunoRelatorio();
+            p.setCodigo(consultaSelecionada.getCodigoConsulta());
+            ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
+            List<ImagemRelatorio> imagemRelatorio = imagemRelatorioDao.selectAll(p);
+            try {
+                EditarConsulta editarConsulta = new EditarConsulta(imagemRelatorio,consultaSelecionada);
+                editarConsulta.start(new Stage());
+                ListarConsultasProfessor.getStage().close();
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 }

@@ -28,7 +28,8 @@ public class ImagemRelatorioDAO {
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
             result = false;
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+            System.out.println("##################################");
         } finally {
             this.emf.close();
         }
@@ -55,6 +56,8 @@ public class ImagemRelatorioDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
+            exception.printStackTrace();
+            System.out.println("##################################");
             result = false;
             this.em.getTransaction().rollback();
         } finally {

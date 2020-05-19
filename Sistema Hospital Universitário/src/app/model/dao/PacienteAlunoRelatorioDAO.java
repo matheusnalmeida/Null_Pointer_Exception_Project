@@ -55,6 +55,7 @@ public class PacienteAlunoRelatorioDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
+            exception.printStackTrace();
             result = false;
             this.em.getTransaction().rollback();
         } finally {

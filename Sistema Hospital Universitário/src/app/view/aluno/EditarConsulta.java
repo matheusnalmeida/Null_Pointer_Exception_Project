@@ -8,6 +8,7 @@ package app.view.aluno;
 import app.controller.aluno.EditarConsultaController;
 import app.model.domain.ConsultaAux;
 import app.model.domain.ImagemRelatorio;
+import app.view.professor.ListarConsultasProfessor;
 import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.stage.WindowEvent;
  * @author Matheus Nunes
  */
 public class EditarConsulta extends Application {
+
     private static Stage stage;
 
     private List<ImagemRelatorio> imagens;
@@ -38,7 +40,7 @@ public class EditarConsulta extends Application {
     public static void setStage(Stage stage) {
         EditarConsulta.stage = stage;
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/view/fxml/aluno/EditarCA.fxml"));
@@ -49,8 +51,13 @@ public class EditarConsulta extends Application {
         EditarConsulta.stage = stage;
         stage.show();
         stage.setOnCloseRequest((WindowEvent event) -> {
-            CrudConsultas.getStage().show();
+            if (CrudConsultas.getStage() != null) {
+                CrudConsultas.getStage().show();
+            } else {
+                ListarConsultasProfessor.getStage().show();
+            }
+            EditarConsulta.getStage().close();
         });
     }
-    
+
 }

@@ -38,7 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GerarConsultaController implements Initializable {
-    
+
     @FXML
     private JFXTextField cpfField;
     @FXML
@@ -55,14 +55,14 @@ public class GerarConsultaController implements Initializable {
     private JFXListView<String> listArquivos;
     @FXML
     private JFXButton chooseFile;
-    
+
     private List<Byte[]> listaDeImagens;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.listaDeImagens = new ArrayList<>();
     }
-    
+
     public void gerarConsulta(ActionEvent evt) {
         LocalDateTime dataAtendimento = LocalDateTime.of(this.dataAtendimentoField.getValue(), this.horarioField.getValue());
         String descricao = this.descricaoField.getText();
@@ -90,8 +90,7 @@ public class GerarConsultaController implements Initializable {
             int contador = 0;
             for (Byte[] imagem : this.listaDeImagens) {
                 StringBuilder nomeArquivo = new StringBuilder();
-                nomeArquivo.append("imagem").append(Integer.toString(pacienteAlunoRelatorio.getCodigo()))
-                        .append(" - ").append(Integer.toString(contador));
+                nomeArquivo.append(this.listArquivos.getItems().get(contador));
                 contador++;
                 ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
                 ImagemRelatorio imagemRelatorio = new ImagemRelatorio(pacienteAlunoRelatorio, imagem, nomeArquivo.toString());
@@ -107,7 +106,7 @@ public class GerarConsultaController implements Initializable {
         GerarConsulta.getStage().close();
         CrudConsultas.getStage().show();
     }
-    
+
     @FXML
     public void itemClicked(MouseEvent event) {
         try {
@@ -139,7 +138,7 @@ public class GerarConsultaController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+
     @FXML
     public void chooseFile(ActionEvent event) {
         Alert alert;

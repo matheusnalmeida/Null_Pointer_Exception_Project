@@ -35,6 +35,7 @@ public class CrudConsultas extends Application {
         });
         stage.setOnCloseRequest((WindowEvent event) -> {
             HomeAluno.getStage().show();
+            CrudConsultas.setStage(null);
         });
     }
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "imagem_relatorio")
@@ -24,7 +25,9 @@ public class ImagemRelatorio implements Serializable {
     private Byte[] arquivo;
     @Column(name = "nome_arquivo")
     private String nomeArquivo;
-
+    @Transient
+    private boolean estaNoBanco;
+    
     public ImagemRelatorio() {
     }
 
@@ -68,6 +71,14 @@ public class ImagemRelatorio implements Serializable {
 
     public void setNomeArquivo(String nomeArquivo) {
         this.nomeArquivo = nomeArquivo;
+    }
+
+    public boolean isEstaNoBanco() {
+        return estaNoBanco;
+    }
+
+    public void setEstaNoBanco(boolean estaNoBanco) {
+        this.estaNoBanco = estaNoBanco;
     }
 
     @Override
