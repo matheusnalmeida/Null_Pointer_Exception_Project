@@ -24,7 +24,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="13.0" layoutY="147.0" prefHeight="512.0" prefWidth="866.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="18.0" layoutY="147.0" prefHeight="512.0" prefWidth="866.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
             <Label fx:id="tituloLabel" layoutX="335.0" layoutY="15.0" text="Home Médico" textAlignment="CENTER" textFill="#0262ac">
                <font>
@@ -42,7 +42,7 @@
                   <Image url="@../../Images/iconPacienteColorido.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="listarRelatorios" layoutX="349.0" layoutY="289.0" onAction="#listarRelatorios" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Lista relatórios" textFill="WHITE" />
+            <JFXButton fx:id="listarRelatorios" layoutX="349.0" layoutY="289.0" onAction="#listaRelatorios" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Lista relatórios" textFill="WHITE" />
             <ImageView fx:id="Icon1111" fitHeight="190.0" fitWidth="159.0" layoutX="587.0" layoutY="97.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/iconMedicoColorido.png" />
