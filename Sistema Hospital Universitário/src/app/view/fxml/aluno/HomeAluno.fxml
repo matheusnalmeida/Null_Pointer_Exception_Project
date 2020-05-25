@@ -24,7 +24,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="24.0" layoutY="147.0" prefHeight="512.0" prefWidth="866.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="18.0" layoutY="147.0" prefHeight="512.0" prefWidth="866.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
             <Label fx:id="tituloLabel" layoutX="350.0" layoutY="14.0" text="Home Aluno" textFill="#0262ac">
                <font>
@@ -54,7 +54,6 @@
                   <Image url="@../../Images/iconRelatorioColorido.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="gerirRelatorios" layoutX="349.0" layoutY="357.0" onAction="#gerirRelatorios" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerir Relatórios" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

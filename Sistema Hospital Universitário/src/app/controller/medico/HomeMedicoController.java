@@ -1,6 +1,7 @@
 package app.controller.medico;
 
 import app.view.medico.CadastrarExames;
+import app.view.medico.CrudRelatorio;
 import app.view.medico.HomeMedico;
 import app.view.medico.ViewMedico;
 import java.net.URL;
@@ -13,7 +14,6 @@ public class HomeMedicoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void exame(ActionEvent evt) {
@@ -26,8 +26,14 @@ public class HomeMedicoController implements Initializable {
         }
     }
 
-    public void listarRelatorios(ActionEvent evt) {
-
+    public void listaRelatorios(ActionEvent evt) {
+        try {
+            CrudRelatorio crudRelatorio = new CrudRelatorio();
+            crudRelatorio.start(new Stage());
+            CrudRelatorio.getStage().show();
+            HomeMedico.getStage().close();
+        } catch (Exception exception) {
+        }
     }
 
     public void meusDados(ActionEvent evt) {

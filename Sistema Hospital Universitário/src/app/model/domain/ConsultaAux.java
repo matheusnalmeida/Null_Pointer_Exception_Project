@@ -11,6 +11,7 @@ public class ConsultaAux {
     private String dataAutorizacao;
     private String matriculaAluno;
     private String nomeAluno;
+    private String nomeMedicoAutorizacao;
 
     public ConsultaAux() {
     }
@@ -96,6 +97,14 @@ public class ConsultaAux {
 
     public void setNomeAluno(String nomeAluno) {
         this.nomeAluno = nomeAluno;
+    }
+
+    public String getNomeMedicoAutorizacao() {
+        return nomeMedicoAutorizacao;
+    }
+
+    public void setNomeMedicoAutorizacao(String nomeMedicoAutorizacao) {
+        this.nomeMedicoAutorizacao = nomeMedicoAutorizacao;
     }
     
     @Override
