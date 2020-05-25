@@ -132,6 +132,7 @@ public class CrudConsultasController implements Initializable {
             p.setCodigo(consultaSelecionada.getCodigoConsulta());
             ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
             List<ImagemRelatorio> imagemRelatorio = imagemRelatorioDao.selectAll(p);
+            System.out.println("#########################" + consultaSelecionada.getCpfPaciente() + "#######################");
             try {
                 EditarConsulta editarConsulta = new EditarConsulta(imagemRelatorio,consultaSelecionada);
                 editarConsulta.start(new Stage());

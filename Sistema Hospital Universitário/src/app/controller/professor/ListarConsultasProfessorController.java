@@ -65,6 +65,7 @@ public class ListarConsultasProfessorController implements Initializable {
             for (PacienteAlunoRelatorio pacienteAlunoRelatorio : this.listPacienteAlunoRelatorio) {
                 int codigoConsulta = pacienteAlunoRelatorio.getCodigo();
                 String nomePaciente = pacienteAlunoRelatorio.getPaciente().getNome();
+                String cpfPaciente = pacienteAlunoRelatorio.getPaciente().getCpf();
                 String dataConsulta = pacienteAlunoRelatorio.getDataAtendimento();
                 String crmMedico = pacienteAlunoRelatorio.getMedicoAutorizacao() == null ? "" : pacienteAlunoRelatorio.getMedicoAutorizacao().getCrm();
                 String descricao = pacienteAlunoRelatorio.getDescricao();
@@ -78,6 +79,7 @@ public class ListarConsultasProfessorController implements Initializable {
                 consultaAux.setMedicoAutorizacao(crmMedico);
                 consultaAux.setDescricao(descricao);
                 consultaAux.setDataConsulta(dataConsulta);
+                consultaAux.setCpfPaciente(cpfPaciente);
                 consultaAuxList.add(consultaAux);
             }
             this.observableListConsultaAux = FXCollections.observableArrayList(consultaAuxList);
