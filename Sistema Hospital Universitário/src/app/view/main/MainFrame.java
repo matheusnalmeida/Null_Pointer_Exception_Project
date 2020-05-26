@@ -36,5 +36,6 @@ public class MainFrame extends Application {
         stage.centerOnScreen();
         stage.show();
         MainFrame.setStage(stage);
+        //
     }
 }

@@ -7,8 +7,6 @@ import app.model.domain.ImagemRelatorio;
 import app.model.domain.Medico;
 import app.model.domain.PacienteAlunoRelatorio;
 import app.utilits.Sistema;
-import app.view.medico.CrudRelatorio;
-import com.aspose.pdf.HtmlSaveOptions;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
