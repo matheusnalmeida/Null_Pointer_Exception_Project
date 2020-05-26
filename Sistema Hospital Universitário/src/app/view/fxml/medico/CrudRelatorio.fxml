@@ -33,7 +33,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <TableView fx:id="tableViewPacienteAlunoRelatorio" layoutY="68.0" prefHeight="603.0" prefWidth="1816.0">
+            <TableView fx:id="tableViewPacienteAlunoRelatorio" editable="true" layoutY="68.0" prefHeight="603.0" prefWidth="1816.0">
               <columns>
                 <TableColumn id="cod" fx:id="tableColumnCodigoConsulta" prefWidth="130.99996948242188" text="Código da Consulta" />
                   <TableColumn fx:id="tableColumnDataConsulta" prefWidth="155.0" text="Data da Consulta" />
