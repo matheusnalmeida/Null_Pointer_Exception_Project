@@ -167,10 +167,8 @@ public class EditarConsultaController implements Initializable {
         //Adicionando Imagens no banco
         for (ImagemRelatorio imagensAdicionar : this.listaDeImagens) {
             ImagemRelatorioDAO imagemRelatorioADao = new ImagemRelatorioDAO();
-            System.out.println(this.listaDeImagens.size());
             if (!imagensAdicionar.isEstaNoBanco()) {
                 imagemRelatorioADao.create(imagensAdicionar);
-                System.out.println("ENENENENENENENEEN");
             }
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
