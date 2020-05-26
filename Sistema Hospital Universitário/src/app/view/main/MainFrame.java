@@ -1,8 +1,5 @@
 package app.view.main;
 
-import app.model.dao.RelatorioTemplateDAO;
-import app.model.domain.RelatorioTemplate;
-import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,18 +36,5 @@ public class MainFrame extends Application {
         stage.centerOnScreen();
         stage.show();
         MainFrame.setStage(stage);
-        //Rodar essa parte apenas 1 vez
-        /*File file = new File("c:\\relatorio.pdf");
-        try {
-            RelatorioTemplate relatorioTemplate = new RelatorioTemplate(file);
-            RelatorioTemplateDAO relatorioTemplateDAO = new RelatorioTemplateDAO();
-            relatorioTemplateDAO.create(relatorioTemplate);
-        } catch (Exception exception) {
-        }*/
-        /*RelatorioTemplateDAO relatorioTemplateDAO = new RelatorioTemplateDAO();
-        RelatorioTemplate relatorioTemplate = new RelatorioTemplate();
-        relatorioTemplate.setCodigo(1);
-        relatorioTemplate = relatorioTemplateDAO.read(relatorioTemplate);
-        relatorioTemplate.writeBytes("g:\\");*/
     }
 }
