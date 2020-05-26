@@ -31,7 +31,6 @@ public class HomeMedicoController implements Initializable {
         try {
             CrudRelatorio crudRelatorio = new CrudRelatorio();
             crudRelatorio.start(new Stage());
-            CrudRelatorio.getStage().show();
             HomeMedico.getStage().close();
         } catch (Exception exception) {
         }
@@ -41,7 +40,6 @@ public class HomeMedicoController implements Initializable {
         try {
             CrudPedidosExame crudPedidosExame = new CrudPedidosExame();
             crudPedidosExame.start(new Stage());
-            CrudPedidosExame.getStage().show();
             HomeMedico.getStage().close();
         } catch (Exception exception) {
         }

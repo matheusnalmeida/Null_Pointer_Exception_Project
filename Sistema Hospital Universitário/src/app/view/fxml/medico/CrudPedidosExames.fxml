@@ -9,20 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" style="-fx-background-color: #2D3447;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="app.controller.medico.CrudPedidosExamesController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.medico.CrudPedidosExamesController">
    <children>
       <ImageView fx:id="imageView" fitHeight="113.0" fitWidth="150.0" layoutX="595.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Images/iconHospital.png" />
          </image>
       </ImageView>
-      <Label fx:id="Nome1" layoutX="534.0" layoutY="132.0" text="Hospital" textFill="#0262ac">
+      <Label fx:id="Nome1" layoutX="542.0" layoutY="132.0" text="Hospital" textFill="#0262ac">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Nome2" layoutX="622.0" layoutY="132.0" text="Universitário" textFill="#a7a9ab">
+      <Label fx:id="Nome2" layoutX="630.0" layoutY="132.0" text="Universitário" textFill="#a7a9ab">
          <font>
             <Font size="24.0" />
          </font>
@@ -44,8 +43,9 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="visualizarBotao" layoutX="939.0" layoutY="14.0" onAction="#visualizarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Visualizar" textFill="WHITE" />
-            <JFXButton fx:id="editarBotao" layoutX="1116.0" layoutY="14.0" onAction="#editarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Editar" textFill="WHITE" />
+            <JFXButton fx:id="visualizarBotao" layoutX="947.0" layoutY="14.0" onAction="#visualizarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Visualizar" textFill="WHITE" />
+            <JFXButton fx:id="editarBotao" layoutX="780.0" layoutY="14.0" onAction="#editarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Editar" textFill="WHITE" />
+            <JFXButton fx:id="removerBotao" layoutX="1114.0" layoutY="14.0" onAction="#removerAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Remover" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

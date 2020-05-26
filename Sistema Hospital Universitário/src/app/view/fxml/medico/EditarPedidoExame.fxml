@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="901.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.medico.EditarPedidoExameController">
+   <children>
+      <ImageView fx:id="Icon" fitHeight="98.0" fitWidth="169.0" layoutX="397.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/iconHospital.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Nome1" layoutX="335.0" layoutY="112.0" text="Hospital" textFill="#0262ac">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nome2" layoutX="425.0" layoutY="112.0" text="Universitário" textFill="#a7a9ab">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="192.0" layoutY="158.0" prefHeight="439.0" prefWidth="508.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+         <children>
+            <JFXTextField fx:id="tipoExameField" alignment="CENTER" focusColor="#0262ac" layoutX="56.0" layoutY="303.0" prefHeight="35.0" prefWidth="397.0" promptText="Tipo de Exame" unFocusColor="#a7a9ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXTextField>
+            <JFXDatePicker fx:id="dataExamePicker" defaultColor="#0262ac" editable="false" layoutX="56.0" layoutY="359.0" prefHeight="44.0" prefWidth="179.0" promptText="Data do Exame" />
+            <Label fx:id="tituloLabel" layoutX="72.0" layoutY="14.0" text="Edição de Pedido de Exame" textFill="#0262ac">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="recomendacoesArea" layoutX="56.0" layoutY="63.0" prefHeight="80.0" prefWidth="397.0" promptText="Recomendações" />
+            <JFXTextArea fx:id="hipotesesArea" layoutX="56.0" layoutY="155.0" prefHeight="80.0" prefWidth="397.0" promptText="Hipoteses" />
+            <JFXTextField id="cpfDoPacienteId" fx:id="cpfPacienteField" alignment="CENTER" editable="false" focusColor="#0262ac" layoutX="56.0" layoutY="247.0" prefHeight="44.0" prefWidth="397.0" promptText="CPF Do Paciente" unFocusColor="#a7a9ab">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXTextField>
+            <JFXTimePicker fx:id="horarioPicker" defaultColor="#0262ac" editable="true" layoutX="274.0" layoutY="359.0" prefHeight="44.0" prefWidth="179.0" promptText="Horário do Exame" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="concluirBotao" layoutX="451.0" layoutY="612.0" onAction="#concluirAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Concluir" textFill="WHITE" />
+      <JFXButton fx:id="cancelarBotao" layoutX="282.0" layoutY="612.0" onAction="#cancelarAction" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #a7a9ab;" text="Cancelar" textFill="WHITE" />
+   </children>
+</AnchorPane>

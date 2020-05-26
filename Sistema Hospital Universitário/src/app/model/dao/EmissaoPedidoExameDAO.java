@@ -1,10 +1,12 @@
 package app.model.dao;
 
 import app.model.domain.EmissaoPedidoExame;
+import app.model.domain.PedidoExame;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class EmissaoPedidoExameDAO {
 
@@ -64,8 +66,6 @@ public class EmissaoPedidoExameDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            /*emissaoPedidoExame = this.em.find(EmissaoPedidoExame.class, emissaoPedidoExame.getPedidoExame());
-            this.em.remove(emissaoPedidoExame);*/
             this.em.remove(this.em.getReference(EmissaoPedidoExame.class, emissaoPedidoExame.getPedidoExame()));
             this.em.getTransaction().commit();
             result = true;
@@ -90,5 +90,24 @@ public class EmissaoPedidoExameDAO {
             this.emf.close();
         }
         return retorno;
+    }
+
+    public boolean deletarPorPedidoExame(PedidoExame pedidoExame) {
+        boolean result = false;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("DELETE FROM " + EmissaoPedidoExame.class.getName() + " WHERE pedidoExame_codigo = :pedidoExame_codigo");
+            query.setParameter("pedidoExame_codigo", pedidoExame.getCodigo());
+            query.executeUpdate();
+            this.em.getTransaction().commit();
+            result = true;
+        } catch (Exception exception) {
+            result = false;
+            this.em.getTransaction().rollback();
+        } finally {
+            this.emf.close();
+            this.em.close();
+        }
+        return result;
     }
 }

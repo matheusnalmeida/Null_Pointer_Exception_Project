@@ -25,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -36,6 +37,8 @@ public class CrudConsultasController implements Initializable {
     private JFXButton novaConsultaBotao;
     @FXML
     private JFXButton removerConsulta;
+    @FXML
+    private JFXButton editarConsulta;
     @FXML
     private TableView<ConsultaAux> tableViewPacienteAlunoRelatorio;
     @FXML
@@ -64,7 +67,6 @@ public class CrudConsultasController implements Initializable {
             gerarConsulta.start(new Stage());
             CrudConsultas.getStage().close();
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
         }
     }
 
@@ -103,9 +105,9 @@ public class CrudConsultasController implements Initializable {
         this.tableColumnCpfPaciente.setCellValueFactory(new PropertyValueFactory<>("CpfPaciente"));
         this.tableColumnNomePaciente.setCellValueFactory(new PropertyValueFactory<>("NomePaciente"));
         this.tableColumnDataConsulta.setCellValueFactory(new PropertyValueFactory<>("DataConsulta"));
-        this.tableColumnMedicoAutorizacao.setCellValueFactory(new PropertyValueFactory<>("CrmMedico"));
+        this.tableColumnMedicoAutorizacao.setCellValueFactory(new PropertyValueFactory<>("MedicoAutorizacao"));
         this.tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
-        this.tableColumnDataAutorizacao.setCellValueFactory(new PropertyValueFactory<>("DataAutorizaoRelatorio"));
+        this.tableColumnDataAutorizacao.setCellValueFactory(new PropertyValueFactory<>("DataAutorizacao"));
         if (!this.listPacienteAlunoRelatorio.isEmpty()) {
             List<ConsultaAux> consultaAuxList = new ArrayList<>();
             for (PacienteAlunoRelatorio pacienteAlunoRelatorio : this.listPacienteAlunoRelatorio) {
@@ -124,21 +126,37 @@ public class CrudConsultasController implements Initializable {
         }
     }
 
-    @FXML
-    void itemSelected(MouseEvent event) {
+    /*@FXML
+    public void itemSelected(MouseEvent event) {
+        if (event.getButton().equals(MouseButton.SECONDARY)) {
+            ConsultaAux consultaSelecionada = this.tableViewPacienteAlunoRelatorio.getSelectionModel().getSelectedItem();
+            if (consultaSelecionada != null) {
+                PacienteAlunoRelatorio p = new PacienteAlunoRelatorio();
+                p.setCodigo(consultaSelecionada.getCodigoConsulta());
+                ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
+                List<ImagemRelatorio> imagemRelatorio = imagemRelatorioDao.selectAll(p);
+                try {
+                    EditarConsulta editarConsulta = new EditarConsulta(imagemRelatorio, consultaSelecionada);
+                    editarConsulta.start(new Stage());
+                    CrudConsultas.getStage().close();
+                } catch (Exception exception) {
+                }
+            }
+        }
+    }*/
+    
+    public void editarConsultaEvent(ActionEvent evt) {
         ConsultaAux consultaSelecionada = this.tableViewPacienteAlunoRelatorio.getSelectionModel().getSelectedItem();
         if (consultaSelecionada != null) {
             PacienteAlunoRelatorio p = new PacienteAlunoRelatorio();
             p.setCodigo(consultaSelecionada.getCodigoConsulta());
             ImagemRelatorioDAO imagemRelatorioDao = new ImagemRelatorioDAO();
             List<ImagemRelatorio> imagemRelatorio = imagemRelatorioDao.selectAll(p);
-            System.out.println("#########################" + consultaSelecionada.getCpfPaciente() + "#######################");
             try {
-                EditarConsulta editarConsulta = new EditarConsulta(imagemRelatorio,consultaSelecionada);
+                EditarConsulta editarConsulta = new EditarConsulta(imagemRelatorio, consultaSelecionada);
                 editarConsulta.start(new Stage());
                 CrudConsultas.getStage().close();
             } catch (Exception exception) {
-                System.out.println(exception.getMessage());
             }
         }
     }

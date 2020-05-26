@@ -8,6 +8,7 @@ public class PedidoExameAux {
     private String hipoteseDiagnostica;
     private String recomendacoes;
     private String tipoExame;
+    private String cpfPaciente;
 
     public PedidoExameAux() {
     }
@@ -69,6 +70,14 @@ public class PedidoExameAux {
         this.tipoExame = tipoExame;
     }
 
+    public String getCpfPaciente() {
+        return cpfPaciente;
+    }
+
+    public void setCpfPaciente(String cpfPaciente) {
+        this.cpfPaciente = cpfPaciente;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
