@@ -28,8 +28,6 @@ public class ImagemRelatorioDAO {
         } catch (Exception exception) {
             this.em.getTransaction().rollback();
             result = false;
-            exception.printStackTrace();
-            System.out.println("##################################");
         } finally {
             this.emf.close();
         }
@@ -56,8 +54,6 @@ public class ImagemRelatorioDAO {
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception exception) {
-            exception.printStackTrace();
-            System.out.println("##################################");
             result = false;
             this.em.getTransaction().rollback();
         } finally {
@@ -92,8 +88,6 @@ public class ImagemRelatorioDAO {
             query.setParameter("pacientealunoRelatorioCodigo", pacientealunoRelatorio.getCodigo());
             retorno = query.getResultList();
         } catch (Exception exception) {
-            System.out.println("###############################");
-            exception.printStackTrace();
         } finally {
             this.emf.close();
         }

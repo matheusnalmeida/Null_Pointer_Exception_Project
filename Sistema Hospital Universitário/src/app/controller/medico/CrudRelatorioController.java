@@ -28,8 +28,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +37,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class CrudRelatorioController implements Initializable {
 
@@ -203,16 +200,16 @@ public class CrudRelatorioController implements Initializable {
             document.add(new Paragraph("\n"));
             document.add(new LineSeparator(new SolidLine()));
             //Sessao Medico
-            Paragraph tituloMedico = new Paragraph("Dados Do Medico");
+            Paragraph tituloMedico = new Paragraph("Dados Do Médico");
             tituloMedico.setTextAlignment(TextAlignment.CENTER);
             tituloMedico.setFontSize(15);
             document.add(tituloMedico);
             com.itextpdf.layout.element.List listMedico = new com.itextpdf.layout.element.List()
                     .setSymbolIndent(12)
                     .setListSymbol("\u2022");
-            ListItem nomeMedico = new ListItem("Nome do medico: " + consultaAux.getNomeMedicoAutorizacao());
+            ListItem nomeMedico = new ListItem("Nome do médico: " + consultaAux.getNomeMedicoAutorizacao());
             nomeMedico.setFontSize(12);
-            ListItem crmMedico = new ListItem("CRM do medico: " + consultaAux.getMedicoAutorizacao());
+            ListItem crmMedico = new ListItem("CRM do médico: " + consultaAux.getMedicoAutorizacao());
             crmMedico.setFontSize(12);
             listMedico.add(nomeMedico)
                     .add(crmMedico);
@@ -230,7 +227,7 @@ public class CrudRelatorioController implements Initializable {
             String[] dataProcessada = consultaAux.getDataConsulta().split("T");
             ListItem dataDaConsulta = new ListItem("Data da consulta: " + dataProcessada[0]);
             nomeMedico.setFontSize(12);
-            ListItem horarioDaConsulta = new ListItem("Horario da consulta: " + dataProcessada[1]);
+            ListItem horarioDaConsulta = new ListItem("Horário da consulta: " + dataProcessada[1]);
             crmMedico.setFontSize(12);
             ListItem descricaoDaConsulta = new ListItem("Descrição da consulta: " + consultaAux.getDescricao());
             descricaoDaConsulta.setFontSize(12);

@@ -54,6 +54,7 @@
                   <Image url="@../../Images/iconRelatorioColorido.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="349.0" layoutY="357.0" onAction="#listaPedidosExame" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Lista de Pedidos de Exame" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

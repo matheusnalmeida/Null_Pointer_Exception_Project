@@ -1,5 +1,6 @@
 package app.model.dao;
 
+import app.model.domain.EmissaoPedidoExame;
 import app.model.domain.Medico;
 import app.model.domain.PacienteAlunoRelatorio;
 import java.util.List;
@@ -126,6 +127,21 @@ public class MedicoDAO {
         } catch (Exception exception) {
         } finally {
             this.emf.close();
+        }
+        return retorno;
+    }
+
+    public List<EmissaoPedidoExame> getPedidosExames(Medico medico) {
+        List<EmissaoPedidoExame> retorno = null;
+        try {
+            this.em.getTransaction().begin();
+            Query query = this.em.createQuery("SELECT emissao_pedido_exame FROM " + EmissaoPedidoExame.class.getName() + " emissao_pedido_exame WHERE medico_matricula = :matricula");
+            query.setParameter("matricula", medico.getMatricula());
+            retorno = query.getResultList();
+        } catch (Exception exception) {
+        } finally {
+            this.emf.close();
+            this.em.close();
         }
         return retorno;
     }

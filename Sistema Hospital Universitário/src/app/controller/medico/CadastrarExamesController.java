@@ -12,9 +12,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +44,9 @@ public class CadastrarExamesController implements Initializable {
     private JFXDatePicker dataExame;
 
     @FXML
+    private JFXTimePicker horarioExame;
+
+    @FXML
     private Label tituloLabel;
 
     @FXML
@@ -66,29 +71,30 @@ public class CadastrarExamesController implements Initializable {
         String tipoDeExame = this.tipoExame.getText().trim();
         String cpfPaciente = this.cpfDoPaciente.getText().trim();
         LocalDate dataDoExame = this.dataExame.getValue();
+        LocalTime horarioExame = this.horarioExame.getValue();
         String dataEmissao = LocalDateTime.now().toString();
         Paciente paciente = new Paciente();
         paciente.setCpf(cpfPaciente);
-        if(this.validaCamposVazio()){
+        if (this.validaCamposVazio()) {
             Medico medico_atual = (Medico) Sistema.getSessao().getUsuario();
-            PedidoExame novoPedidoExame = new PedidoExame(recomendacoes,dataDoExame.toString(),hipoteses,tipoDeExame);
+            PedidoExame novoPedidoExame = new PedidoExame(recomendacoes, dataDoExame.toString() + " " + horarioExame.toString(), hipoteses, tipoDeExame);
             boolean pedidoCadastrado = pedidoExameDao.create(novoPedidoExame);
-            EmissaoPedidoExame emissaoPedidoExame = new EmissaoPedidoExame(dataEmissao,medico_atual,paciente,novoPedidoExame);
+            EmissaoPedidoExame emissaoPedidoExame = new EmissaoPedidoExame(dataEmissao, medico_atual, paciente, novoPedidoExame);
             boolean emissaoPedidoCadastrada = emissaoPedidoExameDao.create(emissaoPedidoExame);
-            if(pedidoCadastrado && emissaoPedidoCadastrada){
+            if (pedidoCadastrado && emissaoPedidoCadastrada) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Cadastro de exame realizado com sucesso");
                 alert.showAndWait();
-            }else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Information Dialog");
                 alert.setContentText("Erro ao realizar cadastro.");
                 alert.showAndWait();
             }
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Dados Invalidos!");
             alert.showAndWait();

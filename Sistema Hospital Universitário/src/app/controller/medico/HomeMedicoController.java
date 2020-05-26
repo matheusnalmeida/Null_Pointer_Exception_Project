@@ -1,6 +1,7 @@
 package app.controller.medico;
 
 import app.view.medico.CadastrarExames;
+import app.view.medico.CrudPedidosExame;
 import app.view.medico.CrudRelatorio;
 import app.view.medico.HomeMedico;
 import app.view.medico.ViewMedico;
@@ -31,6 +32,16 @@ public class HomeMedicoController implements Initializable {
             CrudRelatorio crudRelatorio = new CrudRelatorio();
             crudRelatorio.start(new Stage());
             CrudRelatorio.getStage().show();
+            HomeMedico.getStage().close();
+        } catch (Exception exception) {
+        }
+    }
+
+    public void listaPedidosExame(ActionEvent evt) {
+        try {
+            CrudPedidosExame crudPedidosExame = new CrudPedidosExame();
+            crudPedidosExame.start(new Stage());
+            CrudPedidosExame.getStage().show();
             HomeMedico.getStage().close();
         } catch (Exception exception) {
         }
