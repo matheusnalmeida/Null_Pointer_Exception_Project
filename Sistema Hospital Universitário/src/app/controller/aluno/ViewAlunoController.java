@@ -19,9 +19,8 @@ import javafx.stage.WindowEvent;
  *
  * @author Matheus Nunes
  */
-public class ViewAlunoController  implements Initializable {
+public class ViewAlunoController implements Initializable {
 
-    
     @FXML
     private ImageView Icon;
 
@@ -65,7 +64,7 @@ public class ViewAlunoController  implements Initializable {
     private Label dataNascimento;
 
     @FXML
-    private Label matriculaProfessor;
+    private Label professor;
 
     @FXML
     private JFXButton alterar;
@@ -98,13 +97,13 @@ public class ViewAlunoController  implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.preencherCampos();
     }
-    
+
     public void preencherCampos() {
         Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
         this.nome.setText(aluno.getNome());
         this.matricula.setText(aluno.getMatricula());
         this.anoResidencia.setText(Integer.toString(aluno.getAnoResidencia()));
         this.dataNascimento.setText(aluno.getDataNascimento());
-        this.matriculaProfessor.setText(aluno.getProfessor().getMatricula());
+        this.professor.setText(aluno.getProfessor().getNome());
     }
 }

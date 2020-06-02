@@ -56,7 +56,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="tituloLabel111111" layoutX="32.0" layoutY="248.0" text="Matrícula do seu professor:" textFill="#606061">
+            <Label fx:id="tituloLabel111111" layoutX="32.0" layoutY="248.0" text="Professor:" textFill="#606061">
                <font>
                   <Font size="22.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="matriculaProfessor" layoutX="298.0" layoutY="248.0" text="(Aqui a Matricula do prof.)" textFill="#a7a9ab">
+            <Label fx:id="professor" layoutX="140.0" layoutY="248.0" text="(Nome do Professor)" textFill="#a7a9ab">
                <font>
                   <Font size="22.0" />
                </font>
