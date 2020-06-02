@@ -99,4 +99,9 @@ public class Paciente implements Serializable {
         }
         return true;
     }
+    
+    @Override
+    public String toString(){
+        return this.nome + " - " + this.cpf;
+    }
 }

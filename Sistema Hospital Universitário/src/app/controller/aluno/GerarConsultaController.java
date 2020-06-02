@@ -2,6 +2,7 @@ package app.controller.aluno;
 
 import app.model.dao.ImagemRelatorioDAO;
 import app.model.dao.PacienteAlunoRelatorioDAO;
+import app.model.dao.PacienteDAO;
 import app.model.domain.Aluno;
 import app.model.domain.ImagemRelatorio;
 import app.model.domain.Paciente;
@@ -12,6 +13,7 @@ import app.view.aluno.CrudConsultas;
 import app.view.aluno.GerarConsulta;
 import app.view.aluno.MostrarImagem;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
@@ -32,12 +34,17 @@ import javafx.stage.FileChooser;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GerarConsultaController implements Initializable {
+
+    private List<Paciente> listPaciente;
+    private ObservableList<Paciente> observableListPaciente;
 
     @FXML
     private JFXTextField cpfField;
@@ -58,20 +65,25 @@ public class GerarConsultaController implements Initializable {
 
     private List<Byte[]> listaDeImagens;
 
+    @FXML
+    private JFXComboBox comboboxPaciente;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.listaDeImagens = new ArrayList<>();
+        this.carregarComboBox();;
     }
 
     public void gerarConsulta(ActionEvent evt) {
         LocalDateTime dataAtendimento = LocalDateTime.of(this.dataAtendimentoField.getValue(), this.horarioField.getValue());
         String descricao = this.descricaoField.getText();
-        String cpfValue = this.cpfField.getText();
+        //String cpfValue = this.cpfField.getText();
         Alert alert;
         try {
-            CPF cpf = new CPF(cpfValue);
+            /*CPF cpf = new CPF(cpfValue);
             Paciente paciente = new Paciente();
-            paciente.setCpf(cpfValue);
+            paciente.setCpf(cpfValue);*/
+            Paciente paciente = (Paciente) this.comboboxPaciente.getSelectionModel().getSelectedItem();
             PacienteAlunoRelatorioDAO pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
             Aluno aluno = (Aluno) Sistema.getSessao().getUsuario();
             PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio(dataAtendimento.toString(), paciente, aluno);
@@ -186,9 +198,18 @@ public class GerarConsultaController implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
     public void cancelarAcao(ActionEvent evt) {
         CrudConsultas.getStage().show();
         GerarConsulta.getStage().close();
+    }
+
+    private void carregarComboBox() {
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        this.listPaciente = pacienteDAO.selectAll();
+        if (this.listPaciente != null) {
+            this.observableListPaciente = FXCollections.observableArrayList(this.listPaciente);
+            this.comboboxPaciente.setItems(this.observableListPaciente);
+        }
     }
 }

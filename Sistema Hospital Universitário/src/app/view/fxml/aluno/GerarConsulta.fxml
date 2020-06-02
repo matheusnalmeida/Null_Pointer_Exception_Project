@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -31,11 +31,6 @@
       </Label>
       <AnchorPane layoutX="167.0" layoutY="136.0" prefHeight="515.0" prefWidth="773.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
          <children>
-            <JFXTextField fx:id="cpfField" alignment="CENTER" focusColor="#0262ac" layoutX="178.0" layoutY="59.0" prefHeight="44.0" prefWidth="397.0" promptText="CPF Do Paciente" unFocusColor="#a7a9ab">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXTextField>
             <Label fx:id="tituloLabel" layoutX="252.0" layoutY="14.0" text="Dados da Consulta" textFill="#0262ac">
                <font>
                   <Font size="30.0" />
@@ -51,6 +46,7 @@
             <JFXTimePicker fx:id="horarioField" defaultColor="#0262ac" layoutX="414.0" layoutY="129.0" prefHeight="25.0" prefWidth="171.0" promptText="Horário" />
             <JFXButton id="chooseFileId" fx:id="chooseFile" layoutX="180.0" layoutY="357.0" onAction="#chooseFile" style="-fx-background-color: #0262ac;" text="Adicionar Imagem" textFill="WHITE" />
             <JFXListView id="listArquivosID" fx:id="listArquivos" layoutX="359.0" layoutY="310.0" onMouseClicked="#itemClicked" prefHeight="125.0" prefWidth="226.0" />
+            <JFXComboBox fx:id="comboboxPaciente" layoutX="179.0" layoutY="69.0" prefHeight="30.0" prefWidth="406.0" promptText="Selecione o Paciente" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="gerarBotao" layoutX="577.0" layoutY="661.0" onAction="#gerarConsulta" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #0262ac;" text="Gerar" textFill="WHITE" />
