@@ -22,10 +22,6 @@ public class CadastrarMedico extends Application {
     public CadastrarMedico() {
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
         CadastrarMedico.setStage(stage);

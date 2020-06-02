@@ -51,8 +51,6 @@ public class CrudPedidosExamesController implements Initializable {
     @FXML
     private JFXButton editarBotao;
     @FXML
-    private JFXButton visualizarBotao;
-    @FXML
     private JFXButton removerBotao;
 
     @Override
@@ -87,10 +85,6 @@ public class CrudPedidosExamesController implements Initializable {
             this.observableListEmissaoPedidoExame = FXCollections.observableArrayList(pedidoExameAuxList);
             this.pedidosExameTableView.setItems(this.observableListEmissaoPedidoExame);
         }
-    }
-
-    public void visualizarAction(ActionEvent evt) {
-
     }
 
     public void editarAction(ActionEvent evt) {
