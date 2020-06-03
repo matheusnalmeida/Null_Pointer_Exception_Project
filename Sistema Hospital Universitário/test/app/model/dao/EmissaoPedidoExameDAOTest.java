@@ -16,91 +16,86 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EmissaoPedidoExameDAOTest {
-    
+
     private Medico medico;
     private Paciente paciente;
     private PedidoExame pedidoExame;
     private EmissaoPedidoExameDAO emissaoPedidoExameDAO;
     private EmissaoPedidoExame emissaoPedidoExame;
-    
+
     public EmissaoPedidoExameDAOTest() {
-        String senha = "741753951";
-        senha = EncryptionPassword.encrypt(senha);
-        this.medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
-        this.pedidoExame = new PedidoExame("Test", LocalDate.of(2020, 04, 12).toString(), "Test", "Test");
-        this.emissaoPedidoExame = new EmissaoPedidoExame(null, medico, paciente, pedidoExame);
+        this.emissaoPedidoExameDAO = new EmissaoPedidoExameDAO();
+        this.medico = new Medico();
+        this.medico.setMatricula("56021041031");
+        this.paciente = new Paciente();
+        this.paciente.setCpf("111.111.111-11");
+        this.pedidoExame = new PedidoExame();
+        this.pedidoExame.setCodigo(7);
+        this.emissaoPedidoExame = new EmissaoPedidoExame(LocalDateTime.now().toString(), medico, paciente, pedidoExame);
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class EmissaoPedidoExameDAO.
-     */
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Criando uma emissão de pedido de exame.");
         boolean expResult = true;
         boolean result = this.emissaoPedidoExameDAO.create(emissaoPedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of read method, of class EmissaoPedidoExameDAO.
-     */
     @Test
     public void testRead() {
-        System.out.println("read");
+        System.out.println("Obtendo uma emissão de pedido de exame.");
         EmissaoPedidoExame expResult = new EmissaoPedidoExame();
-        expResult.setPedidoExame(pedidoExame);
-        EmissaoPedidoExame result = this.emissaoPedidoExameDAO.read(emissaoPedidoExame);
+        expResult.setCodigo(6);
+        EmissaoPedidoExame result = this.emissaoPedidoExameDAO.read(this.emissaoPedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of update method, of class EmissaoPedidoExameDAO.
-     */
     @Test
     public void testUpdate() {
-        System.out.println("update");
-        this.emissaoPedidoExame.setDataEmissao(LocalDateTime.of(2020, 5, 1, 15, 30).toString());
+        System.out.println("Atualizando um pedido de exame");
+        this.emissaoPedidoExame.setDataEmissao(LocalDateTime.now().toString());
         boolean expResult = true;
         boolean result = this.emissaoPedidoExameDAO.update(emissaoPedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of delete method, of class EmissaoPedidoExameDAO.
-     */
     @Test
     public void testDelete() {
-        System.out.println("delete");
+        System.out.println("Removendo uma emissão de pedido de exame.");
         boolean expResult = true;
         boolean result = this.emissaoPedidoExameDAO.delete(emissaoPedidoExame);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of selectAll method, of class EmissaoPedidoExameDAO.
-     */
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtendo todas as emissões de pedido de exame. SELECT * FROM emissao_pedidos_exames.");
         List<EmissaoPedidoExame> result = this.emissaoPedidoExameDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    public void testDeletarPorPedidoExame() {
+        System.out.println("Remove uma emissão de pedido de exame através do código de um pedido de exame.");
+        boolean expResult = true;
+        boolean result = this.emissaoPedidoExameDAO.deletarPorPedidoExame(pedidoExame);
+        assertEquals(expResult, result);
     }
 }

@@ -27,7 +27,6 @@ public class PacienteAlunoRelatorioDAO {
             result = true;
         } catch (Exception exception) {
             result = false;
-            System.out.println(exception.getCause());
             this.em.getTransaction().rollback();
         } finally {
             this.emf.close();

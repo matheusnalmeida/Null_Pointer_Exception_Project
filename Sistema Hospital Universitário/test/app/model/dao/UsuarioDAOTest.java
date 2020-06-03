@@ -34,12 +34,13 @@ public class UsuarioDAOTest {
 
     @Test
     public void testAutenticar() throws Exception {
+        //Teste de autenticação de usuário
         System.out.println("autenticar");
-        String matricula = "1204202018A";
-        String senha = "75395145682";
+        String matricula = "67841997433";
+        String senha = "123456";
         senha = EncryptionPassword.encrypt(senha);
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
+        Aluno aluno = new Aluno("José Pedro Barreto Santos", "67841997433", senha,
                 1, LocalDate.of(1998, 12, 1).toString());
         Usuario result = usuarioDAO.autenticar(matricula, senha);
         assertEquals(aluno, result);

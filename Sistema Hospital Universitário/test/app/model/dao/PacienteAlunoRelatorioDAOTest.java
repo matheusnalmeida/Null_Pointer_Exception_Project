@@ -24,15 +24,12 @@ public class PacienteAlunoRelatorioDAOTest {
 
     public PacienteAlunoRelatorioDAOTest() {
         this.pacienteAlunoRelatorioDAO = new PacienteAlunoRelatorioDAO();
-        String senha = "741753951";
-        senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
-        senha = "75395145682";
-        senha = EncryptionPassword.encrypt(senha);
-        this.aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1).toString());
-        this.paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
+        this.aluno = new Aluno();
+        this.aluno.setMatricula("67841997433");
+        this.paciente = new Paciente();
+        this.paciente.setCpf("111.111.111-11");
         this.pacienteAlunoRelatorio = new PacienteAlunoRelatorio(LocalDateTime.now().toString(), paciente, aluno);
+        this.pacienteAlunoRelatorio.setDescricao("descriçao");
     }
 
     @BeforeClass
@@ -53,7 +50,7 @@ public class PacienteAlunoRelatorioDAOTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Criando uma consulta.");
         boolean result = this.pacienteAlunoRelatorioDAO.create(this.pacienteAlunoRelatorio);
         boolean expResult = true;
         assertEquals(expResult, result);
@@ -61,16 +58,17 @@ public class PacienteAlunoRelatorioDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
+        System.out.println("Obtendo uma consulta do banco.");
         PacienteAlunoRelatorio pacienteAlunoRelatorio = new PacienteAlunoRelatorio();
-        pacienteAlunoRelatorio.setCodigo(0);
+        pacienteAlunoRelatorio.setCodigo(13);
         PacienteAlunoRelatorio result = this.pacienteAlunoRelatorioDAO.read(pacienteAlunoRelatorio);
         assertEquals(pacienteAlunoRelatorio, result);
     }
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
+        System.out.println("Atualizando uma consulta no banco.");
+        this.pacienteAlunoRelatorio.setDescricao("teste");
         boolean expResult = true;
         boolean result = this.pacienteAlunoRelatorioDAO.update(pacienteAlunoRelatorio);
         assertEquals(expResult, result);
@@ -78,7 +76,7 @@ public class PacienteAlunoRelatorioDAOTest {
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
+        System.out.println("Removendo uma consulta do banco.");
         boolean expResult = true;
         boolean result = this.pacienteAlunoRelatorioDAO.delete(this.pacienteAlunoRelatorio);
         assertEquals(expResult, result);
@@ -86,8 +84,8 @@ public class PacienteAlunoRelatorioDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtendo todas as consultas do banco.");
         List<PacienteAlunoRelatorio> result = this.pacienteAlunoRelatorioDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(3, result.size());
     }
 }

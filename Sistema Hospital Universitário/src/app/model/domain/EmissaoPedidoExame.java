@@ -101,15 +101,6 @@ public class EmissaoPedidoExame implements Serializable {
         if (this.codigo != other.codigo) {
             return false;
         }
-        if (!Objects.equals(this.medico, other.medico)) {
-            return false;
-        }
-        if (!Objects.equals(this.paciente, other.paciente)) {
-            return false;
-        }
-        if (!Objects.equals(this.pedidoExame, other.pedidoExame)) {
-            return false;
-        }
         return true;
     }
 }

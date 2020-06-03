@@ -35,10 +35,10 @@ public class AlunoDAOTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Teste de criação e inserção de um aluno no banco de dados");
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
+        Aluno aluno = new Aluno("Test2", "68841997433", senha,
                 1, LocalDate.of(1998, 12, 1).toString());
         AlunoDAO alunoDAO = new AlunoDAO();
         boolean expResult = true;
@@ -48,13 +48,13 @@ public class AlunoDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
+        System.out.println("Teste de leitura de um aluno no banco de dados");
         Aluno aluno = new Aluno();
-        aluno.setMatricula("1204202018A");
+        aluno.setMatricula("68841997433");
         AlunoDAO alunoDAO = new AlunoDAO();
         String senha = "75395145682";
         senha = EncryptionPassword.encrypt(senha);
-        Aluno expResult = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
+        Aluno expResult = new Aluno("Test2", "68841997433", senha,
                 1, LocalDate.of(1998, 12, 1).toString());
         Aluno result = alunoDAO.read(aluno);
         assertEquals(expResult, result);
@@ -62,7 +62,7 @@ public class AlunoDAOTest {
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
+        System.out.println("Teste de atualização dos dados de um aluno.");
         //Atualizando ano de residência
         Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92",
                 2, LocalDate.of(1998, 12, 1).toString());
@@ -74,17 +74,17 @@ public class AlunoDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtendo todos os alunos do banco de dados: ");
         AlunoDAO alunoDAO = new AlunoDAO();
         List<Aluno> result = alunoDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(3, result.size());
     }
-
+    
     @Test
     public void testDelete() {
-        System.out.println("delete");
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92",
-                2, LocalDate.of(1998, 12, 1).toString());
+        System.out.println("Removendo um aluno do banco");
+        Aluno aluno = new Aluno();
+        aluno.setMatricula("1204202018A");
         AlunoDAO alunoDAO = new AlunoDAO();
         boolean expResult = true;
         boolean result = alunoDAO.delete(aluno);
@@ -93,8 +93,9 @@ public class AlunoDAOTest {
 
     @Test
     public void getRelatorios() {
+        System.out.println("Obtendo todos os relatórios escritos por um aluno");
         Aluno aluno = new Aluno();
-        aluno.setMatricula("81149163393");
+        aluno.setMatricula("67841997433");
         AlunoDAO alunoDAO = new AlunoDAO();
         List<PacienteAlunoRelatorio> relatorios = alunoDAO.getRelatorios(aluno);
         assertNotEquals(null, relatorios);

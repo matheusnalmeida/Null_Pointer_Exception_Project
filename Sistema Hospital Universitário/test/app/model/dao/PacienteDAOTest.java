@@ -10,10 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Usuario
- */
 public class PacienteDAOTest {
 
     public PacienteDAOTest() {
@@ -37,8 +33,8 @@ public class PacienteDAOTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
-        Paciente paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
+        System.out.println("Criando um paciente no banco de dados");
+        Paciente paciente = new Paciente("Teste Paciente", "M", "Pardo", "222.222.222-22", LocalDate.of(1998, 12, 1));
         PacienteDAO pacienteDAO = new PacienteDAO();
         boolean expResult = true;
         boolean result = pacienteDAO.create(paciente);
@@ -47,20 +43,20 @@ public class PacienteDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
+        System.out.println("Obtendo um paciente do banco de dados");
         Paciente paciente = new Paciente();
-        paciente.setCpf("111.111.111-11");
+        paciente.setCpf("222.222.222-22");
         PacienteDAO pacienteDAO = new PacienteDAO();
         Paciente expResult = new Paciente();
-        expResult.setCpf("111.111.111-11");
+        expResult.setCpf("222.222.222-22");
         Paciente result = pacienteDAO.read(paciente);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
-        Paciente paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1999, 1, 1));
+        System.out.println("Atualizando os dados de um paciente.");
+        Paciente paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "222.222.222-22", LocalDate.of(1999, 1, 1));
         PacienteDAO pacienteDAO = new PacienteDAO();
         boolean expResult = true;
         boolean result = pacienteDAO.update(paciente);
@@ -69,16 +65,16 @@ public class PacienteDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
-        PacienteDAO instance = new PacienteDAO();
-        List<Paciente> result = instance.selectAll();
-        assertEquals(1, result.size());
+        System.out.println("Obtendo todos os pacientes do banco de dados. SELECT * FROM pacientes.");
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        List<Paciente> result = pacienteDAO.selectAll();
+        assertEquals(4, result.size());
     }
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
-        Paciente paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "111.111.111-11", LocalDate.of(1998, 12, 1));
+        System.out.println("Removendo um paciente do banco de dados.");
+        Paciente paciente = new Paciente("José Pedro Barreto Santos", "M", "Pardo", "222.222.222-22", LocalDate.of(1999, 1, 1));
         PacienteDAO pacienteDAO = new PacienteDAO();
         boolean expResult = true;
         boolean result = pacienteDAO.delete(paciente);

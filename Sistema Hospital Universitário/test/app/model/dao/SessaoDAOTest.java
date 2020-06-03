@@ -36,10 +36,10 @@ public class SessaoDAOTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
-        String senha = "75395145682";
+        System.out.println("Teste de criação de uma sessão. Uma sessão é criada sempre que um usuário entra no sistema.");
+        String senha = "123456";
         senha = EncryptionPassword.encrypt(senha);
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
+        Aluno aluno = new Aluno("José Pedro Barreto Santos", "67841997433", senha,
                 1, LocalDate.of(1998, 12, 1).toString());
         Sessao sessao = new Sessao(aluno, LocalDateTime.now().toString(), null);
         SessaoDAO sessaoDAO = new SessaoDAO();
@@ -50,12 +50,8 @@ public class SessaoDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
-        String senha = "75395145682";
-        senha = EncryptionPassword.encrypt(senha);
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
-                1, LocalDate.of(1998, 12, 1).toString());
-        Sessao sessao = new Sessao(aluno, LocalDateTime.now().toString(), null);
+        System.out.println("Obtendo uma sessão do banco de dados.");
+        Sessao sessao = new Sessao();
         SessaoDAO sessaoDAO = new SessaoDAO();
         Sessao expResult = new Sessao();
         sessao.setCodigo(10);
@@ -66,14 +62,13 @@ public class SessaoDAOTest {
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
-        //Atualizando horário de término da sessão.
-        String senha = "75395145682";
+        System.out.println("Atualiza os dados de uma sessão. Atualizando a data de encerramento da sessão.");
+        String senha = "123456";
         senha = EncryptionPassword.encrypt(senha);
-        Aluno aluno = new Aluno("José Pedro Barreto Santos", "1204202018A", senha,
+        Aluno aluno = new Aluno("José Pedro Barreto Santos", "67841997433", senha,
                 1, LocalDate.of(1998, 12, 1).toString());
-        Sessao sessao = new Sessao(aluno, "2020-05-03 16:00:32", LocalDateTime.now().toString());
-        sessao.setCodigo(12);
+        Sessao sessao = new Sessao(aluno, "2020-06-03 16:19:32", LocalDateTime.now().toString());
+        sessao.setCodigo(81);
         SessaoDAO sessaoDAO = new SessaoDAO();
         boolean expResult = true;
         boolean result = sessaoDAO.update(sessao);
@@ -82,9 +77,9 @@ public class SessaoDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtem todas as sessões do sistema. SELECT * FROM sessoes");
         SessaoDAO sessaoDAO = new SessaoDAO();
         List<Sessao> result = sessaoDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(81, result.size());
     }
 }

@@ -1,6 +1,7 @@
 package app.model.dao;
 
 import app.model.domain.Medico;
+import app.model.domain.PacienteAlunoRelatorio;
 import app.utilits.EncryptionPassword;
 import java.util.List;
 import org.junit.After;
@@ -33,10 +34,10 @@ public class MedicoDAOTest {
 
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Criando um médico no banco de dados");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
+        Medico medico = new Medico("Teste Médico", "70021041031", senha, "2020/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         boolean expResult = true;
         boolean result = medicoDAO.create(medico);
@@ -45,24 +46,23 @@ public class MedicoDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
+        System.out.println("Obtendo um médico do banco de dados");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
+        Medico medico = new Medico("Teste Médico", "70021041031", senha, "2020/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         Medico expResult = new Medico();
-        expResult.setMatricula("1204202018M");
+        expResult.setMatricula("70021041031");
         Medico result = medicoDAO.read(medico);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
-        //Exemplo de atualização de senha
-        String senha = "789963951";
+        System.out.println("Atualizando os dados de um médico no banco de dados. Atualizando senha.");
+        String senha = "123456";
         senha = EncryptionPassword.encrypt(senha);
-        Medico medico = new Medico("José Pedro Barreto Santos", "1204202018M", senha, "0000/SE");
+        Medico medico = new Medico("José Pedro Barreto Santos", "70021041031", senha, "2020/SE");
         MedicoDAO medicoDAO = new MedicoDAO();
         boolean expResult = true;
         boolean result = medicoDAO.update(medico);
@@ -71,17 +71,17 @@ public class MedicoDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtendo todos os médicos do banco de dados. SELECT * FROM medicos.");
         MedicoDAO medicoDAO = new MedicoDAO();
         List<Medico> result = medicoDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(3, result.size());
     }
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
+        System.out.println("Removendo um médico do banco de dados.");
         Medico medico = new Medico();
-        medico.setMatricula("1204202018M");
+        medico.setMatricula("70021041031");
         MedicoDAO medicoDAO = new MedicoDAO();
         boolean expResult = true;
         boolean result = medicoDAO.delete(medico);
@@ -90,13 +90,11 @@ public class MedicoDAOTest {
 
     @Test
     public void getRelatorios() {
+        System.out.println("Obtendo todos os relatórios autorizados pelo médico: 56021041031");
         MedicoDAO medicoDAO = new MedicoDAO();
-
-        /*List<Relatorio> relatorios = medicoDAO.getRelatorios();
-        assertEquals(1, relatorios.size());*/
-         /*Medico medico = new Medico();
-        medico.setMatricula("17789661622");
-        List<Relatorio> relatorios = medicoDAO.getRelatorios(medico);
-        assertEquals(1, relatorios.size());*/
+        Medico medico = new Medico();
+        medico.setMatricula("56021041031");
+        List<PacienteAlunoRelatorio> relatorios = medicoDAO.getRelatorios(medico);
+        assertEquals(1, relatorios.size());
     }
 }

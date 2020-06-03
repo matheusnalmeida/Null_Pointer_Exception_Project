@@ -38,7 +38,7 @@ public class EmissaoPedidoExameDAO {
         EmissaoPedidoExame retorno = null;
         try {
             this.em.getTransaction().begin();
-            retorno = this.em.find(EmissaoPedidoExame.class, emissaoPedidoExame.getPedidoExame());
+            retorno = this.em.find(EmissaoPedidoExame.class, emissaoPedidoExame.getCodigo());
         } catch (Exception exception) {
         } finally {
             this.emf.close();
@@ -66,7 +66,7 @@ public class EmissaoPedidoExameDAO {
         boolean result = false;
         try {
             this.em.getTransaction().begin();
-            this.em.remove(this.em.getReference(EmissaoPedidoExame.class, emissaoPedidoExame.getPedidoExame()));
+            this.em.remove(this.em.getReference(EmissaoPedidoExame.class, emissaoPedidoExame.getCodigo()));
             this.em.getTransaction().commit();
             result = true;
         } catch (Exception ex) {

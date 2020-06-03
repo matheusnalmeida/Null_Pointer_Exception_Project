@@ -32,12 +32,12 @@ public class ProfessorDAOTest {
     public void tearDown() {
     }
 
-    /*@Test
+    @Test
     public void testCreate() {
-        System.out.println("create");
-        String senha = "741753951";
+        System.out.println("Criando um professor no banco de dados.");
+        String senha = "123456";
         senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado");
+        Professor professor = new Professor("Teste Professor", "02500529222", senha, "1010/SE", "Pós-Graduado");
         ProfessorDAO professorDAO = new ProfessorDAO();
         boolean expResult = true;
         boolean result = professorDAO.create(professor);
@@ -46,24 +46,22 @@ public class ProfessorDAOTest {
 
     @Test
     public void testRead() {
-        System.out.println("read");
-        String senha = "741753951";
-        senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Pós-Graduado");
+        System.out.println("Obtendo um professor do banco de dados");
+        Professor professor = new Professor();
+        professor.setMatricula("02500529222");
         ProfessorDAO professorDAO = new ProfessorDAO();
         Professor expResult = new Professor();
-        expResult.setMatricula("1204202021P");
+        expResult.setMatricula("02500529222");
         Professor result = professorDAO.read(professor);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
-        //Exemplo de atualização de titulação
+        System.out.println("Atualizando os dados de um professor.");
         String senha = "741753951";
         senha = EncryptionPassword.encrypt(senha);
-        Professor professor = new Professor("José Pedro Barreto Santos", "1204202021P", senha, "0000/SE", "Mestrando");
+        Professor professor = new Professor("Teste Professor", "02500529222", senha, "1010/SE", "Mestrando");
         ProfessorDAO professorDAO = new ProfessorDAO();
         boolean expResult = true;
         boolean result = professorDAO.update(professor);
@@ -72,17 +70,17 @@ public class ProfessorDAOTest {
 
     @Test
     public void testSelectAll() {
-        System.out.println("selectAll");
+        System.out.println("Obtendo todos os professores do banco. SELECT * FROM professores");
         ProfessorDAO professorDAO = new ProfessorDAO();
         List<Professor> result = professorDAO.selectAll();
-        assertEquals(1, result.size());
+        assertEquals(2, result.size());
     }
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
+        System.out.println("Removendo um professor do banco de dados.");
         Professor professor = new Professor();
-        professor.setMatricula("1204202021P");
+        professor.setMatricula("02500529222");
         ProfessorDAO professorDAO = new ProfessorDAO();
         boolean expResult = true;
         boolean result = professorDAO.delete(professor);
@@ -91,17 +89,17 @@ public class ProfessorDAOTest {
         
     @Test
     public void testGetAlunos(){
-        System.out.println("getAlunos");
+        System.out.println("Obtendo todos os alunos de um professor.");
         Professor professor = new Professor();
-        professor.setMatricula("4456319868");
+        professor.setMatricula("02310529222");
         ProfessorDAO professorDAO = new ProfessorDAO();
         List<Aluno> alunos = professorDAO.getAlunos(professor);
         assertEquals(1, alunos.size());
-    }*/
+    }
     
     @Test
     public void testGetAlunosSemProfessor(){
-        System.out.println("getAlunosSemProfessor");
+        System.out.println("Obtendo todos os alunos que não possuem um professor");
         ProfessorDAO professorDAO = new ProfessorDAO();
         List<Aluno> alunos = professorDAO.getAlunosSemProfessor();
         assertEquals(1, alunos.size());
